@@ -1,8 +1,8 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; implementación iniciada en la rama
-`codex/theme-foundation`.
+Estado: plan aprobado por el usuario; checkpoint Alpha completado en la rama
+`codex/theme-foundation` (T02–T06 implementadas).
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo

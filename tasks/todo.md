@@ -1,7 +1,7 @@
 # Tareas de django-adminwp
 
-Estado: plan aprobado. T01 está aprobado por el usuario; T02 está implementado
-en la rama `codex/theme-foundation`. T03–T16 siguen pendientes.
+Estado: plan aprobado. T01–T06 están implementadas en la rama
+`codex/theme-foundation`; el primer checkpoint alpha está completo.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
@@ -18,8 +18,9 @@ Plan: [plan.md](plan.md).
 - [x] Preparar metadatos y aplicación Django instalable desde un wheel.
 - Aceptación: Django descubre plantillas y recursos del paquete sin migraciones.
 - Verificación: construir sdist/wheel, inspeccionarlos e instalar el wheel en un entorno limpio.
-- Evidencia: pytest 4/4, Ruff, build sdist/wheel e instalación aislada del wheel con
-  descubrimiento de app, plantilla y CSS en Python 3.14/Django 6.1.
+- Evidencia: pytest, Ruff, build sdist/wheel e instalación aislada del wheel con
+  app, plantillas, Bootstrap compilado y JS descubiertos; matriz local Django 6.0/6.1
+  × Python 3.13/3.14 con 20 pruebas aprobadas en cada combinación.
 - Dependencias: T01. Archivos: `pyproject.toml`, `src/adminwp/__init__.py`,
   `src/adminwp/apps.py`, `tests/test_packaging.py`, `README.md`.
 
@@ -34,7 +35,7 @@ Plan: [plan.md](plan.md).
 - El scaffolding adicional y los datos se dividirán en tareas auxiliares pequeñas.
 
 ## Checkpoint A
-- [ ] Paquete instalable y demo reproducible; revisar alcance antes de cambiar el admin.
+- [x] Paquete instalable y demo reproducible; alcance revisado y aprobado.
 
 ## T04 — Configuración y marca
 - [x] Incorporar valores predeterminados, validación de ajustes y marca del sitio.
@@ -47,23 +48,29 @@ Plan: [plan.md](plan.md).
   `tests/test_configuration.py`.
 
 ## T05 — Navegación con permisos
-- [ ] Mostrar aplicaciones y modelos autorizados con menú plegable y activo actual.
+- [x] Mostrar aplicaciones y modelos autorizados con menú plegable y activo actual.
 - Aceptación: respeta permisos de vista/adición/cambio y enlaces del AdminSite actual.
 - Verificación: pruebas con superusuario, staff restringido, permisos de solo vista
   y modelos con claves no numéricas; navegador para plegado y teclado.
-- Dependencias: T04. Archivos: `src/adminwp/navigation.py`,
-  `src/adminwp/templates/admin/nav_sidebar.html`, `assets/js/navigation.js`,
-  `tests/test_navigation.py`, `tests/browser/test_navigation.py`.
+- Evidencia: pruebas de orden, usuario con solo permiso de vista y elemento activo;
+  Chrome verificó el toggle, su estado aria-expanded y el plegado nativos de Django.
+- Dependencias: T04. Archivos: `src/adminwp/templatetags/adminwp.py`,
+  `src/adminwp/templates/admin/nav_sidebar.html`, `src/adminwp/templates/admin/index.html`,
+  `tests/test_navigation.py`.
 
 ## T06 — Apariencia y modos
-- [ ] Aplicar Bootstrap selectivo y tokens visuales al login, inicio y navegación.
+- [x] Aplicar Bootstrap selectivo y tokens visuales al login, inicio y navegación.
 - Aceptación: claro, oscuro y automático comparten una preferencia; los recursos
   compilados permiten usar el paquete sin herramientas frontend en destino.
 - Verificación: construir recursos; probar cambio del sistema en modo automático,
   almacenamiento del navegador no disponible y capturas en ambos modos.
+- Evidencia: CSS compilado selectivamente; pruebas JS cubren auto, ciclo del toggle,
+  storage bloqueado y sincronización entre pestañas. Chrome confirmó ambos modos,
+  el dashboard de escritorio y que el login no desborda a 320 px; `collectstatic`
+  generó un manifiesto con todos los recursos del tema.
 - Dependencias: T05. Archivos: `package.json`, `assets/scss/adminwp.scss`,
-  `assets/js/appearance.js`, `src/adminwp/templates/admin/base.html`,
-  `tests/browser/test_appearance.py`. Recursos generados se verifican en el artefacto.
+  `src/adminwp/static/adminwp/js/appearance.js`, `src/adminwp/templates/admin/base.html`,
+  `tests/js/appearance.test.mjs`. Recursos generados se verifican en el artefacto.
 
 ## Checkpoint B
 - [ ] Instalar, iniciar sesión y navegar en móvil/escritorio con apariencia coherente.

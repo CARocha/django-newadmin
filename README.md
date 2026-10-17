@@ -2,8 +2,8 @@
 
 A WordPress-inspired, light-and-dark theme for Django's built-in admin.
 
-**Status:** early development. Django 6.0 and 6.1 on Python 3.13 and 3.14 are
-the first target matrix. This target has not yet been verified in CI.
+**Status:** early development. The first target matrix (Django 6.0 and 6.1 on
+Python 3.13 and 3.14) passes locally; automated CI has not been configured yet.
 
 ## Development setup
 
@@ -11,6 +11,36 @@ the first target matrix. This target has not yet been verified in CI.
 python3.14 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
 .venv/bin/python -m pytest -q
+npm ci
+npm run build:css
+npm run test:js
+```
+
+The npm commands are for developing AdminWP's assets. Installing the Python
+package includes the compiled files and does not require Node.js.
+
+## Activate AdminWP
+
+Add `adminwp` before Django's admin app. No model changes, middleware, or
+migrations are required in a consuming project:
+
+```python
+INSTALLED_APPS = [
+    "adminwp",
+    "django.contrib.admin",
+    # Other Django apps.
+]
+```
+
+The theme works with its defaults. Optional site branding and appearance can be
+set in `settings.py`:
+
+```python
+ADMINWP = {
+    "SITE_TITLE": "Studio",
+    "SITE_HEADER": "Studio control room",
+    "DEFAULT_MODE": "auto",  # light, dark, or auto
+}
 ```
 
 ## Run the demo

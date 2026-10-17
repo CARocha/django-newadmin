@@ -1,0 +1,14 @@
+{
+  "name": "django-adminwp-assets",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Build tools for the django-adminwp static assets",
+  "scripts": {
+    "build:css": "sass --quiet-deps --silence-deprecation=import --no-source-map --style=compressed --load-path=node_modules assets/scss/adminwp.scss src/adminwp/static/adminwp/css/bootstrap.min.css",
+    "test:js": "node --test tests/js/*.test.mjs"
+  },
+  "devDependencies": {
+    "bootstrap": "5.3.8",
+    "sass": "1.105.2"
+  }
+}

@@ -8,10 +8,11 @@
 
 {% block extrastyle %}
   {{ block.super }}
-  <link rel="stylesheet" href="{% static 'adminwp/css/adminwp.css' %}">
+  <link rel="stylesheet" href="{% static 'adminwp/css/bootstrap.min.css' %}" {% adminwp_nonce_attr %}>
+  <link rel="stylesheet" href="{% static 'adminwp/css/adminwp.css' %}" {% adminwp_nonce_attr %}>
   {% adminwp_options as adminwp %}
   {% for stylesheet in adminwp.CUSTOM_CSS %}
-    <link rel="stylesheet" href="{% static stylesheet %}">
+    <link rel="stylesheet" href="{% static stylesheet %}" {% adminwp_nonce_attr %}>
   {% endfor %}
 {% endblock %}
 
