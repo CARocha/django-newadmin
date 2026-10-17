@@ -1,6 +1,7 @@
 # Tareas de django-adminwp
 
-Estado: plan aprobado. T01–T13.5 están implementadas; T14 continúa pendiente de cierre.
+Estado: T01–T14 implementadas, incluido el marco compartido y el acabado de vidrio.
+T15 (accesibilidad) y T16 (preparación de publicación) quedan pendientes.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
@@ -200,8 +201,8 @@ Plan: [plan.md](plan.md).
   a todas las pantallas; la adaptación avanzada del menú móvil y la auditoría
   completa de accesibilidad siguen en T15.
 - Guía de integración: [dashboard.md](../docs/dashboard.md).
-- La T14 en curso se conserva en el stash `T14 menu extensions in progress before
-  dashboard redesign`, asociado a `codex/site-extensions`, para retomarla sin perderla.
+- El trabajo previo de T14 se recuperó y adaptó al marco compartido. Su stash
+  `T14 menu extensions in progress before dashboard redesign` se conserva como respaldo.
 
 ## T13.6 — Unificar el tema en todo el administrador
 - [x] Mover paleta y marco de la portada a la base compartida.
@@ -234,7 +235,20 @@ Plan: [plan.md](plan.md).
   Las tarjetas interiores de minigráficos quedan exentas de sombra adicional.
 
 ## T14 — Varios sitios y extensiones
-- [ ] Incorporar configuración por AdminSite, menú personalizado y CSS adicional.
+- [x] Incorporar configuración por AdminSite, menú personalizado y CSS adicional.
+- [x] Validar catálogo de iconos, enlaces nombrados y todos sus permisos; mantener
+  SVG fuera de los enlaces de modelos para conservar el filtro nativo.
+- [x] Añadir bloques públicos de marca, lateral y pie; cargar CUSTOM_CSS después
+  del CSS específico de página y de ModelAdmin.Media.
+- [x] Incluir subconjunto local de Bootstrap Icons, compilador reproducible y
+  licencias MIT/BSD de los iconos y la plantilla adaptada de Django.
+- Evidencia: 93 pruebas pasan en Django 6.0.9/6.1.2 × Python 3.13/3.14;
+  cuatro pruebas JS, Ruff, Django check y build de CSS/iconos/wheel/sdist pasan.
+  Wheel instalado fuera del checkout; plantillas y sprite con manifiesto verificados.
+- Revisión independiente: corregida selección de enlaces con rutas Unicode,
+  con regresión observada antes y después; enlaces entre sitios, permisos,
+  escape, bloques del consumidor, Media y orden final de CSS probados.
+- Guía: [configuration.md](../docs/configuration.md).
 - Aceptación: sitios con namespaces distintos no mezclan enlaces ni configuración;
   plantillas del consumidor y `Media` siguen funcionando.
 - Verificación: pruebas con dos sitios, permisos diferentes y overrides del consumidor.

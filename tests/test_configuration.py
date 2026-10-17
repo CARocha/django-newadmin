@@ -64,3 +64,35 @@ def test_configured_site_title_is_used_in_the_document_title(client):
     response = client.get("/admin/login/")
 
     assert b"Editorial studio" in response.content
+
+
+@pytest.mark.parametrize(
+    "menu",
+    [
+        {"ICONS": []},
+        {"ICONS": {"catalog": "unknown"}},
+        {"LINKS": "Reports"},
+        {"LINKS": ["Reports"]},
+        {"LINKS": [{"LABEL": "Reports"}]},
+        {"LINKS": [{"LABEL": "Reports", "URL_NAME": "report", "ICON": "unknown"}]},
+        {"LINKS": [{"LABEL": "Reports", "URL_NAME": "report", "PERMISSIONS": ["view"]}]},
+    ],
+)
+def test_invalid_menu_extensions_fail_clearly(menu):
+    with override_settings(ADMINWP={"MENU": menu}):
+        with pytest.raises(ImproperlyConfigured, match="MENU"):
+            get_options()
+
+
+@pytest.mark.parametrize(
+    "options, code",
+    [
+        ([], "adminwp.E001"),
+        ({"SITES": []}, "adminwp.E001"),
+        ({"MENU": {"ICONS": {"catalog": "unknown"}}}, "adminwp.E004"),
+        ({"CUSTOM_CSS": ["../outside.css"]}, "adminwp.E003"),
+    ],
+)
+def test_checks_identify_the_configuration_area(options, code):
+    with override_settings(ADMINWP=options):
+        assert check_adminwp(None)[0].id == code

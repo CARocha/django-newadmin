@@ -1681,6 +1681,42 @@ body.adminwp-theme .object-tools a.addlink::after {
   line-height: 1;
 }
 
+.adminwp-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+  margin-inline-end: 0.5rem;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+#nav-sidebar .adminwp-custom-links {
+  padding: 0.75rem 0;
+  margin: 1rem 0.5rem 0 0;
+  border-top: 1px solid var(--adminwp-border);
+  list-style: none;
+}
+
+#nav-sidebar .adminwp-custom-links li {
+  padding: 0;
+  list-style: none;
+}
+
+#nav-sidebar .adminwp-custom-links a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  overflow-wrap: anywhere;
+  font-size: 0.875rem;
+}
+
+#nav-sidebar .adminwp-custom-links a[aria-current=page] {
+  background: var(--adminwp-surface);
+  color: var(--adminwp-text);
+  font-weight: 600;
+}
+
 /* Decoration stays on chrome; editing surfaces and chart plots remain opaque. */
 body.adminwp-theme:not(.login):not(.popup) {
   --adminwp-glass-blur: 12px;

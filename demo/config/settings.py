@@ -58,4 +58,15 @@ ADMINWP = {
     "SITE_HEADER": "AdminWP",
     "SITE_TITLE": "AdminWP",
     "DASHBOARD": "demo.catalog.dashboard.EditorialDashboard",
+    "MENU": {
+        "ORDER": ["catalog", "auth"],
+        "ICONS": {
+            "catalog": "folder",
+            "catalog.article": "file-text",
+            "catalog.category": "tag",
+            "auth": "users",
+            "auth.user": "users",
+            "auth.group": "users",
+        },
+    },
 }

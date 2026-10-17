@@ -16,6 +16,7 @@ python3.14 -m venv .venv
 npm ci
 npm run build:css
 npm run build:charts
+npm run build:icons
 npm run test:js
 ```
 
@@ -74,3 +75,10 @@ Node installation is required by a package consumer.
 See the [dashboard guide](docs/dashboard.md) for configuration, permissions,
 per-site providers, templates and examples. The demo enables an editorial provider
 with entry counts, category charts and recent articles.
+
+## Menus and extensions
+
+Configure model/app icons, named links with permission checks, per-AdminSite
+settings and custom CSS. Public template blocks let a consuming project extend
+the branding, sidebar and footer while retaining Django's native controls.
+See the [configuration and extension guide](docs/configuration.md).

@@ -4,7 +4,17 @@
   <input type="search" id="nav-filter"
          placeholder="{% translate 'Start typing to filter…' %}"
          aria-label="{% translate 'Filter navigation items' %}">
-  <a class="adminwp-nav-home" href="{% url 'admin:index' %}"{% if request.resolver_match.url_name == 'index' %} aria-current="page"{% endif %}>{% translate 'Home' %}</a>
+  <a class="adminwp-nav-home" href="{% url 'admin:index' %}"{% if request.resolver_match.url_name == 'index' %} aria-current="page"{% endif %}>{% adminwp_icon "grid" %}<span>{% translate 'Home' %}</span></a>
   {% adminwp_ordered_apps available_apps as adminwp_apps %}
   {% include 'admin/app_list.html' with app_list=adminwp_apps show_changelinks=False %}
+  {% block adminwp_sidebar_extra %}
+    {% adminwp_custom_links as adminwp_links %}
+    {% if adminwp_links %}
+      <ul class="adminwp-custom-links" aria-label="{% translate 'Additional navigation' %}">
+        {% for link in adminwp_links %}
+          <li><a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{% adminwp_icon link.icon %}<span>{{ link.label }}</span></a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endblock %}
 </nav>

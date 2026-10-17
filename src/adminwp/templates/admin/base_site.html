@@ -17,6 +17,10 @@
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'adminwp/css/bootstrap.min.css' %}" {% adminwp_nonce_attr %}>
   <link rel="stylesheet" href="{% static 'adminwp/css/adminwp.css' %}" {% adminwp_nonce_attr %}>
+{% endblock %}
+
+{% block responsive %}
+  {{ block.super }}
   {% adminwp_options as adminwp %}
   {% for stylesheet in adminwp.CUSTOM_CSS %}
     <link rel="stylesheet" href="{% static stylesheet %}" {% adminwp_nonce_attr %}>
@@ -24,6 +28,7 @@
 {% endblock %}
 
 {% block branding %}
+  {% block adminwp_branding %}
   {% adminwp_options as adminwp %}
   <div id="site-name">
     <a href="{% url 'admin:index' %}">
@@ -32,4 +37,7 @@
     </a>
   </div>
   {% if user.is_anonymous %}{% include "admin/color_theme_toggle.html" %}{% endif %}
+  {% endblock %}
 {% endblock %}
+
+{% block footer %}{{ block.super }}{% block adminwp_footer %}{% endblock %}{% endblock %}

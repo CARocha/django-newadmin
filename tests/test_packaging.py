@@ -41,3 +41,17 @@ def test_echarts_distribution_includes_runtime_license_and_notice():
         "licenses/NOTICE-tslib",
     ):
         assert finders.find(f"adminwp/vendor/echarts/{filename}") is not None
+
+
+def test_icon_catalog_has_a_packaged_symbol_for_each_allowed_identifier():
+    from pathlib import Path
+    from xml.etree import ElementTree
+
+    from adminwp.conf import ICON_NAMES
+
+    sprite = finders.find("adminwp/icons.svg")
+    assert sprite is not None
+    tree = ElementTree.fromstring(Path(sprite).read_text())
+    assert {symbol.attrib["id"] for symbol in tree} == ICON_NAMES
+    for name in ("bootstrap-icons", "django"):
+        assert finders.find(f"adminwp/vendor/{name}/LICENSE") is not None

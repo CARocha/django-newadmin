@@ -1,8 +1,10 @@
 from django import template
+from django.templatetags.static import static
 from django.utils.html import format_html
 
-from adminwp.conf import get_options
+from adminwp.conf import ICON_NAMES, get_options
 from adminwp.dashboard import resolve_dashboard
+from adminwp.navigation import custom_links, site_name
 
 try:
     from django.utils.csp import nonce_attr
@@ -14,17 +16,12 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def adminwp_options(context):
-    request = context.get("request")
-    match = getattr(request, "resolver_match", None)
-    site_name = getattr(match, "namespace", None)
-    return get_options(site_name)
+    return get_options(site_name(context.get("request")))
 
 
 @register.simple_tag(takes_context=True)
 def adminwp_ordered_apps(context, apps):
-    request = context.get("request")
-    match = getattr(request, "resolver_match", None)
-    options = get_options(getattr(match, "namespace", None))
+    options = get_options(site_name(context.get("request")))
     order = options["MENU"]["ORDER"]
     positions = {app_label: index for index, app_label in enumerate(order)}
     return sorted(
@@ -50,3 +47,28 @@ def adminwp_dashboard(context):
     if getattr(getattr(request, "resolver_match", None), "url_name", None) != "index":
         return None
     return resolve_dashboard(request)
+
+
+@register.simple_tag(takes_context=True)
+def adminwp_custom_links(context):
+    return custom_links(context.get("request"))
+
+
+@register.simple_tag
+def adminwp_icon(icon):
+    """A local decorative icon; the adjacent label carries its accessible name."""
+    if not isinstance(icon, str) or icon not in ICON_NAMES:
+        icon = "file-text"
+    return format_html(
+        '<svg class="adminwp-icon" aria-hidden="true" focusable="false">'
+        '<use href="{}#{}"></use></svg>',
+        static("adminwp/icons.svg"),
+        icon,
+    )
+
+
+@register.simple_tag(takes_context=True)
+def adminwp_model_icon(context, app_label, model_name=None):
+    icons = get_options(site_name(context.get("request")))["MENU"]["ICONS"]
+    key = f"{app_label}.{model_name}" if model_name else app_label
+    return icons.get(key, icons.get(app_label, "file-text" if model_name else "folder"))

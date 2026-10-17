@@ -121,7 +121,8 @@ configuración identificable, sin recurrir a un enlace incorrecto.
 
 Catálogo inicial de iconos: grid, file-text, users, settings, folder, image,
 calendar, chart, tag, database, globe y link. Son identificadores propios que
-mapean a SVG locales; un modelo sin icono usa file-text y una aplicación usa folder.
+mapean a SVG locales. El icono específico de modelo prevalece sobre el de aplicación;
+sin ambos, el modelo usa file-text. Una aplicación sin configuración usa folder.
 Los iconos decorativos no duplican el nombre accesible de los enlaces.
 
 ## 4. Validación y errores
