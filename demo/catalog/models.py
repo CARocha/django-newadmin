@@ -1,5 +1,14 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
+
+MAX_ARTICLE_ATTACHMENT_SIZE = 5 * 1024 * 1024
+
+
+def validate_article_attachment_size(upload):
+    if upload.size > MAX_ARTICLE_ATTACHMENT_SIZE:
+        raise ValidationError("Attachments must be 5 MB or smaller.", code="file_too_large")
 
 
 class Category(models.Model):
@@ -28,6 +37,11 @@ class Article(models.Model):
     topics = models.ManyToManyField(Category, blank=True, related_name="topic_articles")
     excerpt = models.CharField(max_length=240, blank=True)
     body = models.TextField(blank=True, help_text="Write the story content.")
+    attachment = models.FileField(
+        upload_to="articles/",
+        blank=True,
+        validators=[FileExtensionValidator(["txt"]), validate_article_attachment_size],
+    )
     status = models.CharField(max_length=12, choices=Status, default=Status.DRAFT)
     published_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)

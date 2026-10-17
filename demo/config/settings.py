@@ -10,6 +10,7 @@ ROOT_URLCONF = "demo.config.urls"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_ROOT = BASE_DIR / "demo" / "media"
 
 INSTALLED_APPS = [
     "adminwp",

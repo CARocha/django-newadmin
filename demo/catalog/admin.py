@@ -35,7 +35,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_per_page = 20
     fieldsets = (
         (None, {"fields": ("title", "slug", "category", "topics")}),
-        ("Story", {"fields": ("excerpt", "body"), "classes": ("wide",)}),
+        ("Story", {"fields": ("excerpt", "body", "attachment"), "classes": ("wide",)}),
         ("Publication", {"fields": ("status", "published_at"), "classes": ("collapse",)}),
         ("Timestamps", {"fields": ("created_at", "updated_at"), "classes": ("collapse",)}),
     )

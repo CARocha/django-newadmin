@@ -8,6 +8,7 @@ dist/
 *.egg-info/
 node_modules/
 demo/db.sqlite3
+demo/media/
 *.sqlite3
 staticfiles/
 .env

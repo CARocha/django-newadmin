@@ -137,11 +137,18 @@ Plan: [plan.md](plan.md).
   `tests/browser/test_relations.py`, `demo/catalog/admin.py`, `demo/catalog/models.py`.
 
 ## T12 — Resto de widgets
-- [ ] Adaptar fechas, horas, archivos y textarea manteniendo los recursos `Media`.
+- [x] Adaptar fechas, horas, archivos y textarea manteniendo los recursos `Media`.
 - Aceptación: controles utilizables en ambos modos y widgets personalizados conservan sus recursos.
 - Verificación: calendario/reloj, cambio de archivo y widget de prueba con CSS/JS propios.
+- Evidencia: Playwright abrió calendario y reloj de Django en claro/oscuro, editó y guardó
+  fecha, hora, textarea y archivo; confirmó el enlace y checkbox de archivo existente y
+  reflow sin desbordamiento a 320 px. Una prueba de widget confirma que se acumulan los
+  recursos CSS/JS personalizados con los recursos nativos. La subida de demo limita
+  extensiones a TXT y tamaño a 5 MB, y usa un `MEDIA_ROOT` separado de los estáticos.
+  38 pruebas pasan en cada combinación Django 6.0.9/6.1.2 × Python 3.13/3.14; Ruff,
+  checks, migraciones, build CSS y pruebas JavaScript pasan.
 - Dependencias: T11. Archivos: `assets/scss/components/_widgets.scss`,
-  `tests/browser/test_widgets.py`, `tests/widgets.py`.
+  `tests/browser/test_widgets.py`, `tests/test_widgets.py`, `demo/catalog/models.py`.
 
 ## Checkpoint D
 - [ ] Widgets y formularios dinámicos probados antes de extender funcionalidad.
