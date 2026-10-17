@@ -26,7 +26,7 @@ class Article(models.Model):
         Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="articles"
     )
     excerpt = models.CharField(max_length=240, blank=True)
-    body = models.TextField(blank=True)
+    body = models.TextField(blank=True, help_text="Write the story content.")
     status = models.CharField(max_length=12, choices=Status, default=Status.DRAFT)
     published_at = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)

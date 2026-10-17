@@ -100,9 +100,13 @@ Plan: [plan.md](plan.md).
   `tests/test_changelist.py`, `tests/browser/test_actions.py`.
 
 ## T09 — Formularios
-- [ ] Adaptar campos, fieldsets, ayuda, errores y botones de guardado.
+- [x] Adaptar campos, fieldsets, ayuda, errores y botones de guardado.
 - Aceptación: preservar orden accesible de cada serie de Django y campos de solo lectura.
 - Verificación: crear/editar, errores de campo/formulario y fieldsets plegables en ambas series.
+- Evidencia: Playwright verificó orden y plegado nativo, ayuda, error de campo,
+  resaltado accesible del error, campos de solo lectura y superficies en claro/oscuro.
+  27 pruebas de integración y 4 de navegador pasan con Django 6.0.9 y 6.1.2
+  sobre Python 3.14.
 - Dependencias: T08. Archivos: `assets/scss/components/_forms.scss`,
   `src/adminwp/templates/admin/change_form.html`, `tests/browser/test_forms.py`.
 
