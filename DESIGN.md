@@ -93,6 +93,17 @@ Barra superior: marca / acceso al sitio / usuario / apariencia
 - Mantener hasta 200% de zoom y comprobar reflow equivalente a 320 CSS px.
 - RTL mediante propiedades lógicas; invertir disposición, no el significado de iconos.
 
+### Portada
+
+La portada es un escritorio de trabajo propio, inspirado en la densidad y la
+organización por paneles de WordPress, con los tokens y la navegación de AdminWP.
+Agrupa los modelos accesibles por aplicación, muestra accesos de alta solo cuando
+Django proporciona el permiso y reserva un panel lateral para las acciones
+recientes del usuario. El contenido se distribuye en dos columnas en escritorio
+y se apila en pantallas estrechas. La portada inicial no incorpora métricas de
+base de datos, paneles arrastrables, noticias remotas ni contenido de marketing;
+las extensiones configurables quedan para una tarea posterior.
+
 El panel móvil mueve el foco a su interior, mantiene el foco mientras está abierto,
 cierra con Escape y devuelve el foco al botón de apertura. Sin JavaScript, el menú
 permanece disponible en el flujo; los enlaces no dependen de hover.

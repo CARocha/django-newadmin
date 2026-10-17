@@ -1,8 +1,7 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; checkpoint Alpha completado en la rama
-`codex/theme-foundation` (T02–T06 implementadas).
+Estado: plan aprobado por el usuario; T01–T12.5 implementadas. T13 es la siguiente tarea.
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
@@ -96,6 +95,7 @@ T01 Diseño y especificación
   -> T10 Inlines
   -> T11 Widgets de relaciones
   -> T12 Resto de widgets
+  -> T12.5 Portada propia y contraste de navegación
   -> T13 Páginas auxiliares
   -> T14 Varios sitios y extensiones
   -> T15 Accesibilidad y adaptación

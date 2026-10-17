@@ -1,7 +1,6 @@
 # Tareas de django-adminwp
 
-Estado: plan aprobado. T01–T06 están implementadas en la rama
-`codex/theme-foundation`; el primer checkpoint alpha está completo.
+Estado: plan aprobado. T01–T12.5 están implementadas; T13 es la siguiente tarea.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
@@ -150,14 +149,28 @@ Plan: [plan.md](plan.md).
 - Dependencias: T11. Archivos: `assets/scss/components/_widgets.scss`,
   `tests/browser/test_widgets.py`, `tests/test_widgets.py`, `demo/catalog/models.py`.
 
+## T12.5 — Portada y pulido de navegación
+- [x] Crear una portada de trabajo propia y corregir el contraste de los módulos del menú.
+- Aceptación: modelos agrupados en paneles según permisos; actividad reciente nativa;
+  presentación clara/oscura y adaptación sin desbordamiento horizontal.
+- Verificación: pruebas Django para accesos permitidos y actividad reciente; navegador
+  para contraste, modos y vista de 320 px.
+- Evidencia: 2 pruebas de integración y 1 de navegador pasan en cada combinación
+  Django 6.0.9/6.1.2 × Python 3.13/3.14; captura de escritorio revisada. La portada
+  usa aplicaciones/modelos y el registro nativo de Django, sin
+  métricas ni llamadas externas; los fondos claros heredados del menú quedan transparentes.
+- Dependencias: T12. Archivos: `src/adminwp/templates/admin/index.html`,
+  `assets/scss/theme.scss`, `tests/test_dashboard.py`, `tests/browser/test_dashboard.py`.
+
 ## Checkpoint D
-- [ ] Widgets y formularios dinámicos probados antes de extender funcionalidad.
+- [x] Widgets y formularios dinámicos probados antes de extender funcionalidad.
+- [x] Portada y navegación revisadas visualmente antes de las páginas auxiliares.
 
 ## T13 — Páginas auxiliares
 - [ ] Completar historial, borrado, mensajes y cambio de contraseña.
 - Aceptación: conservar confirmaciones, CSRF y cierre de sesión por POST.
 - Verificación: navegador para borrado individual/masivo y flujos de cuenta.
-- Dependencias: T12. Archivos: `assets/scss/components/_auxiliary.scss`,
+- Dependencias: T12.5. Archivos: `assets/scss/components/_auxiliary.scss`,
   `tests/browser/test_auxiliary.py`, `tests/test_authentication.py`.
 
 ## T14 — Varios sitios y extensiones

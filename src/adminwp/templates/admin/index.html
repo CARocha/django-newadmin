@@ -1,5 +1,95 @@
 {% extends "admin/index.html" %}
+{% load i18n log %}
 
 {% block nav-sidebar %}
   {% if is_nav_sidebar_enabled %}{% include "admin/nav_sidebar.html" %}{% endif %}
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+
+{% block content %}
+<div id="content-main" class="adminwp-dashboard">
+  <header class="adminwp-dashboard__intro">
+    <div>
+      <p class="adminwp-dashboard__eyebrow">AdminWP</p>
+      <h1>{% translate "Dashboard" %}</h1>
+      <p>{% blocktranslate with site=site_header %}Manage {{ site }} from one place.{% endblocktranslate %}</p>
+    </div>
+    <div class="adminwp-dashboard__summary" role="group" aria-label="{% translate 'Available applications' %}">
+      <span class="adminwp-dashboard__summary-value">{{ app_list|length }}</span>
+      <span>{% translate "Applications" %}</span>
+    </div>
+  </header>
+
+  <div class="adminwp-dashboard__layout">
+    <section class="adminwp-dashboard__apps" aria-label="{% translate 'Applications' %}">
+      {% if app_list %}
+        {% for app in app_list %}
+          <article class="adminwp-dashboard__card">
+            <header class="adminwp-dashboard__card-header">
+              <h2><a href="{{ app.app_url }}">{{ app.name }}</a></h2>
+              <span>
+                {% blocktranslate count model_count=app.models|length %}
+                  {{ model_count }} model
+                {% plural %}
+                  {{ model_count }} models
+                {% endblocktranslate %}
+              </span>
+            </header>
+            <ul class="adminwp-dashboard__model-list">
+              {% for model in app.models %}
+                <li>
+                  {% if model.admin_url %}
+                    <a class="adminwp-dashboard__model-link" href="{{ model.admin_url }}">{{ model.name }}</a>
+                  {% else %}
+                    <span class="adminwp-dashboard__model-link">{{ model.name }}</span>
+                  {% endif %}
+                  {% if model.add_url %}
+                    <a class="adminwp-dashboard__add-link" href="{{ model.add_url }}"
+                       aria-label="{% blocktranslate with model_name=model.name %}Add {{ model_name }}{% endblocktranslate %}">
+                      {% translate "Add" %}
+                    </a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </article>
+        {% endfor %}
+      {% else %}
+        <p class="adminwp-dashboard__empty">{% translate "You don’t have permission to view or edit anything." %}</p>
+      {% endif %}
+    </section>
+
+    <aside class="adminwp-dashboard__activity" aria-labelledby="adminwp-recent-actions-title">
+      <div class="adminwp-dashboard__activity-header">
+        <h2 id="adminwp-recent-actions-title">{% translate "Recent actions" %}</h2>
+        <span>{% translate "Your activity" %}</span>
+      </div>
+      {% get_admin_log 8 as admin_log for_user user %}
+      {% if admin_log %}
+        <ul class="adminwp-dashboard__activity-list">
+          {% for entry in admin_log %}
+            <li class="adminwp-dashboard__activity-item">
+              <span class="adminwp-dashboard__activity-marker{% if entry.is_addition %} is-addition{% elif entry.is_deletion %} is-deletion{% endif %}" aria-hidden="true"></span>
+              <div>
+                <p>
+                  <span class="visually-hidden">{% if entry.is_addition %}{% translate "Added:" %}{% elif entry.is_change %}{% translate "Changed:" %}{% elif entry.is_deletion %}{% translate "Deleted:" %}{% endif %}</span>
+                  {% if entry.is_deletion or not entry.get_admin_url %}
+                    {{ entry.object_repr }}
+                  {% else %}
+                    <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                  {% endif %}
+                </p>
+                <span class="adminwp-dashboard__activity-meta">{% if entry.content_type %}{{ entry.content_type.name|capfirst }}{% else %}{% translate "Unknown content" %}{% endif %}</span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="adminwp-dashboard__empty">{% translate "No recent actions" %}</p>
+      {% endif %}
+    </aside>
+  </div>
+</div>
 {% endblock %}
