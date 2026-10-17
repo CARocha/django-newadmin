@@ -8,3 +8,6 @@ class AdminWPConfig(AppConfig):
 
     name = "adminwp"
     verbose_name = "Django AdminWP"
+
+    def ready(self):
+        from adminwp import checks  # noqa: F401

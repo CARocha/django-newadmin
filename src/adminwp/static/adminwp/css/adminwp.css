@@ -120,6 +120,15 @@ html[data-theme="dark"] {
   outline-color: var(--adminwp-primary);
 }
 
+.adminwp-logo {
+  display: inline-block;
+  max-height: 1.75rem;
+  max-width: 9rem;
+  margin-inline-end: 0.5rem;
+  vertical-align: middle;
+  object-fit: contain;
+}
+
 :focus-visible {
   outline-color: var(--adminwp-primary);
 }

@@ -37,9 +37,11 @@ Plan: [plan.md](plan.md).
 - [ ] Paquete instalable y demo reproducible; revisar alcance antes de cambiar el admin.
 
 ## T04 — Configuración y marca
-- [ ] Incorporar valores predeterminados, validación de ajustes y marca del sitio.
+- [x] Incorporar valores predeterminados, validación de ajustes y marca del sitio.
 - Aceptación: funciona sin `ADMINWP`; las opciones incorrectas producen errores claros.
 - Verificación: pruebas de valores predeterminados, opciones inválidas y renderizado de marca.
+- Evidencia: pruebas de valores predeterminados, merge de MENU, tipo/modo y rutas
+  inválidas; título y cabecera personalizados aparecen en el login.
 - Dependencias: T03. Archivos: `src/adminwp/conf.py`, `src/adminwp/checks.py`,
   `src/adminwp/templatetags/adminwp.py`, `src/adminwp/templates/admin/base_site.html`,
   `tests/test_configuration.py`.

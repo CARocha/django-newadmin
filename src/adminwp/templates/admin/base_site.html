@@ -1,7 +1,27 @@
 {% extends "admin/base_site.html" %}
-{% load static %}
+{% load adminwp static %}
+
+{% block title %}
+  {% adminwp_options as adminwp %}
+  {% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ adminwp.SITE_TITLE|default:site_title }}
+{% endblock %}
 
 {% block extrastyle %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'adminwp/css/adminwp.css' %}">
+  {% adminwp_options as adminwp %}
+  {% for stylesheet in adminwp.CUSTOM_CSS %}
+    <link rel="stylesheet" href="{% static stylesheet %}">
+  {% endfor %}
+{% endblock %}
+
+{% block branding %}
+  {% adminwp_options as adminwp %}
+  <div id="site-name">
+    <a href="{% url 'admin:index' %}">
+      {% if adminwp.LOGO %}<img class="adminwp-logo" src="{% static adminwp.LOGO %}" alt="">{% endif %}
+      {{ adminwp.SITE_HEADER|default:site_header }}
+    </a>
+  </div>
+  {% if user.is_anonymous %}{% include "admin/color_theme_toggle.html" %}{% endif %}
 {% endblock %}
