@@ -107,8 +107,9 @@ hereda los valores globales. Cada solicitud recibe opciones independientes y
 Django conserva los permisos y registros de modelos del sitio actual.
 
 La preferencia light/dark/auto es compartida por origen y navegador, como en Django.
-El plegado y el filtro del lateral conservan por ahora el almacenamiento nativo;
-la navegación móvil y su adaptación se revisan en T15.
+El plegado y el filtro de escritorio conservan el almacenamiento nativo. En móvil,
+el menú empieza cerrado en cada página y no cambia la preferencia de escritorio.
+Consulta [accesibilidad y adaptación](accessibility.md).
 
 ## CSS propio
 

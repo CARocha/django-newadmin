@@ -4,12 +4,13 @@
   "version": "0.1.0",
   "description": "Build tools for the django-adminwp static assets",
   "scripts": {
-    "build:css": "sass --quiet-deps --silence-deprecation=import --no-source-map --style=compressed --load-path=node_modules assets/scss/adminwp.scss src/adminwp/static/adminwp/css/bootstrap.min.css && sass --no-source-map --style=expanded assets/scss/theme.scss src/adminwp/static/adminwp/css/adminwp.css",
+    "build:css": "sass --quiet-deps --silence-deprecation=import --no-source-map --style=compressed --load-path=node_modules assets/scss/adminwp.scss src/adminwp/static/adminwp/css/bootstrap.min.css && sass --no-source-map --style=expanded assets/scss/theme.scss src/adminwp/static/adminwp/css/adminwp.css && node scripts/build-css-license.mjs",
     "test:js": "node --test tests/js/*.test.mjs",
     "build:charts": "node scripts/build-charts.mjs",
     "build:icons": "node scripts/build-icons.mjs"
   },
   "devDependencies": {
+    "axe-core": "4.14.0",
     "bootstrap": "5.3.8",
     "bootstrap-icons": "1.13.1",
     "echarts": "6.1.0",

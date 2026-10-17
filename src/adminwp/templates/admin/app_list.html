@@ -6,7 +6,7 @@
     <div class="app-{{ app.app_label }} module{% if app.app_url in request.path|urlencode %} current-app{% endif %}">
       <table>
         <caption>
-          <a href="{{ app.app_url }}" class="section">{% adminwp_model_icon app.app_label as app_icon %}{% adminwp_icon app_icon %}<span>{{ app.name }}</span></a>
+          <a href="{{ app.app_url }}" class="section" aria-label="{{ app.name }}">{% adminwp_model_icon app.app_label as app_icon %}{% adminwp_icon app_icon %}<span>{{ app.name }}</span></a>
         </caption>
         <thead class="visually-hidden">
           <tr>

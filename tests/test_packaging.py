@@ -55,3 +55,7 @@ def test_icon_catalog_has_a_packaged_symbol_for_each_allowed_identifier():
     assert {symbol.attrib["id"] for symbol in tree} == ICON_NAMES
     for name in ("bootstrap-icons", "django"):
         assert finders.find(f"adminwp/vendor/{name}/LICENSE") is not None
+
+
+def test_bootstrap_css_license_is_available_to_consumers():
+    assert finders.find("adminwp/vendor/bootstrap/LICENSE") is not None
