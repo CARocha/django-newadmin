@@ -1,0 +1,1 @@
+"""Runnable AdminWP demonstration project."""

@@ -24,9 +24,11 @@ Plan: [plan.md](plan.md).
   `src/adminwp/apps.py`, `tests/test_packaging.py`, `README.md`.
 
 ## T03 — Proyecto de demostración
-- [ ] Crear un proyecto reproducible con datos, modelos y permisos de muestra.
+- [x] Crear un proyecto reproducible con datos, modelos y permisos de muestra.
 - Aceptación: se puede iniciar sesión y administrar objetos con el admin nativo.
 - Verificación: comprobar configuración, migraciones de demo y un recorrido CRUD.
+- Evidencia: `manage.py check`, migraciones y semilla funcionan; pruebas del admin
+  crean, editan y borran artículos con un superusuario.
 - Dependencias: T02. Archivos: `demo/manage.py`, `demo/config/settings.py`,
   `demo/config/urls.py`, `demo/catalog/models.py`, `demo/catalog/admin.py`.
 - El scaffolding adicional y los datos se dividirán en tareas auxiliares pequeñas.

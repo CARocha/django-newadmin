@@ -13,5 +13,20 @@ python3.14 -m venv .venv
 .venv/bin/python -m pytest -q
 ```
 
-The first implementation slice is in progress. See the [project specification](SPEC.md),
-[design](DESIGN.md), and [task list](tasks/todo.md) for scope and progress.
+## Run the demo
+
+After installing the project in editable mode, prepare the sample catalog and
+create a local administrator:
+
+```sh
+.venv/bin/python demo/manage.py migrate
+.venv/bin/python demo/manage.py seed_demo
+.venv/bin/python demo/manage.py createsuperuser
+.venv/bin/python demo/manage.py runserver
+```
+
+Open <http://127.0.0.1:8000/admin/> and sign in with the account you created.
+The demo is a local development project and uses SQLite.
+
+See the [project specification](SPEC.md), [design](DESIGN.md), and
+[task list](tasks/todo.md) for scope and progress.
