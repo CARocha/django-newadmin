@@ -37,3 +37,31 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ArticleLink(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="links")
+    label = models.CharField(max_length=80)
+    url = models.URLField()
+
+    class Meta:
+        ordering = ["pk"]
+        verbose_name = "article link"
+        verbose_name_plural = "article links"
+
+    def __str__(self):
+        return self.label
+
+
+class ArticleSection(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="sections")
+    heading = models.CharField(max_length=120)
+    body = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ["pk"]
+        verbose_name = "article section"
+        verbose_name_plural = "article sections"
+
+    def __str__(self):
+        return self.heading

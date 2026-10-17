@@ -2,6 +2,7 @@
 @use "components/filters";
 @use "components/actions";
 @use "components/forms";
+@use "components/inlines";
 
 /* AdminWP translates its public design tokens into Django's admin variables. */
 :root,

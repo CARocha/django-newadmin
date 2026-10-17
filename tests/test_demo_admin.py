@@ -7,6 +7,14 @@ from demo.catalog.models import Article
 pytestmark = pytest.mark.django_db
 
 
+def _empty_inline_management_data():
+    return {
+        f"{prefix}-{form_count}": "0"
+        for prefix in ("links", "sections")
+        for form_count in ("TOTAL_FORMS", "INITIAL_FORMS")
+    }
+
+
 def test_admin_lists_and_creates_articles(client):
     user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     client.force_login(user)
@@ -24,6 +32,7 @@ def test_admin_lists_and_creates_articles(client):
             "excerpt": "A demo article.",
             "body": "The content remains managed by Django.",
             "status": Article.Status.PUBLISHED,
+            **_empty_inline_management_data(),
             "_save": "Save",
         },
     )
@@ -46,6 +55,7 @@ def test_admin_edits_and_deletes_articles(client):
             "excerpt": "",
             "body": "Updated content",
             "status": Article.Status.DRAFT,
+            **_empty_inline_management_data(),
             "_save": "Save",
         },
     )

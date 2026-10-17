@@ -114,9 +114,13 @@ Plan: [plan.md](plan.md).
 - [ ] Recorridos de listado y formulario sin regresiones en la matriz Django/Python.
 
 ## T10 — Inlines
-- [ ] Adaptar inlines tabulares y apilados sin sustituir su lógica.
+- [x] Adaptar inlines tabulares y apilados sin sustituir su lógica.
 - Aceptación: añadir/eliminar filas conserva contadores, valores y errores.
 - Verificación: guardar múltiples filas, borrar existentes y corregir errores dinámicos.
+- Evidencia: Playwright creó filas tabulares y apiladas, eliminó un enlace existente,
+  actualizó secciones, corrigió un error de validación y verificó scroll móvil y modos
+  claro/oscuro. 27 pruebas de integración y 6 de navegador pasan con Django 6.0.9
+  y 6.1.2 sobre Python 3.14.
 - Dependencias: T09. Archivos: `assets/scss/components/_inlines.scss`,
   `tests/browser/test_inlines.py` y hasta dos plantillas específicas si son necesarias.
 

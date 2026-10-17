@@ -54,7 +54,7 @@ body.adminwp-change-form fieldset.module > details > .description {
   border-bottom: 1px solid var(--adminwp-border);
 }
 
-body.adminwp-change-form .form-row {
+body.adminwp-change-form .form-row:not(tr) {
   display: block;
   padding: 1rem;
   border-bottom-color: var(--adminwp-border);

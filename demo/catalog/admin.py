@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils import timezone
 
-from .models import Article, Category
+from .models import Article, ArticleLink, ArticleSection, Category
 
 
 @admin.register(Category)
@@ -9,6 +9,16 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "slug")
     search_fields = ("name", "slug")
     prepopulated_fields = {"slug": ("name",)}
+
+
+class ArticleLinkInline(admin.TabularInline):
+    model = ArticleLink
+    extra = 0
+
+
+class ArticleSectionInline(admin.StackedInline):
+    model = ArticleSection
+    extra = 0
 
 
 @admin.register(Article)
@@ -27,6 +37,7 @@ class ArticleAdmin(admin.ModelAdmin):
         ("Timestamps", {"fields": ("created_at", "updated_at"), "classes": ("collapse",)}),
     )
     readonly_fields = ("created_at", "updated_at")
+    inlines = (ArticleLinkInline, ArticleSectionInline)
 
     def save_model(self, request, obj, form, change):
         if obj.status == Article.Status.PUBLISHED and obj.published_at is None:
