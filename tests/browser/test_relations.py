@@ -40,6 +40,14 @@ def test_autocomplete_multiple_choice_and_inline_raw_id_popup(static_live_server
         expect(category).to_have_value(str(technology.pk))
         assert category_ui.evaluate("element => getComputedStyle(element).borderRadius") == "8px"
 
+        available_title = page.locator(".selector-available-title, .selector-available h2").first
+        chosen_title = page.locator(".selector-chosen-title, .selector-chosen h2").first
+        title_style = "el => [getComputedStyle(el).backgroundColor, getComputedStyle(el).color]"
+        assert chosen_title.evaluate(title_style) == available_title.evaluate(title_style)
+        assert page.locator("#id_topics_add").evaluate(
+            "el => getComputedStyle(el).backgroundImage"
+        ) != "none"
+
         page.locator("#id_topics_from").select_option(str(science.pk))
         page.locator("#id_topics_add").click()
         assert page.locator("#id_topics_to option").all_text_contents() == ["Science"]
@@ -70,7 +78,7 @@ def test_autocomplete_multiple_choice_and_inline_raw_id_popup(static_live_server
             page.locator(".select2-container--admin-autocomplete .select2-selection").evaluate(
                 "element => getComputedStyle(element).backgroundColor"
             )
-            == "rgb(32, 35, 39)"
+            == "rgb(29, 39, 52)"
         )
 
         page.locator('#article_form input[name="_save"]').click()

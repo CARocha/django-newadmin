@@ -1,8 +1,6 @@
 {% extends "admin/index.html" %}
 {% load adminwp i18n log %}
 
-{% block bodyclass %}{{ block.super }}{% if request.resolver_match.url_name == 'index' %} adminwp-dashboard-view{% endif %}{% endblock %}
-
 {% block extrastyle %}
   {{ block.super }}
   {% adminwp_dashboard as dashboard %}

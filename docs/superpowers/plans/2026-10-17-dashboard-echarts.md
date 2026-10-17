@@ -79,8 +79,9 @@ de sus propios modelos; el paquete no conoce los modelos del consumidor.
 - Wheel construido desde sdist, instalado fuera del checkout y validado con
   collectstatic/ManifestStaticFilesStorage, incluyendo avisos de dependencias.
 - Revisión independiente: se corrigió y probó selección de series al cambiar de tema.
-- Ruling: la base visual nueva se limita al índice principal durante esta iteración;
-  aplicar sus tokens globalmente a CRUD requiere la revisión T15 y no se declara terminado.
+- Corrección posterior al feedback visual: el marco y los tokens se aplican desde
+  la base a CRUD y páginas auxiliares. El contenido del proveedor sigue limitado
+  al índice. T15 conserva la revisión completa de accesibilidad como tarea pendiente.
 - Ruling: conservar fuentes de sistema ahora mantiene la instalación sin red ni nuevas
   fuentes distribuidas; la referencia visual se interpreta mediante proporciones y jerarquía.
 - Ruling: distribuir el runtime completo de ECharts admite los tipos de gráficos del

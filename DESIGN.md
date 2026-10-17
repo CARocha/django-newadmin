@@ -5,8 +5,8 @@ Especificación funcional: [SPEC.md](SPEC.md).
 
 Revisión del 2026-10-17: el índice principal adopta la
 [referencia de dashboard](docs/proposals/dashboard-v2.md) y la integración de
-[Apache ECharts](docs/dashboard.md). El nuevo marco se aplica a la portada;
-los flujos CRUD conservan sus estilos actuales durante esta iteración.
+[Apache ECharts](docs/dashboard.md). El marco, la paleta y las acciones se comparten en
+la portada y en los flujos CRUD. Login y popups conservan su disposición compacta.
 
 ## Dirección
 
@@ -25,23 +25,23 @@ los contrastes de texto se miden sobre los fondos indicados.
 
 | Token | Light | Dark |
 |---|---|---|
-| canvas | #F5F5F7 | #151719 |
-| surface | #FFFFFF | #202327 |
-| surface-raised | #FAFAFC | #2A2E33 |
-| text | #1D1D1F | #F2F3F5 |
-| text-muted | #51565D | #B5BCC5 |
-| border | #D5D8DC | #41474F |
+| canvas | #F8F9FF | #11161D |
+| surface | #FFFFFF | #1D2734 |
+| surface-raised | #EFF4FF | #243244 |
+| text | #0B1C30 | #EAF0F8 |
+| text-muted | #536172 | #B2C0D2 |
+| border | #DFE6F0 | #354359 |
 | control-border | #858B93 | #7C8795 |
-| primary | #0066CC | #72B7FF |
-| primary-hover | #0056AD | #9CCCFF |
-| on-primary | #FFFFFF | #10283F |
-| link | #0066CC | #72B7FF |
-| focus | #0066CC | #A8D2FF |
-| sidebar | #1D2327 | #111315 |
-| sidebar-text | #F0F0F1 | #F0F0F1 |
-| sidebar-muted | #BBC0C5 | #BBC0C5 |
-| sidebar-active | #0066CC | #72B7FF |
-| sidebar-on-active | #FFFFFF | #10283F |
+| primary | #141A23 | #EAF0F8 |
+| primary-hover | #334259 | #FFFFFF |
+| on-primary | #FFFFFF | #152032 |
+| link | #141A23 | #EAF0F8 |
+| focus | #141A23 | #EAF0F8 |
+| sidebar | #EFF4FF | #161E29 |
+| sidebar-text | #26364B | #DBE6F5 |
+| sidebar-muted | #536172 | #A1B2CA |
+| sidebar-active | #344760 | #A8BCE0 |
+| sidebar-on-active | #FFFFFF | #152032 |
 | success | #166534 | #8FDAA2 |
 | success-bg | #EDF8F0 | #193322 |
 | warning | #7A4B00 | #F4D18C |
@@ -70,7 +70,7 @@ deben estar vinculados al mismo sistema y tener sus propios estados.
 - Títulos de página: 1.75 rem/1.2, peso 600; secciones: 1.125 rem/1.4, peso 600.
 - Ayuda: 0.8125 rem/1.5, con contraste de texto normal; no usar gris ilegible.
 - Escala de espacio: 4, 8, 12, 16, 24, 32 y 48 px, expresada en rem.
-- Radios: controles 6 px, superficies 10 px, etiquetas 4 px. Evitar píldoras
+- Radios: controles y paneles principales 4 px; widgets auxiliares 6–8 px. Evitar píldoras
   indiscriminadas que hagan botones y estados difíciles de distinguir.
 - Sombra: reservada para menús flotantes y navegación superpuesta; las superficies
   principales se separan con fondo, espacio y bordes.
@@ -87,10 +87,12 @@ Barra superior: marca / acceso al sitio / usuario / apariencia
    └─ Pie discreto
 ```
 
-- A partir de 992 px: lateral de 240 px, plegable a 64 px. Barra superior de 48 px.
-- Bajo 992 px: lateral en panel superpuesto, con botón visible; barra de 56 px.
+- Desde 768 px: lateral de 256 px incluyendo el botón de plegado de 23 px.
+  Cabecera de 64 px; se conserva el plegado nativo.
+- Bajo 768 px: se conserva la ocultación nativa del lateral. La navegación móvil
+  superpuesta y su gestión de foco siguen pendientes de T15.
 - Bajo 768 px: apilar herramientas y formularios cuando el marcado nativo lo permite.
-- Contenido con padding 24 px en escritorio y 16 px en móvil; ancho fluido.
+- Contenido con padding 32 px en escritorio y 16 px en móvil; ancho fluido.
 - Un scroll vertical principal; el menú puede desplazarse independientemente si
   excede la pantalla. Los popups no incluyen el marco de navegación completo.
 - El documento no se desborda horizontalmente a 320 px. Tablas y widgets anchos
@@ -98,20 +100,17 @@ Barra superior: marca / acceso al sitio / usuario / apariencia
 - Mantener hasta 200% de zoom y comprobar reflow equivalente a 320 CSS px.
 - RTL mediante propiedades lógicas; invertir disposición, no el significado de iconos.
 
-### Portada
+### Marco compartido y portada
 
-El índice principal usa un lateral claro en light y oscuro en dark; marca y
-cabecera de 64 px, navegación expandida de 256 px incluyendo su control de plegado,
-contenido con 32 px de padding y radios de 2–4 px. La portada conserva el menú y
-su plegado nativo. Su adaptación móvil avanzada sigue pendiente de T15; los accesos
-a aplicaciones también están disponibles dentro del contenido.
+La plantilla base añade `adminwp-theme` a todas las páginas. El marco compartido
+usa los tokens globales de la tabla anterior; ningún modo depende de una clase
+exclusiva del dashboard. Las variables de Django y Bootstrap se resuelven en el
+mismo ámbito para evitar que botones y widgets hereden la paleta anterior.
 
-Los tokens de portada sobrescriben los valores de la tabla anterior dentro de
-`body.adminwp-dashboard-view`: canvas claro #F8F9FF, superficie #FFFFFF, lateral
-#EFF4FF, texto #0B1C30 y acción #141A23. En oscuro: canvas #11161D, superficie
-#1D2734, lateral #161E29 y texto/acción #EAF0F8. No se añade otra opción de paleta
-pública en esta iteración. Las tipografías siguen siendo de sistema y no se
-solicitan fuentes remotas.
+La cabecera usa la superficie principal, la marca y el lateral usan sidebar.
+El título de la pantalla aparece en la cabecera cuando hay espacio. Login y
+popups reciben los colores globales pero conservan su disposición compacta.
+Las tipografías siguen siendo de sistema y no se solicitan fuentes remotas.
 
 Sin proveedor, la portada muestra modelos autorizados y actividad reciente.
 `ADMINWP.DASHBOARD` permite seleccionar un proveedor Python, su plantilla y Media,
@@ -125,7 +124,7 @@ local con su licencia Apache 2.0 y avisos de dependencias. Una instalación gen�
 no hace consultas de negocio ni carga gráficos por omisión. Las tablas alternativas
 son accesibles sin JavaScript. El alcance y uso están en [dashboard.md](docs/dashboard.md).
 
-El panel móvil mueve el foco a su interior, mantiene el foco mientras está abierto,
+Objetivo pendiente de T15: el panel móvil moverá el foco a su interior y lo mantendrá mientras esté abierto,
 cierra con Escape y devuelve el foco al botón de apertura. Sin JavaScript, el menú
 permanece disponible en el flujo; los enlaces no dependen de hover.
 
@@ -202,11 +201,10 @@ necesitan validación adicional en navegador.
 
 ## Verificación documental realizada
 
-Se calcularon 48 combinaciones de colores de texto, botones, mensajes, bordes de
-control y foco. Todas superan sus umbrales: 4.5:1 para texto normal y 3:1 para
-controles/foco. El caso de control más ajustado es control-border sobre canvas
-claro, 3.16:1; enlaces sobre canvas claro, 5.11:1. Esto no certifica una interfaz
-renderizada: la cascada y los estados reales se verificarán al implementar.
+La auditoría documental de T01 se hizo con la paleta anterior. Sus resultados
+numéricos no certifican los tokens actuales. La comprobación de contraste y foco
+sobre las pantallas renderizadas sigue siendo parte de T15. La regresión del marco
+compartido verifica paleta y geometría entre pantallas, tres modos y reflow a 320 px.
 
 ## Referencias de intención
 

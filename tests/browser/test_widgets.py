@@ -59,7 +59,7 @@ def test_date_time_file_and_textarea_widgets_keep_native_media(
             page.locator("#clockbox0").evaluate(
                 "element => getComputedStyle(element).backgroundColor"
             )
-            == "rgb(32, 35, 39)"
+            == "rgb(29, 39, 52)"
         )
         page.locator("#clockbox0 .calendar-cancel a").click()
         date.fill("2026-05-06")
@@ -71,7 +71,7 @@ def test_date_time_file_and_textarea_widgets_keep_native_media(
         )
         textarea = page.locator("#id_body")
         textarea.fill("Widget body content")
-        assert textarea.evaluate("element => getComputedStyle(element).borderRadius") == "7px"
+        assert textarea.evaluate("element => getComputedStyle(element).borderRadius") == "4px"
 
         page.set_viewport_size({"width": 320, "height": 900})
         assert page.evaluate("document.documentElement.scrollWidth") <= 320

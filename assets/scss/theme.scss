@@ -7,26 +7,30 @@
 @use "components/widgets";
 @use "components/auxiliary";
 @use "components/dashboard";
-@use "components/dashboard-shell";
+@use "components/shell";
 
 /* AdminWP translates its public design tokens into Django's admin variables. */
 :root,
 html[data-theme="light"] {
   color-scheme: light;
 
-  --adminwp-canvas: #f5f5f7;
+  --adminwp-canvas: #f8f9ff;
   --adminwp-surface: #ffffff;
-  --adminwp-surface-raised: #fafafc;
-  --adminwp-text: #1d1d1f;
-  --adminwp-text-muted: #51565d;
-  --adminwp-border: #d5d8dc;
+  --adminwp-surface-raised: #eff4ff;
+  --adminwp-text: #0b1c30;
+  --adminwp-text-muted: #536172;
+  --adminwp-border: #dfe6f0;
   --adminwp-control-border: #858b93;
-  --adminwp-primary: #0066cc;
-  --adminwp-primary-hover: #0056ad;
+  --adminwp-primary: #141a23;
+  --adminwp-primary-hover: #334259;
   --adminwp-on-primary: #ffffff;
-  --adminwp-sidebar: #1d2327;
-  --adminwp-sidebar-text: #f0f0f1;
-  --adminwp-sidebar-muted: #bbc0c5;
+  --adminwp-chart-primary: #344760;
+  --adminwp-chart-secondary: #487f70;
+  --adminwp-chart-tertiary: #9b7849;
+  --adminwp-sidebar-active: #344760;
+  --adminwp-sidebar: #eff4ff;
+  --adminwp-sidebar-text: #26364b;
+  --adminwp-sidebar-muted: #536172;
   --adminwp-success: #166534;
   --adminwp-success-bg: #edf8f0;
   --adminwp-warning: #7a4b00;
@@ -40,10 +44,10 @@ html[data-theme="light"] {
   --primary-fg: var(--adminwp-on-primary);
   --secondary: var(--adminwp-primary);
   --accent: var(--adminwp-primary);
-  --header-bg: var(--adminwp-sidebar);
-  --header-color: var(--adminwp-sidebar-text);
+  --header-bg: var(--adminwp-surface);
+  --header-color: var(--adminwp-text);
   --header-branding-color: var(--adminwp-sidebar-text);
-  --header-link-color: var(--adminwp-sidebar-muted);
+  --header-link-color: var(--adminwp-text-muted);
   --body-bg: var(--adminwp-canvas);
   --body-fg: var(--adminwp-text);
   --body-quiet-color: var(--adminwp-text-muted);
@@ -77,6 +81,7 @@ html[data-theme="light"] {
   --message-warning-bg: var(--adminwp-warning-bg);
   --message-error-bg: var(--adminwp-danger-bg);
   --message-info-bg: var(--adminwp-info-bg);
+  --bs-primary-rgb: 20, 26, 35;
   --bs-primary: var(--adminwp-primary);
   --bs-body-bg: var(--adminwp-canvas);
   --bs-body-color: var(--adminwp-text);
@@ -87,19 +92,23 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   color-scheme: dark;
 
-  --adminwp-canvas: #151719;
-  --adminwp-surface: #202327;
-  --adminwp-surface-raised: #2a2e33;
-  --adminwp-text: #f2f3f5;
-  --adminwp-text-muted: #b5bcc5;
-  --adminwp-border: #41474f;
+  --adminwp-canvas: #11161d;
+  --adminwp-surface: #1d2734;
+  --adminwp-surface-raised: #243244;
+  --adminwp-text: #eaf0f8;
+  --adminwp-text-muted: #b2c0d2;
+  --adminwp-border: #354359;
   --adminwp-control-border: #7c8795;
-  --adminwp-primary: #72b7ff;
-  --adminwp-primary-hover: #9cccff;
-  --adminwp-on-primary: #10283f;
-  --adminwp-sidebar: #111315;
-  --adminwp-sidebar-text: #f0f0f1;
-  --adminwp-sidebar-muted: #bbc0c5;
+  --adminwp-primary: #eaf0f8;
+  --adminwp-primary-hover: #ffffff;
+  --adminwp-on-primary: #152032;
+  --adminwp-chart-primary: #a8bce0;
+  --adminwp-chart-secondary: #75c4ab;
+  --adminwp-chart-tertiary: #dab889;
+  --adminwp-sidebar-active: #a8bce0;
+  --adminwp-sidebar: #161e29;
+  --adminwp-sidebar-text: #dbe6f5;
+  --adminwp-sidebar-muted: #a1b2ca;
   --adminwp-success: #8fdaa2;
   --adminwp-success-bg: #193322;
   --adminwp-warning: #f4d18c;
@@ -113,10 +122,10 @@ html[data-theme="dark"] {
   --primary-fg: var(--adminwp-on-primary);
   --secondary: var(--adminwp-primary);
   --accent: var(--adminwp-primary);
-  --header-bg: var(--adminwp-sidebar);
-  --header-color: var(--adminwp-sidebar-text);
+  --header-bg: var(--adminwp-surface);
+  --header-color: var(--adminwp-text);
   --header-branding-color: var(--adminwp-sidebar-text);
-  --header-link-color: var(--adminwp-sidebar-muted);
+  --header-link-color: var(--adminwp-text-muted);
   --body-bg: var(--adminwp-canvas);
   --body-fg: var(--adminwp-text);
   --body-quiet-color: var(--adminwp-text-muted);
@@ -147,6 +156,7 @@ html[data-theme="dark"] {
   --object-tools-hover-bg: var(--adminwp-primary-hover);
 
   --selected-row: #213044;
+  --bs-primary-rgb: 234, 240, 248;
   --bs-primary: var(--adminwp-primary);
   --bs-body-bg: var(--adminwp-canvas);
   --bs-body-color: var(--adminwp-text);
@@ -158,19 +168,23 @@ html[data-theme="dark"] {
   html:not([data-theme="light"]):not([data-theme="dark"]) {
     color-scheme: dark;
 
-    --adminwp-canvas: #151719;
-    --adminwp-surface: #202327;
-    --adminwp-surface-raised: #2a2e33;
-    --adminwp-text: #f2f3f5;
-    --adminwp-text-muted: #b5bcc5;
-    --adminwp-border: #41474f;
+    --adminwp-canvas: #11161d;
+    --adminwp-surface: #1d2734;
+    --adminwp-surface-raised: #243244;
+    --adminwp-text: #eaf0f8;
+    --adminwp-text-muted: #b2c0d2;
+    --adminwp-border: #354359;
     --adminwp-control-border: #7c8795;
-    --adminwp-primary: #72b7ff;
-    --adminwp-primary-hover: #9cccff;
-    --adminwp-on-primary: #10283f;
-    --adminwp-sidebar: #111315;
-    --adminwp-sidebar-text: #f0f0f1;
-    --adminwp-sidebar-muted: #bbc0c5;
+    --adminwp-primary: #eaf0f8;
+    --adminwp-primary-hover: #ffffff;
+    --adminwp-on-primary: #152032;
+    --adminwp-chart-primary: #a8bce0;
+    --adminwp-chart-secondary: #75c4ab;
+    --adminwp-chart-tertiary: #dab889;
+    --adminwp-sidebar-active: #a8bce0;
+    --adminwp-sidebar: #161e29;
+    --adminwp-sidebar-text: #dbe6f5;
+    --adminwp-sidebar-muted: #a1b2ca;
     --adminwp-success: #8fdaa2;
     --adminwp-success-bg: #193322;
     --adminwp-warning: #f4d18c;
@@ -184,10 +198,10 @@ html[data-theme="dark"] {
     --primary-fg: var(--adminwp-on-primary);
     --secondary: var(--adminwp-primary);
     --accent: var(--adminwp-primary);
-    --header-bg: var(--adminwp-sidebar);
-    --header-color: var(--adminwp-sidebar-text);
+    --header-bg: var(--adminwp-surface);
+    --header-color: var(--adminwp-text);
     --header-branding-color: var(--adminwp-sidebar-text);
-    --header-link-color: var(--adminwp-sidebar-muted);
+    --header-link-color: var(--adminwp-text-muted);
     --body-bg: var(--adminwp-canvas);
     --body-fg: var(--adminwp-text);
     --body-quiet-color: var(--adminwp-text-muted);
@@ -218,6 +232,7 @@ html[data-theme="dark"] {
     --object-tools-hover-bg: var(--adminwp-primary-hover);
 
     --selected-row: #213044;
+    --bs-primary-rgb: 234, 240, 248;
     --bs-primary: var(--adminwp-primary);
     --bs-body-bg: var(--adminwp-canvas);
     --bs-body-color: var(--adminwp-text);
@@ -236,7 +251,7 @@ html[data-theme="dark"] {
   --bs-btn-active-color: var(--adminwp-on-primary);
   --bs-btn-active-bg: var(--adminwp-primary-hover);
   --bs-btn-active-border-color: var(--adminwp-primary-hover);
-  --bs-btn-focus-shadow-rgb: 0, 102, 204;
+  --bs-btn-focus-shadow-rgb: var(--bs-primary-rgb);
 }
 
 body.login {

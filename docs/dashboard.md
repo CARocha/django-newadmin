@@ -91,7 +91,10 @@ no aplica por sí mismo filtros de organización ni permisos por objeto: el prov
 debe hacerlo en sus querysets, también antes de sumar o contar.
 
 La portada personalizada se aplica al índice principal. Los índices de aplicación,
-listados y formularios conservan sus propias pantallas.
+listados y formularios conservan sus propias pantallas y comparten la misma
+paleta, cabecera y navegación del tema. La selección de un proveedor solo cambia
+el contenido de la portada; no hace falta configurarlo para aplicar el estilo al
+resto del administrador. Login y popups usan la misma paleta con un marco compacto.
 
 ## Plantilla y componentes
 

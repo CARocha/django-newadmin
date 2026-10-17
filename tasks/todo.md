@@ -196,11 +196,28 @@ Plan: [plan.md](plan.md).
 - Revisión independiente: corregida la pérdida de selección en gráficos circulares;
   regresión observada antes de la corrección y pasando después. La prueba de
   autorización detecta retirar el guard de permisos en una mutación temporal.
-- Capturas claro/oscuro y móvil revisadas. El marco nuevo se limita a la portada;
-  la adaptación avanzada del menú móvil y la revisión global siguen en T15.
+- Capturas claro/oscuro y móvil revisadas. La corrección T13.6 extiende el marco
+  a todas las pantallas; la adaptación avanzada del menú móvil y la auditoría
+  completa de accesibilidad siguen en T15.
 - Guía de integración: [dashboard.md](../docs/dashboard.md).
 - La T14 en curso se conserva en el stash `T14 menu extensions in progress before
   dashboard redesign`, asociado a `codex/site-extensions`, para retomarla sin perderla.
+
+## T13.6 — Unificar el tema en todo el administrador
+- [x] Mover paleta y marco de la portada a la base compartida.
+- [x] Unificar cabecera, lateral, acciones y paneles en listados, formularios,
+  índices de aplicación, historial, confirmaciones y contraseñas.
+- [x] Conservar disposición compacta en login y popups con los mismos colores.
+- [x] Adaptar cabeceras y flechas del selector múltiple al marcado de Django 6.0/6.1.
+- Verificación: regresión de navegación entre pantallas en light/dark/auto,
+  reflow a 320 px y pruebas existentes de CRUD, filtros, inlines y widgets.
+- Evidencia: 68 pruebas pasan en las cuatro combinaciones Django 6.0.9/6.1.2 ×
+  Python 3.13/3.14; cuatro pruebas JS, Ruff, Django check, build CSS y wheel/sdist
+  pasan. El wheel incluye la base compartida, su CSS y la plantilla de contraseña.
+- Revisión independiente: corregido y probado el desbordamiento de cabecera con
+  un usuario de 84 caracteres; títulos consistentes en ambos marcados de Django.
+- Capturas de formularios y listados en claro/oscuro revisadas. Los datos y flujos
+  nativos de Django permanecen cubiertos por las pruebas funcionales existentes.
 
 ## T14 — Varios sitios y extensiones
 - [ ] Incorporar configuración por AdminSite, menú personalizado y CSS adicional.

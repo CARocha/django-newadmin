@@ -3,7 +3,9 @@
 
 {% block nav-global %}
   {{ block.super }}
-  {% if request.resolver_match.url_name == 'index' %}<span class="adminwp-header-context">{% translate 'Dashboard' %}</span>{% endif %}
+  {% if not is_popup and not user.is_anonymous %}
+    <span class="adminwp-header-context">{% if request.resolver_match.url_name == 'index' %}{% translate 'Dashboard' %}{% else %}{{ title }}{% endif %}</span>
+  {% endif %}
 {% endblock %}
 
 {% block title %}
