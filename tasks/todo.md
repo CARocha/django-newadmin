@@ -89,11 +89,15 @@ Plan: [plan.md](plan.md).
   `tests/test_changelist.py`, `tests/browser/test_changelist.py`.
 
 ## T08 — Filtros y acciones
-- [ ] Presentar filtros, facetas y acciones masivas con comportamiento nativo.
+- [x] Presentar filtros, facetas y acciones masivas con comportamiento nativo.
 - Aceptación: filtros y búsqueda conservan sus parámetros; las acciones respetan selección y permisos.
 - Verificación: navegador con filtros combinados, acciones y selección en varias páginas.
+- Evidencia: Playwright activó facetas, combinó status/categoría/búsqueda y ejecutó
+  `delete_selected` sobre los 25 resultados de varias páginas; otra prueba confirma que
+  un usuario de solo lectura no recibe esa acción. La vista móvil permanece dentro de 320 px.
 - Dependencias: T07. Archivos: `assets/scss/components/_filters.scss`,
-  `src/adminwp/templates/admin/filter.html`, `tests/browser/test_actions.py`.
+  `assets/scss/components/_actions.scss`, `src/adminwp/templates/admin/filter.html`,
+  `tests/test_changelist.py`, `tests/browser/test_actions.py`.
 
 ## T09 — Formularios
 - [ ] Adaptar campos, fieldsets, ayuda, errores y botones de guardado.

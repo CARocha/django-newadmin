@@ -1,8 +1,9 @@
 import pytest
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Permission
 from django.urls import reverse
 
-from demo.catalog.models import Article
+from demo.catalog.models import Article, Category
 
 pytestmark = pytest.mark.django_db
 
@@ -19,6 +20,35 @@ def test_changelist_wraps_native_results_in_accessible_scroll_region(client):
     assert b'role="region"' in response.content
     assert b'tabindex="0"' in response.content
     assert b'id="result_list"' in response.content
+
+
+def test_filters_keep_native_details_state_and_gain_adminwp_class(client):
+    user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
+    client.force_login(user)
+    category = Category.objects.create(name="News", slug="news")
+    Article.objects.create(title="Release", slug="release", category=category)
+
+    response = client.get(reverse("admin:catalog_article_changelist"))
+
+    assert response.status_code == 200
+    assert b'class="adminwp-filter"' in response.content
+    assert b'data-filter-title="status"' in response.content
+    assert b"<details" in response.content
+    assert b'href="?category__id__exact=' in response.content
+
+
+def test_read_only_staff_cannot_run_delete_selected(client):
+    user = get_user_model().objects.create_user("reader", "reader@example.com", "secret")
+    user.is_staff = True
+    user.save(update_fields=["is_staff"])
+    permission = Permission.objects.get(codename="view_article")
+    user.user_permissions.add(permission)
+    client.force_login(user)
+
+    response = client.get(reverse("admin:catalog_article_changelist"))
+
+    assert response.status_code == 200
+    assert b'value="delete_selected"' not in response.content
 
 
 def test_changelist_preserves_search_sorting_and_pagination(client):

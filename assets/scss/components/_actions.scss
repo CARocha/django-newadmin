@@ -1,0 +1,54 @@
+#changelist-form .actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  margin: 0 0 12px;
+  background: var(--adminwp-surface);
+  border: 1px solid var(--adminwp-border);
+  border-radius: 6px;
+}
+
+#changelist-form .actions label {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--adminwp-text);
+}
+
+#changelist-form .actions select {
+  min-width: 12rem;
+  max-width: 100%;
+}
+
+#changelist-form .actions button[name="index"] {
+  min-height: 36px;
+}
+
+#changelist-form .actions .action-counter {
+  margin-inline-start: auto;
+  color: var(--adminwp-text-muted);
+}
+
+#changelist-form .actions .question,
+#changelist-form .actions .clear {
+  flex-basis: 100%;
+  margin-inline-start: 0;
+}
+
+@media (max-width: 767.98px) {
+  #changelist-form .actions {
+    align-items: stretch;
+  }
+
+  #changelist-form .actions label,
+  #changelist-form .actions select,
+  #changelist-form .actions .action-counter {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}

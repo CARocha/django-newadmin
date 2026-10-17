@@ -1,4 +1,6 @@
 @use "components/changelist";
+@use "components/filters";
+@use "components/actions";
 
 /* AdminWP translates its public design tokens into Django's admin variables. */
 :root,
