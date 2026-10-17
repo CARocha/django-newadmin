@@ -169,9 +169,9 @@ Plan: [plan.md](plan.md).
 ## T13 — Páginas auxiliares
 - [x] Completar historial, borrado, mensajes y cambio de contraseña.
 - Aceptación: conservar confirmaciones, CSRF y cierre de sesión por POST.
-- Verificación: pruebas Django y navegador para borrado individual y flujos de cuenta;
+- Verificación: pruebas Django y navegador para borrado individual/masivo y flujos de cuenta;
   confirmaciones y CSRF siguen presentes, y cerrar sesión continúa enviando POST.
-- Evidencia: seis pruebas enfocadas y las 47 pruebas del suite pasan; Ruff y Django
+- Evidencia: siete pruebas enfocadas y las 48 pruebas del suite pasan; Ruff y Django
   check pasan. El historial, la confirmación de borrado, los mensajes y el cambio
   de contraseña reciben el tema sin sustituir los flujos nativos de Django.
 - Dependencias: T12.5. Archivos: `assets/scss/components/_auxiliary.scss`,
