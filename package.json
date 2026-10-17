@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Build tools for the django-adminwp static assets",
   "scripts": {
-    "build:css": "sass --quiet-deps --silence-deprecation=import --no-source-map --style=compressed --load-path=node_modules assets/scss/adminwp.scss src/adminwp/static/adminwp/css/bootstrap.min.css",
+    "build:css": "sass --quiet-deps --silence-deprecation=import --no-source-map --style=compressed --load-path=node_modules assets/scss/adminwp.scss src/adminwp/static/adminwp/css/bootstrap.min.css && sass --no-source-map --style=expanded assets/scss/theme.scss src/adminwp/static/adminwp/css/adminwp.css",
     "test:js": "node --test tests/js/*.test.mjs"
   },
   "devDependencies": {

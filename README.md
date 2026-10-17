@@ -10,7 +10,9 @@ Python 3.13 and 3.14) passes locally; automated CI has not been configured yet.
 ```sh
 python3.14 -m venv .venv
 .venv/bin/python -m pip install -e '.[dev]'
-.venv/bin/python -m pytest -q
+.venv/bin/python -m pytest tests --ignore=tests/browser -q
+.venv/bin/python -m playwright install chromium
+.venv/bin/python -m pytest tests/browser -q
 npm ci
 npm run build:css
 npm run test:js

@@ -73,14 +73,20 @@ Plan: [plan.md](plan.md).
   `tests/js/appearance.test.mjs`. Recursos generados se verifican en el artefacto.
 
 ## Checkpoint B
-- [ ] Instalar, iniciar sesión y navegar en móvil/escritorio con apariencia coherente.
+- [x] Instalar, iniciar sesión y navegar en móvil/escritorio con apariencia coherente.
+- Evidencia: el navegador comprobó el flujo del admin en escritorio y a 320 px;
+  la tabla desplaza dentro de su región accesible y el documento no se desborda.
 
 ## T07 — Listados
-- [ ] Adaptar tablas, búsqueda, ordenación y paginación conservando el marcado nativo.
+- [x] Adaptar tablas, búsqueda, ordenación y paginación conservando el marcado nativo.
 - Aceptación: funcionan listados vacíos, columnas extensas y `list_editable` con errores.
 - Verificación: navegador con búsqueda, paginación, ordenación y guardado válido/inválido.
+- Evidencia: pruebas Django para estado vacío, 180 caracteres, búsqueda, orden ascendente,
+  segunda página y error de `list_editable`; Playwright verificó scroll horizontal,
+  búsqueda, segunda página, orden, guardado en línea y reflow a 320 px.
 - Dependencias: T06. Archivos: `assets/scss/components/_changelist.scss`,
-  `src/adminwp/templates/admin/change_list.html`, `tests/browser/test_changelist.py`.
+  `assets/scss/theme.scss`, `src/adminwp/templates/admin/change_list.html`,
+  `tests/test_changelist.py`, `tests/browser/test_changelist.py`.
 
 ## T08 — Filtros y acciones
 - [ ] Presentar filtros, facetas y acciones masivas con comportamiento nativo.

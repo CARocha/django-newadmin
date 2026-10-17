@@ -5,7 +5,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["testserver", "localhost"]
 ROOT_URLCONF = "tests.urls"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 INSTALLED_APPS = [
     "adminwp",
@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.messages",
     "django.contrib.sessions",
+    "django.contrib.staticfiles",
     "demo.catalog",
 ]
 
