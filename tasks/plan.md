@@ -1,7 +1,7 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; T01–T13.5 implementadas. T14 es la siguiente tarea.
+Estado: plan aprobado por el usuario; T01–T14 implementadas. T15 es la siguiente tarea.
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
@@ -24,6 +24,9 @@ los ModelAdmin y los comportamientos nativos de Django.
   lo requiera. El tema no añadirá otra copia de jQuery.
 - Un único estado de apariencia, compatible con el selector nativo de Django.
 - Configuración básica mediante `ADMINWP`; menú automático si no se configura.
+- Documentación pública con Sphinx: instalación, configuración, personalización
+  y resolución de problemas, con ejemplos reproducibles. Integrar las guías
+  existentes en el sitio de documentación y comprobar su compilación en CI.
 - Sin modelos, migraciones ni middleware propios para activar el tema.
 - Trabajar en esta conversación, sin delegación automática.
 

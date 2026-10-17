@@ -269,6 +269,11 @@ Plan: [plan.md](plan.md).
 
 ## T16 — Publicación verificable
 - [ ] Preparar CI, documentación de instalación y validación del paquete candidato.
+- [ ] Construir la documentación pública con Sphinx e integrar las guías existentes.
+- [ ] Documentar instalación desde cero, orden de `INSTALLED_APPS`, recursos estáticos
+  y `collectstatic`, configuración `ADMINWP`, varios AdminSite, menús, apariencia,
+  extensiones, dashboards/ECharts y resolución de problemas, con ejemplos reproducibles.
+- [ ] Validar en CI la compilación de Sphinx con advertencias tratadas como errores.
 - Aceptación: cuatro combinaciones Django/Python verificadas; wheel instalado fuera
   del checkout; `collectstatic` con manifiesto funciona sin recursos faltantes.
 - Verificación: matriz de CI, instalación limpia, pruebas de navegador y revisión de

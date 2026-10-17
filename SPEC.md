@@ -263,7 +263,8 @@ STATIC_ROOT temporal y ManifestStaticFilesStorage, sin depender de fuentes del c
 - AC08: dos AdminSite con namespaces y permisos distintos no mezclan enlaces ni marca.
 - AC09: teclado, foco, contraste, zoom y RTL verificados; 320, 768, 1024 y 1440 px.
 - AC10: wheel/sdist completos, collectstatic con manifiesto correcto y sin solicitudes remotas obligatorias.
-- AC11: documentación reproduce instalación, configuración y extensiones; limitaciones declaradas.
+- AC11: documentación pública con Sphinx que reproduce instalación, configuración
+  y extensiones; limitaciones declaradas y compilación sin advertencias verificada en CI.
 
 Pruebas de lógica con pytest-django; recorridos en navegador con Playwright;
 regresión visual para pantallas principales; revisión manual de teclado, RTL y
