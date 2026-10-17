@@ -12,3 +12,5 @@ demo/db.sqlite3
 .env.*
 *.pem
 .DS_Store
+__pycache__/
+*.py[cod]
