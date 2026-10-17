@@ -2,7 +2,7 @@
 {% with id=chart_id|default:chart.id %}
 {% with config_id=id|add:"-config" title_id=id|add:"-title" %}
 <figure class="adminwp-panel adminwp-chart" aria-labelledby="{{ title_id }}">
-  <figcaption class="adminwp-panel__header">
+  <figcaption class="adminwp-panel__header{% if compact %} visually-hidden{% endif %}">
     <div>
       <h2 id="{{ title_id }}">{{ chart.title }}</h2>
       {% if chart.description %}<p>{{ chart.description }}</p>{% endif %}

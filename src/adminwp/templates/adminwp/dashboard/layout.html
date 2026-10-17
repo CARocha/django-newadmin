@@ -1,8 +1,9 @@
-{% load i18n %}
+{% load adminwp i18n %}
+{% adminwp_options as adminwp %}
 <div class="adminwp-workspace">
   <header class="adminwp-workspace__heading">
     <div>
-      <p class="adminwp-workspace__eyebrow">{{ site_header }}</p>
+      <p class="adminwp-workspace__eyebrow">{{ adminwp.SITE_HEADER|default:site_header }}</p>
       <h1>{% block dashboard_title %}{% translate 'Dashboard' %}{% endblock %}</h1>
     </div>
     <div class="adminwp-workspace__actions">{% block dashboard_actions %}{% endblock %}</div>

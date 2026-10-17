@@ -2,6 +2,43 @@
   min-width: 0;
 }
 
+.adminwp-workspace__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.adminwp-workspace__eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--adminwp-text-muted);
+  font-size: 0.6875rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.adminwp-workspace__heading h1 {
+  padding: 0;
+  margin: 0;
+  color: var(--adminwp-text);
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.adminwp-workspace__actions .btn {
+  padding: 0.625rem 1rem;
+  border-radius: 2px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.adminwp-workspace__actions a.btn-primary {
+  color: var(--adminwp-on-primary);
+}
+
 .adminwp-workspace__grid {
   --bs-gutter-x: 2rem;
   --bs-gutter-y: 2rem;
@@ -36,6 +73,77 @@
   color: var(--adminwp-text);
   font-size: 1rem;
   font-weight: 650;
+}
+
+.adminwp-workspace__primary > .adminwp-chart {
+  min-height: 480px;
+}
+
+.adminwp-workspace__metrics {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 2rem;
+}
+
+.adminwp-metric {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 224px;
+  padding: 1.25rem 1.5rem;
+  border-inline-start: 3px solid var(--adminwp-text-muted);
+  border-radius: 2px;
+  background: var(--adminwp-surface);
+}
+
+.adminwp-metric--success {
+  border-inline-start-color: var(--adminwp-success);
+}
+
+.adminwp-metric--warning {
+  border-inline-start-color: var(--adminwp-warning);
+}
+
+.adminwp-metric h2 {
+  margin: 0;
+  color: var(--adminwp-text-muted);
+  background: none;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.adminwp-metric__value {
+  padding: 0;
+  margin: 0.375rem 0 0;
+  color: var(--adminwp-text);
+  font-size: 2.75rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.adminwp-metric__share {
+  padding: 0;
+  margin: 0.25rem 0 0.75rem;
+  color: var(--adminwp-text-muted);
+  font-size: 0.75rem;
+}
+
+.adminwp-metric .adminwp-chart {
+  border: 0;
+  background: transparent;
+}
+
+.adminwp-metric .adminwp-chart__plot {
+  height: 56px;
+}
+
+.adminwp-metric .adminwp-chart__data {
+  padding: 0.5rem 0 0;
+  font-size: 0.6875rem;
 }
 
 .adminwp-panel__header p {
@@ -75,8 +183,91 @@
 
 .adminwp-panel__scroll th,
 .adminwp-panel__scroll td {
+  padding: 1rem 1.5rem;
+  border-color: var(--adminwp-border);
   background: var(--adminwp-surface);
   color: var(--adminwp-text);
+}
+
+.adminwp-panel__scroll thead th {
+  background: var(--adminwp-canvas);
+  color: var(--adminwp-text-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.adminwp-editorial-table table {
+  min-width: 600px;
+}
+
+.adminwp-editorial-table tbody th {
+  width: 42%;
+  font-weight: 600;
+}
+
+.adminwp-editorial-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.adminwp-editorial-table time {
+  white-space: nowrap;
+  color: var(--adminwp-text-muted);
+  font-size: 0.8125rem;
+}
+
+.adminwp-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+  background: var(--adminwp-surface-raised);
+  color: var(--adminwp-text-muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.adminwp-status--published {
+  background: var(--adminwp-success-bg);
+  color: var(--adminwp-success);
+}
+
+.adminwp-status--scheduled {
+  background: var(--adminwp-info-bg);
+  color: var(--adminwp-info);
+}
+
+.adminwp-text-action {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.adminwp-workspace__directory {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding-block: 2rem 1rem;
+  color: var(--adminwp-text-muted);
+}
+
+.adminwp-workspace__directory h2 {
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.adminwp-workspace__directory a {
+  font-size: 0.8125rem;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .adminwp-workspace__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .adminwp-panel__empty {
@@ -92,6 +283,19 @@
   }
 
   .adminwp-panel__header {
+    padding: 1rem;
+  }
+
+  .adminwp-workspace__heading h1 {
+    font-size: 1.5rem;
+  }
+
+  .adminwp-workspace__metrics {
+    gap: 1rem;
+  }
+
+  .adminwp-metric {
+    min-height: 0;
     padding: 1rem;
   }
 }

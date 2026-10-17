@@ -1,5 +1,10 @@
 {% extends "admin/base_site.html" %}
-{% load adminwp static %}
+{% load adminwp i18n static %}
+
+{% block nav-global %}
+  {{ block.super }}
+  {% if request.resolver_match.url_name == 'index' %}<span class="adminwp-header-context">{% translate 'Dashboard' %}</span>{% endif %}
+{% endblock %}
 
 {% block title %}
   {% adminwp_options as adminwp %}

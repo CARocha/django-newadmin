@@ -29,7 +29,7 @@ def test_dashboard_has_contrasting_navigation_and_responsive_cards(static_live_s
         )
         assert module_background == "rgba(0, 0, 0, 0)"
         assert row_background == "rgba(0, 0, 0, 0)"
-        assert module_link_color == "rgb(240, 240, 241)"
+        assert module_link_color == "rgb(83, 97, 114)"
         assert page.locator("#content-title").count() == 0
         assert page.locator(".adminwp-dashboard__card").count() >= 1
         assert page.locator(".adminwp-dashboard__activity").count() == 1
