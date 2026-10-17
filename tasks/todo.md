@@ -1,6 +1,6 @@
 # Tareas de django-adminwp
 
-Estado: plan aprobado. T01–T13 están implementadas; T14 es la siguiente tarea.
+Estado: plan aprobado. T01–T13.5 están implementadas; T14 continúa pendiente de cierre.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
@@ -180,6 +180,27 @@ Plan: [plan.md](plan.md).
   `src/adminwp/templates/registration/password_change_done.html`,
   `tests/browser/test_auxiliary.py`, `tests/test_auxiliary.py`,
   `tests/test_authentication.py`.
+
+## T13.5 — Dashboard extensible con Apache ECharts
+- [x] Adaptar la referencia entregada a Bootstrap: lateral de 256 px, cabecera
+  de 64 px, grid 8/4 y tabla de ancho completo en la portada.
+- [x] Añadir Dashboard/EChartsDashboard, contexto por solicitud, permisos antes
+  de consultar y configuración independiente por AdminSite.
+- [x] Distribuir ECharts 6.1.0 local, con LICENSE/NOTICE y avisos de dependencias.
+- [x] Implementar la demo con métricas reales, categorías y ocho entradas recientes.
+- [x] Verificar claro/oscuro/auto, resize, movimiento reducido, datos sin JS,
+  etiquetas con HTML y conservación de selección/zoom al cambiar de modo.
+- Evidencia: 64 pruebas pasan en Django 6.0.9/6.1.2 × Python 3.13/3.14;
+  4 pruebas JS, Ruff, Django check y builds pasan. Wheel instalado en un entorno
+  ajeno al checkout y collectstatic con manifiesto verificados.
+- Revisión independiente: corregida la pérdida de selección en gráficos circulares;
+  regresión observada antes de la corrección y pasando después. La prueba de
+  autorización detecta retirar el guard de permisos en una mutación temporal.
+- Capturas claro/oscuro y móvil revisadas. El marco nuevo se limita a la portada;
+  la adaptación avanzada del menú móvil y la revisión global siguen en T15.
+- Guía de integración: [dashboard.md](../docs/dashboard.md).
+- La T14 en curso se conserva en el stash `T14 menu extensions in progress before
+  dashboard redesign`, asociado a `codex/site-extensions`, para retomarla sin perderla.
 
 ## T14 — Varios sitios y extensiones
 - [ ] Incorporar configuración por AdminSite, menú personalizado y CSS adicional.

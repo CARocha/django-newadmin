@@ -15,6 +15,7 @@ python3.14 -m venv .venv
 .venv/bin/python -m pytest tests/browser -q
 npm ci
 npm run build:css
+npm run build:charts
 npm run test:js
 ```
 
@@ -62,3 +63,14 @@ The demo is a local development project and uses SQLite.
 
 See the [project specification](SPEC.md), [design](DESIGN.md), and
 [task list](tasks/todo.md) for scope and progress.
+
+## Custom dashboards
+
+Use a Python provider and a template to show data from your own models. Optional
+Apache ECharts graphs are bundled locally under Apache 2.0, with light/dark mode,
+responsive SVG output and an HTML data alternative. No chart license purchase or
+Node installation is required by a package consumer.
+
+See the [dashboard guide](docs/dashboard.md) for configuration, permissions,
+per-site providers, templates and examples. The demo enables an editorial provider
+with entry counts, category charts and recent articles.

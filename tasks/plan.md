@@ -1,7 +1,7 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; T01–T13 implementadas. T14 es la siguiente tarea.
+Estado: plan aprobado por el usuario; T01–T13.5 implementadas. T14 es la siguiente tarea.
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
@@ -41,8 +41,10 @@ los ModelAdmin y los comportamientos nativos de Django.
 
 ## Releases posteriores
 
-Editores enriquecidos, StreamField, gráficos personalizados, constructor de
-dashboards y conversión de popups a modales quedan fuera de la primera versión.
+Editores enriquecidos, StreamField, un constructor visual de dashboards y
+conversión de popups a modales quedan fuera de la primera versión.
+Ampliación aprobada el 2026-10-17: proveedores de dashboard en Python y gráficos
+Apache ECharts locales, con la nueva referencia visual suministrada por el usuario.
 Las integraciones de terceros tendrán pruebas y matrices de soporte propias.
 El tema debe conservar los recursos `Media` de formularios y widgets desde el
 inicio para facilitar esas integraciones.

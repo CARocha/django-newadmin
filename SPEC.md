@@ -61,6 +61,7 @@ ADMINWP = {
     "PALETTE": "sapphire",
     "MENU": {"ORDER": [], "ICONS": {}, "LINKS": []},
     "CUSTOM_CSS": [],
+    "DASHBOARD": None,
     "SITES": {},
 }
 ```
@@ -76,6 +77,7 @@ ADMINWP = {
 | MENU.ICONS | Mapa app_label o app_label.model_name a un identificador del catálogo de iconos |
 | MENU.LINKS | Enlaces adicionales, en el orden indicado, filtrados por permisos |
 | CUSTOM_CSS | Lista ordenada de rutas relativas de staticfiles; se carga después del tema |
+| DASHBOARD | Ruta importable a una clase Dashboard o None para el escritorio genérico |
 | SITES | Mapa de nombres de instancia AdminSite a overrides parciales |
 
 LOGO y CUSTOM_CSS admiten nombres como `branding/admin.css`; rechazan rutas
@@ -194,6 +196,19 @@ consumidor y sus widgets siguen siendo responsabilidad de ese proyecto.
   sustituciones globales de widgets para activar el tema.
 - Overrides completos del consumidor pueden necesitar adaptación visual; las
   integraciones de terceros solo se anuncian cuando tienen pruebas propias.
+
+### Dashboard con datos propios (ampliación aprobada el 2026-10-17)
+
+`Dashboard` y `EChartsDashboard` son la API Python documentada para la portada.
+El proveedor recibe request, verifica permisos antes de consultar datos, retorna
+un mapping bajo dashboard_data y declara su plantilla y Media. Se resuelve por
+AdminSite y se instancia una vez por solicitud. No cambia los índices de aplicación
+ni exige reemplazar AdminSite. La configuración por omisión sigue siendo None.
+
+Apache ECharts 6.1.0 sustituye a la integración Highcharts propuesta inicialmente.
+Sus recursos, licencia y avisos se distribuyen localmente. Se conserva una tabla
+alternativa sin JavaScript y no se añade una dependencia Python de gráficos.
+Contrato y ejemplos: [docs/dashboard.md](docs/dashboard.md).
 
 ## 8. Estructura, estilo y comandos previstos
 

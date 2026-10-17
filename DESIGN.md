@@ -3,6 +3,11 @@
 Fecha: 2026-10-16. Estado: contrato visual propuesto para T01.
 Especificación funcional: [SPEC.md](SPEC.md).
 
+Revisión del 2026-10-17: el índice principal adopta la
+[referencia de dashboard](docs/proposals/dashboard-v2.md) y la integración de
+[Apache ECharts](docs/dashboard.md). El nuevo marco se aplica a la portada;
+los flujos CRUD conservan sus estilos actuales durante esta iteración.
+
 ## Dirección
 
 Navegación de WordPress, claridad del admin nativo y superficies sobrias inspiradas
@@ -95,14 +100,30 @@ Barra superior: marca / acceso al sitio / usuario / apariencia
 
 ### Portada
 
-La portada es un escritorio de trabajo propio, inspirado en la densidad y la
-organización por paneles de WordPress, con los tokens y la navegación de AdminWP.
-Agrupa los modelos accesibles por aplicación, muestra accesos de alta solo cuando
-Django proporciona el permiso y reserva un panel lateral para las acciones
-recientes del usuario. El contenido se distribuye en dos columnas en escritorio
-y se apila en pantallas estrechas. La portada inicial no incorpora métricas de
-base de datos, paneles arrastrables, noticias remotas ni contenido de marketing;
-las extensiones configurables quedan para una tarea posterior.
+El índice principal usa un lateral claro en light y oscuro en dark; marca y
+cabecera de 64 px, navegación expandida de 256 px incluyendo su control de plegado,
+contenido con 32 px de padding y radios de 2–4 px. La portada conserva el menú y
+su plegado nativo. Su adaptación móvil avanzada sigue pendiente de T15; los accesos
+a aplicaciones también están disponibles dentro del contenido.
+
+Los tokens de portada sobrescriben los valores de la tabla anterior dentro de
+`body.adminwp-dashboard-view`: canvas claro #F8F9FF, superficie #FFFFFF, lateral
+#EFF4FF, texto #0B1C30 y acción #141A23. En oscuro: canvas #11161D, superficie
+#1D2734, lateral #161E29 y texto/acción #EAF0F8. No se añade otra opción de paleta
+pública en esta iteración. Las tipografías siguen siendo de sistema y no se
+solicitan fuentes remotas.
+
+Sin proveedor, la portada muestra modelos autorizados y actividad reciente.
+`ADMINWP.DASHBOARD` permite seleccionar un proveedor Python, su plantilla y Media,
+con permisos verificados antes de preparar datos. La composición de referencia
+expone un grid Bootstrap 8/4 desde 1200 px, con tabla posterior de ancho completo,
+gutters de 32 px y gráfico principal de altura objetivo de 480 px.
+
+La demo editorial cuenta entradas por categoría y estado, presenta minigráficos
+con datos de los últimos siete días y ocho entradas recientes. Usa ECharts 6.1.0
+local con su licencia Apache 2.0 y avisos de dependencias. Una instalación genérica
+no hace consultas de negocio ni carga gráficos por omisión. Las tablas alternativas
+son accesibles sin JavaScript. El alcance y uso están en [dashboard.md](docs/dashboard.md).
 
 El panel móvil mueve el foco a su interior, mantiene el foco mientras está abierto,
 cierra con Escape y devuelve el foco al botón de apertura. Sin JavaScript, el menú
