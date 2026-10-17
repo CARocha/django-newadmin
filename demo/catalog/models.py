@@ -25,6 +25,7 @@ class Article(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="articles"
     )
+    topics = models.ManyToManyField(Category, blank=True, related_name="topic_articles")
     excerpt = models.CharField(max_length=240, blank=True)
     body = models.TextField(blank=True, help_text="Write the story content.")
     status = models.CharField(max_length=12, choices=Status, default=Status.DRAFT)
@@ -43,6 +44,9 @@ class ArticleLink(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="links")
     label = models.CharField(max_length=80)
     url = models.URLField()
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="article_links"
+    )
 
     class Meta:
         ordering = ["pk"]

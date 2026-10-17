@@ -14,6 +14,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ArticleLinkInline(admin.TabularInline):
     model = ArticleLink
     extra = 0
+    raw_id_fields = ("category",)
 
 
 class ArticleSectionInline(admin.StackedInline):
@@ -28,10 +29,12 @@ class ArticleAdmin(admin.ModelAdmin):
     list_editable = ("status",)
     search_fields = ("title", "excerpt", "body")
     prepopulated_fields = {"slug": ("title",)}
+    autocomplete_fields = ("category",)
+    filter_horizontal = ("topics",)
     date_hierarchy = "updated_at"
     list_per_page = 20
     fieldsets = (
-        (None, {"fields": ("title", "slug", "category")}),
+        (None, {"fields": ("title", "slug", "category", "topics")}),
         ("Story", {"fields": ("excerpt", "body"), "classes": ("wide",)}),
         ("Publication", {"fields": ("status", "published_at"), "classes": ("collapse",)}),
         ("Timestamps", {"fields": ("created_at", "updated_at"), "classes": ("collapse",)}),

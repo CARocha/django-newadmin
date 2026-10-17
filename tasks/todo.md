@@ -125,11 +125,16 @@ Plan: [plan.md](plan.md).
   `tests/browser/test_inlines.py` y hasta dos plantillas específicas si son necesarias.
 
 ## T11 — Widgets de relaciones
-- [ ] Adaptar autocompletado, raw ID, selectores múltiples y popups nativos.
+- [x] Adaptar autocompletado, raw ID, selectores múltiples y popups nativos.
 - Aceptación: relación seleccionada se devuelve al formulario; no hay una segunda copia de jQuery.
 - Verificación: búsquedas, selección múltiple, popups e interacción dentro de nuevos inlines.
+- Evidencia: Playwright confirmó búsqueda y selección de autocomplete, selector múltiple,
+  popup raw ID dentro de un inline dinámico con retorno de categoría y cierre nativo,
+  una sola copia de jQuery y presentación responsive en claro/oscuro. 27 pruebas de
+  integración y 7 de navegador pasan en cada combinación de Django 6.0.9/6.1.2 y
+  Python 3.13/3.14; Ruff, checks de Django, migraciones, recursos JS y build del paquete pasan.
 - Dependencias: T10. Archivos: `assets/scss/components/_relations.scss`,
-  `tests/browser/test_relations.py`, `demo/catalog/admin.py`.
+  `tests/browser/test_relations.py`, `demo/catalog/admin.py`, `demo/catalog/models.py`.
 
 ## T12 — Resto de widgets
 - [ ] Adaptar fechas, horas, archivos y textarea manteniendo los recursos `Media`.
