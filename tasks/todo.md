@@ -1,6 +1,6 @@
 # Tareas de django-adminwp
 
-Estado: plan aprobado. T01–T12.5 están implementadas; T13 es la siguiente tarea.
+Estado: plan aprobado. T01–T13 están implementadas; T14 es la siguiente tarea.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
@@ -167,11 +167,19 @@ Plan: [plan.md](plan.md).
 - [x] Portada y navegación revisadas visualmente antes de las páginas auxiliares.
 
 ## T13 — Páginas auxiliares
-- [ ] Completar historial, borrado, mensajes y cambio de contraseña.
+- [x] Completar historial, borrado, mensajes y cambio de contraseña.
 - Aceptación: conservar confirmaciones, CSRF y cierre de sesión por POST.
-- Verificación: navegador para borrado individual/masivo y flujos de cuenta.
+- Verificación: pruebas Django y navegador para borrado individual y flujos de cuenta;
+  confirmaciones y CSRF siguen presentes, y cerrar sesión continúa enviando POST.
+- Evidencia: seis pruebas enfocadas y las 47 pruebas del suite pasan; Ruff y Django
+  check pasan. El historial, la confirmación de borrado, los mensajes y el cambio
+  de contraseña reciben el tema sin sustituir los flujos nativos de Django.
 - Dependencias: T12.5. Archivos: `assets/scss/components/_auxiliary.scss`,
-  `tests/browser/test_auxiliary.py`, `tests/test_authentication.py`.
+  `src/adminwp/templates/admin/object_history.html`,
+  `src/adminwp/templates/registration/password_change_form.html`,
+  `src/adminwp/templates/registration/password_change_done.html`,
+  `tests/browser/test_auxiliary.py`, `tests/test_auxiliary.py`,
+  `tests/test_authentication.py`.
 
 ## T14 — Varios sitios y extensiones
 - [ ] Incorporar configuración por AdminSite, menú personalizado y CSS adicional.

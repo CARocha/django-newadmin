@@ -1,0 +1,123 @@
+body.adminwp-object-history #change-history {
+  overflow-x: auto;
+  border: 1px solid var(--adminwp-border);
+  border-radius: 10px;
+  background: var(--adminwp-surface);
+}
+
+body.adminwp-object-history #change-history table {
+  width: 100%;
+  background: var(--adminwp-surface);
+}
+
+body.adminwp-object-history #change-history thead th {
+  padding: 0.75rem 1rem;
+  border-color: var(--adminwp-border);
+  background: var(--adminwp-surface-raised);
+  color: var(--adminwp-text-muted);
+  font-size: 0.75rem;
+}
+
+body.adminwp-object-history #change-history tbody th,
+body.adminwp-object-history #change-history tbody td {
+  padding: 0.875rem 1rem;
+  border-color: var(--adminwp-border);
+  background: var(--adminwp-surface);
+  color: var(--adminwp-text);
+}
+
+body.adminwp-object-history #change-history > p {
+  padding: 1rem 1.125rem;
+  margin: 0;
+  color: var(--adminwp-text-muted);
+}
+
+body.delete-confirmation #content > p:first-of-type {
+  padding: 1rem 1.125rem;
+  border-inline-start: 4px solid var(--adminwp-danger);
+  border-radius: 6px;
+  background: var(--adminwp-danger-bg);
+  color: var(--adminwp-text);
+}
+
+body.delete-confirmation #deleted-objects {
+  max-height: 22rem;
+  overflow: auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--adminwp-border);
+  border-radius: 8px;
+  background: var(--adminwp-surface);
+  color: var(--adminwp-text);
+}
+
+body.delete-confirmation #content form > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--adminwp-border);
+}
+
+body.delete-confirmation #content form input[type="submit"] {
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--adminwp-danger);
+  border-radius: 6px;
+  background: var(--adminwp-danger);
+  color: var(--adminwp-danger-bg);
+  font-weight: 600;
+}
+
+body.delete-confirmation #content form input[type="submit"]:hover {
+  filter: brightness(0.92);
+}
+
+body.delete-confirmation #content form input[type="submit"]:focus-visible,
+body.delete-confirmation #content form .cancel-link:focus-visible {
+  outline: 2px solid var(--adminwp-primary);
+  outline-offset: 2px;
+}
+
+body.delete-confirmation #content form .cancel-link {
+  min-height: 2.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 6px;
+  color: var(--adminwp-text-muted);
+}
+
+ul.messagelist {
+  display: grid;
+  gap: 0.5rem;
+  margin-block: 0 1rem;
+}
+
+ul.messagelist li {
+  padding-block: 0.75rem;
+  padding-inline: 3rem 1rem;
+  margin: 0;
+  border: 1px solid var(--adminwp-border);
+  border-radius: 6px;
+  background-position: 1rem center;
+}
+
+body.adminwp-password-change-done #content > p {
+  max-width: 48rem;
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--adminwp-success);
+  border-radius: 8px;
+  background: var(--adminwp-success-bg);
+  color: var(--adminwp-text);
+}
+
+@media (max-width: 640px) {
+  body.delete-confirmation #content form > div {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  body.delete-confirmation #content form input[type="submit"],
+  body.delete-confirmation #content form .cancel-link {
+    text-align: center;
+  }
+}

@@ -1,7 +1,7 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; T01–T12.5 implementadas. T13 es la siguiente tarea.
+Estado: plan aprobado por el usuario; T01–T13 implementadas. T14 es la siguiente tarea.
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
