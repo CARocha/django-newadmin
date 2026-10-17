@@ -219,6 +219,20 @@ Plan: [plan.md](plan.md).
 - Capturas de formularios y listados en claro/oscuro revisadas. Los datos y flujos
   nativos de Django permanecen cubiertos por las pruebas funcionales existentes.
 
+## T13.7 — Acabado de vidrio sutil
+- [x] Añadir vidrio en cabecera y barra de guardado, con reflejos y sombras en
+  tarjetas exteriores, y variaciones estáticas muy suaves en el lienzo.
+- [x] Mantener campos, tablas y gráficos sin desenfoque; evitar sombras duplicadas
+  en los minigráficos de métricas. Reducir blur a 8 px en móvil.
+- [x] Partir de superficies opacas y activar blur mediante detección de soporte.
+  Respetar reducción de transparencias y colores forzados.
+- Verificación: capturas claro/oscuro y móvil; prueba de la preferencia real del
+  navegador para recuperar fondos opacos y eliminar blur.
+- Evidencia: 70 pruebas pasan en Django 6.0.9/6.1.2 × Python 3.13/3.14;
+  cuatro pruebas JS, Ruff, Django check, build CSS y wheel/sdist pasan.
+- Revisión independiente de cascada, compatibilidad de widgets y capturas completada.
+  Las tarjetas interiores de minigráficos quedan exentas de sombra adicional.
+
 ## T14 — Varios sitios y extensiones
 - [ ] Incorporar configuración por AdminSite, menú personalizado y CSS adicional.
 - Aceptación: sitios con namespaces distintos no mezclan enlaces ni configuración;

@@ -100,6 +100,18 @@ Barra superior: marca / acceso al sitio / usuario / apariencia
 - Mantener hasta 200% de zoom y comprobar reflow equivalente a 320 CSS px.
 - RTL mediante propiedades lógicas; invertir disposición, no el significado de iconos.
 
+### Detalles de vidrio
+
+La cabecera y la barra de guardado usan una superficie al 90% con blur de 12 px
+(8 px en móvil), borde fino y reflejo superior. El lienzo incorpora dos variaciones
+estáticas muy suaves de color; tarjetas y métricas añaden sombra discreta. Los
+campos, tablas, paneles y gráficos conservan su fondo sólido y no reciben blur.
+
+La base es opaca: `@supports` activa la transparencia y el desenfoque cuando están
+disponibles. `prefers-reduced-transparency: reduce` y colores forzados eliminan
+blur, sombras decorativas y variaciones de fondo. Login y popups conservan su
+presentación compacta. No se añaden dependencias, animaciones ni imágenes remotas.
+
 ### Marco compartido y portada
 
 La plantilla base añade `adminwp-theme` a todas las páginas. El marco compartido

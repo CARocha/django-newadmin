@@ -8,6 +8,7 @@
 @use "components/auxiliary";
 @use "components/dashboard";
 @use "components/shell";
+@use "components/glass";
 
 /* AdminWP translates its public design tokens into Django's admin variables. */
 :root,
