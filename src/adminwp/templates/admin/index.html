@@ -1,0 +1,5 @@
+{% extends "admin/index.html" %}
+
+{% block nav-sidebar %}
+  {% if is_nav_sidebar_enabled %}{% include "admin/nav_sidebar.html" %}{% endif %}
+{% endblock %}

@@ -2,6 +2,7 @@ import pytest
 from django.core.exceptions import ImproperlyConfigured
 from django.test import override_settings
 
+from adminwp.checks import check_adminwp
 from adminwp.conf import DEFAULTS, get_options
 
 
@@ -16,6 +17,20 @@ def test_configuration_merges_partial_overrides():
     assert options["SITE_HEADER"] == "Studio"
     assert options["MENU"]["ORDER"] == ["catalog"]
     assert options["MENU"]["ICONS"] == {}
+
+
+@override_settings(ADMINWP={"SITES": {"operations": {"SITE_HEADER": "Operations"}}})
+def test_configuration_resolves_per_site_branding_without_sharing_mutable_values():
+    assert get_options("operations")["SITE_HEADER"] == "Operations"
+    assert get_options()["SITE_HEADER"] is None
+
+
+@override_settings(ADMINWP={"SITES": {"operations": {"TYPO": "invalid"}}})
+def test_system_check_reports_invalid_per_site_options():
+    errors = check_adminwp(None)
+
+    assert len(errors) == 1
+    assert errors[0].id == "adminwp.E002"
 
 
 @override_settings(ADMINWP={"DEFAULT_MODE": "sepia"})

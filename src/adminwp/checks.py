@@ -20,7 +20,9 @@ def check_adminwp(app_configs, **kwargs):
                 )
             )
     try:
-        get_options()
+        options = get_options()
+        for site_name in options["SITES"]:
+            get_options(site_name)
     except ImproperlyConfigured as exc:
         errors.append(Error(str(exc), id="adminwp.E002"))
     return errors

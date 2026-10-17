@@ -78,6 +78,17 @@ def get_options(site_name=None):
     _validate_resource_path(options["CUSTOM_CSS"], "CUSTOM_CSS")
     if not isinstance(options["MENU"], Mapping):
         raise ImproperlyConfigured("ADMINWP.MENU must be a mapping.")
+    menu_keys = {"ORDER", "ICONS", "LINKS"}
+    unknown_menu_keys = set(options["MENU"]) - menu_keys
+    if unknown_menu_keys:
+        raise ImproperlyConfigured(
+            f"Unknown ADMINWP.MENU option(s): {', '.join(sorted(unknown_menu_keys))}."
+        )
+    order = options["MENU"].get("ORDER", [])
+    if not isinstance(order, list) or any(not isinstance(label, str) for label in order):
+        raise ImproperlyConfigured("ADMINWP.MENU.ORDER must be a list of app labels.")
+    if len(order) != len(set(order)):
+        raise ImproperlyConfigured("ADMINWP.MENU.ORDER cannot contain duplicate app labels.")
     for name in ("SITE_TITLE", "SITE_HEADER"):
         if options[name] is not None and not isinstance(options[name], str):
             raise ImproperlyConfigured(f"ADMINWP.{name} must be text or None.")
