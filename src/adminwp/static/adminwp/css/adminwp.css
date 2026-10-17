@@ -1,0 +1,136 @@
+/* AdminWP translates its public design tokens into Django's admin variables. */
+:root,
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --adminwp-canvas: #f5f5f7;
+  --adminwp-surface: #ffffff;
+  --adminwp-surface-raised: #fafafc;
+  --adminwp-text: #1d1d1f;
+  --adminwp-text-muted: #51565d;
+  --adminwp-border: #d5d8dc;
+  --adminwp-control-border: #858b93;
+  --adminwp-primary: #0066cc;
+  --adminwp-primary-hover: #0056ad;
+  --adminwp-on-primary: #ffffff;
+  --adminwp-sidebar: #1d2327;
+  --adminwp-sidebar-text: #f0f0f1;
+  --adminwp-sidebar-muted: #bbc0c5;
+  --adminwp-success: #166534;
+  --adminwp-success-bg: #edf8f0;
+  --adminwp-warning: #7a4b00;
+  --adminwp-warning-bg: #fff8e6;
+  --adminwp-danger: #b42318;
+  --adminwp-danger-bg: #fff2f0;
+  --adminwp-info: #075ea8;
+  --adminwp-info-bg: #edf6ff;
+
+  --primary: var(--adminwp-primary);
+  --primary-fg: var(--adminwp-on-primary);
+  --header-bg: var(--adminwp-sidebar);
+  --header-color: var(--adminwp-sidebar-text);
+  --header-link-color: var(--adminwp-sidebar-muted);
+  --body-bg: var(--adminwp-canvas);
+  --body-fg: var(--adminwp-text);
+  --body-quiet-color: var(--adminwp-text-muted);
+  --body-medium-color: var(--adminwp-text-muted);
+  --body-loud-color: var(--adminwp-text);
+  --breadcrumbs-bg: var(--adminwp-surface);
+  --breadcrumbs-link-fg: var(--adminwp-text-muted);
+  --link-fg: var(--adminwp-primary);
+  --link-hover-color: var(--adminwp-primary-hover);
+  --link-selected-fg: var(--adminwp-primary-hover);
+  --hairline-color: var(--adminwp-border);
+  --border-color: var(--adminwp-control-border);
+  --error-fg: var(--adminwp-danger);
+  --darkened-bg: var(--adminwp-surface-raised);
+  --selected-bg: var(--adminwp-surface-raised);
+  --selected-row: #e8f2ff;
+  --close-button-bg: var(--adminwp-surface-raised);
+  --close-button-hover-bg: var(--adminwp-border);
+  --message-success-bg: var(--adminwp-success-bg);
+  --message-warning-bg: var(--adminwp-warning-bg);
+  --message-error-bg: var(--adminwp-danger-bg);
+  --message-info-bg: var(--adminwp-info-bg);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --adminwp-canvas: #151719;
+  --adminwp-surface: #202327;
+  --adminwp-surface-raised: #2a2e33;
+  --adminwp-text: #f2f3f5;
+  --adminwp-text-muted: #b5bcc5;
+  --adminwp-border: #41474f;
+  --adminwp-control-border: #7c8795;
+  --adminwp-primary: #72b7ff;
+  --adminwp-primary-hover: #9cccff;
+  --adminwp-on-primary: #10283f;
+  --adminwp-sidebar: #111315;
+  --adminwp-sidebar-text: #f0f0f1;
+  --adminwp-sidebar-muted: #bbc0c5;
+  --adminwp-success: #8fdaa2;
+  --adminwp-success-bg: #193322;
+  --adminwp-warning: #f4d18c;
+  --adminwp-warning-bg: #362d1e;
+  --adminwp-danger: #ffb4a8;
+  --adminwp-danger-bg: #3a1f21;
+  --adminwp-info: #9acbff;
+  --adminwp-info-bg: #1b2d40;
+
+  --selected-row: #213044;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+
+    --adminwp-canvas: #151719;
+    --adminwp-surface: #202327;
+    --adminwp-surface-raised: #2a2e33;
+    --adminwp-text: #f2f3f5;
+    --adminwp-text-muted: #b5bcc5;
+    --adminwp-border: #41474f;
+    --adminwp-control-border: #7c8795;
+    --adminwp-primary: #72b7ff;
+    --adminwp-primary-hover: #9cccff;
+    --adminwp-on-primary: #10283f;
+    --adminwp-sidebar: #111315;
+    --adminwp-sidebar-text: #f0f0f1;
+    --adminwp-sidebar-muted: #bbc0c5;
+    --adminwp-success: #8fdaa2;
+    --adminwp-success-bg: #193322;
+    --adminwp-warning: #f4d18c;
+    --adminwp-warning-bg: #362d1e;
+    --adminwp-danger: #ffb4a8;
+    --adminwp-danger-bg: #3a1f21;
+    --adminwp-info: #9acbff;
+    --adminwp-info-bg: #1b2d40;
+
+    --selected-row: #213044;
+  }
+}
+
+#header {
+  border-bottom: 1px solid var(--adminwp-border);
+}
+
+#content-start {
+  outline-color: var(--adminwp-primary);
+}
+
+:focus-visible {
+  outline-color: var(--adminwp-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

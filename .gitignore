@@ -1,0 +1,14 @@
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+build/
+dist/
+*.egg-info/
+node_modules/
+demo/db.sqlite3
+.env
+.env.*
+*.pem
+.DS_Store

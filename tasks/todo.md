@@ -1,23 +1,25 @@
 # Tareas de django-adminwp
 
-Estado: plan aprobado. T01 tiene documentos escritos y revisión documental realizada;
-su revisión por el usuario está pendiente. T02–T16 no se han iniciado.
+Estado: plan aprobado. T01 está aprobado por el usuario; T02 está implementado
+en la rama `codex/theme-foundation`. T03–T16 siguen pendientes.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
 - [x] Definir `SPEC.md` y `DESIGN.md`, incluyendo estados claro/oscuro,
   configuración `ADMINWP`, extensión por sitio y política de compatibilidad.
 - [x] Revisar coherencia del contrato y calcular contrastes de la paleta: 48 combinaciones verificadas.
-- [ ] Revisión de SPEC.md y DESIGN.md por el usuario antes de implementar.
+- [x] Revisión de SPEC.md y DESIGN.md por el usuario antes de implementar.
 - Aceptación: alcance y contratos sin ambigüedades; revisables antes de implementar.
 - Verificación: contrastar requisitos del usuario con ambos documentos y revisar
   el plan detallado de la primera entrega.
 - Dependencias: ninguna. Archivos: `SPEC.md`, `DESIGN.md`, `tasks/plan.md`, `tasks/todo.md`.
 
 ## T02 — Instalación del paquete
-- [ ] Preparar metadatos y aplicación Django instalable desde un wheel.
+- [x] Preparar metadatos y aplicación Django instalable desde un wheel.
 - Aceptación: Django descubre plantillas y recursos del paquete sin migraciones.
 - Verificación: construir sdist/wheel, inspeccionarlos e instalar el wheel en un entorno limpio.
+- Evidencia: pytest 4/4, Ruff, build sdist/wheel e instalación aislada del wheel con
+  descubrimiento de app, plantilla y CSS en Python 3.14/Django 6.1.
 - Dependencias: T01. Archivos: `pyproject.toml`, `src/adminwp/__init__.py`,
   `src/adminwp/apps.py`, `tests/test_packaging.py`, `README.md`.
 

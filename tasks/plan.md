@@ -1,8 +1,8 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; T01 documentada y pendiente de revisión de sus contratos.
-No se ha iniciado la implementación del paquete.
+Estado: plan aprobado por el usuario; implementación iniciada en la rama
+`codex/theme-foundation`.
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
