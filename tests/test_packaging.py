@@ -31,5 +31,13 @@ def test_admin_login_includes_the_theme_stylesheet():
 
 
 def test_echarts_distribution_includes_runtime_license_and_notice():
-    for filename in ("echarts.min.js", "LICENSE", "NOTICE"):
+    for filename in (
+        "echarts.min.js",
+        "LICENSE",
+        "NOTICE",
+        "licenses/LICENSE-d3",
+        "licenses/LICENSE-zrender",
+        "licenses/LICENSE-tslib",
+        "licenses/NOTICE-tslib",
+    ):
         assert finders.find(f"adminwp/vendor/echarts/{filename}") is not None

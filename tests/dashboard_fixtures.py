@@ -34,6 +34,7 @@ class ChartDashboard(EChartsDashboard):
                 "title": "Entries per category",
                 "option": {
                     "legend": {},
+                    "dataZoom": [{"type": "inside", "start": 0, "end": 100}],
                     "tooltip": {},
                     "xAxis": {"type": "category", "data": ["News", label]},
                     "yAxis": {"type": "value"},

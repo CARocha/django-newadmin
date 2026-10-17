@@ -4,8 +4,8 @@
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const charts = [];
 
-  const theme = () => {
-    const css = getComputedStyle(root);
+  const theme = (container) => {
+    const css = getComputedStyle(container);
     const color = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
     const text = color("--adminwp-text", "#0b1c30");
     const muted = color("--adminwp-text-muted", "#51565d");
@@ -27,6 +27,7 @@
       ],
       textStyle: { color: text, fontFamily: css.fontFamily },
       legend: { textStyle: { color: muted } },
+      bar: { label: { color: text } },
       categoryAxis: { ...axis, splitLine: { show: false } },
       valueAxis: axis,
     };
@@ -49,7 +50,7 @@
         option.aria = { ...option.aria, enabled: true };
         const animation = option.animation !== false;
         option.animation = animation && !motion.matches;
-        const chart = window.echarts.init(container, theme(), { renderer: "svg" });
+        const chart = window.echarts.init(container, theme(container), { renderer: "svg" });
         chart.setOption(option);
         charts.push({ chart, animation });
         const resize = new ResizeObserver(() => {
@@ -61,7 +62,6 @@
       }
     });
     new MutationObserver(() => {
-      const nextTheme = theme();
       charts.forEach(({ chart }) => {
         // ECharts rebuilds models when changing theme; restore interactive state.
         const current = chart.getOption();
@@ -72,7 +72,12 @@
             { start, end, startValue, endValue }
           ));
         }
-        chart.setTheme(nextTheme);
+        if (current.series) {
+          state.series = current.series.map(({ selectedMap }) => (
+            selectedMap === undefined ? {} : { selectedMap }
+          ));
+        }
+        chart.setTheme(theme(chart.getDom()));
         chart.setOption(state, { silent: true });
       });
     }).observe(root, { attributes: true, attributeFilter: ["data-bs-theme"] });

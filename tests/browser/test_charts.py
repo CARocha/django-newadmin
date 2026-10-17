@@ -38,6 +38,17 @@ def test_local_echarts_renders_two_charts_and_preserves_legend_selection_across_
             "echarts.getInstanceByDom(document.getElementById('category-counts'))"
             ".getOption().legend[0].selected.Drafts"
         ) is False
+        page.evaluate(
+            "echarts.getInstanceByDom(document.getElementById('category-counts'))"
+            ".dispatchAction({type: 'dataZoom', start: 20, end: 80})"
+        )
+        page.evaluate(
+            "() => { const chart = echarts.getInstanceByDom("
+            "document.getElementById('secondary-chart'));"
+            "chart.setOption({series: [{type: 'pie', selectedMode: 'multiple', "
+            "data: [{name: 'A', value: 3}, {name: 'B', value: 5}]}]}, {notMerge: true});"
+            "chart.dispatchAction({type: 'select', seriesIndex: 0, dataIndex: 0}); }"
+        )
         page.locator(".theme-toggle").click()
         page.wait_for_function("document.documentElement.dataset.bsTheme === 'dark'")
         page.wait_for_function(
@@ -48,6 +59,22 @@ def test_local_echarts_renders_two_charts_and_preserves_legend_selection_across_
             "echarts.getInstanceByDom(document.getElementById('category-counts'))"
             ".getOption().legend[0].selected.Drafts"
         ) is False
+        assert page.evaluate(
+            "echarts.getInstanceByDom(document.getElementById('category-counts'))"
+            ".getOption().dataZoom[0].start"
+        ) == 20
+        assert page.evaluate(
+            "echarts.getInstanceByDom(document.getElementById('secondary-chart'))"
+            ".getOption().series[0].selectedMap.A"
+        ) is True
+        page.locator(".theme-toggle").click()
+        page.wait_for_function("document.documentElement.dataset.theme === 'auto'")
+        page.emulate_media(color_scheme="dark", reduced_motion="reduce")
+        page.wait_for_function(
+            "echarts.getInstanceByDom(document.getElementById('category-counts'))"
+            ".getOption().animation === false && "
+            "document.documentElement.dataset.bsTheme === 'dark'"
+        )
         page.set_viewport_size({"width": 320, "height": 900})
         page.wait_for_function("document.querySelector('#category-counts svg').clientWidth < 320")
         assert page.evaluate("document.documentElement.scrollWidth") <= 320, page.evaluate(
