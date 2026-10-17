@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="adminwp-workspace">
+  <header class="adminwp-workspace__heading">
+    <div>
+      <p class="adminwp-workspace__eyebrow">{{ site_header }}</p>
+      <h1>{% block dashboard_title %}{% translate 'Dashboard' %}{% endblock %}</h1>
+    </div>
+    <div class="adminwp-workspace__actions">{% block dashboard_actions %}{% endblock %}</div>
+  </header>
+  <div class="row adminwp-workspace__grid">
+    <section class="col-12 col-xl-8 adminwp-workspace__primary">
+      {% block dashboard_primary %}{% endblock %}
+    </section>
+    <aside class="col-12 col-xl-4 adminwp-workspace__metrics" aria-label="{% translate 'Key metrics' %}">
+      {% block dashboard_metrics %}{% endblock %}
+    </aside>
+    <section class="col-12 adminwp-workspace__tables">
+      {% block dashboard_tables %}{% endblock %}
+    </section>
+  </div>
+  {% block dashboard_secondary %}{% endblock %}
+</div>

@@ -6,6 +6,7 @@
 @use "components/relations";
 @use "components/widgets";
 @use "components/auxiliary";
+@use "components/dashboard";
 
 /* AdminWP translates its public design tokens into Django's admin variables. */
 :root,

@@ -1,5 +1,11 @@
 {% extends "admin/index.html" %}
-{% load i18n log %}
+{% load adminwp i18n log %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  {% adminwp_dashboard as dashboard %}
+  {% if dashboard %}{% adminwp_nonce_attr dashboard.media %}{% endif %}
+{% endblock %}
 
 {% block nav-sidebar %}
   {% if is_nav_sidebar_enabled %}{% include "admin/nav_sidebar.html" %}{% endif %}
@@ -9,6 +15,12 @@
 {% block content_title %}{% endblock %}
 
 {% block content %}
+{% adminwp_dashboard as dashboard %}
+{% if dashboard %}
+<div id="content-main" class="adminwp-dashboard adminwp-dashboard--custom">
+  {% include dashboard.template_name with dashboard_data=dashboard.data %}
+</div>
+{% else %}
 <div id="content-main" class="adminwp-dashboard">
   <header class="adminwp-dashboard__intro">
     <div>
@@ -92,4 +104,5 @@
     </aside>
   </div>
 </div>
+{% endif %}
 {% endblock %}

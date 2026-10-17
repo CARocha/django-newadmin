@@ -1,5 +1,7 @@
 """Minimal Django settings for AdminWP's integration tests."""
 
+from pathlib import Path
+
 SECRET_KEY = "test-only-secret-key"
 DEBUG = True
 ALLOWED_HOSTS = ["testserver", "localhost"]
@@ -30,6 +32,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "APP_DIRS": True,
+        "DIRS": [Path(__file__).parent / "templates"],
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",

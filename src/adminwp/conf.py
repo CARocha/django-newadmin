@@ -14,6 +14,7 @@ DEFAULTS = {
     "PALETTE": "sapphire",
     "MENU": {"ORDER": [], "ICONS": {}, "LINKS": []},
     "CUSTOM_CSS": [],
+    "DASHBOARD": None,
     "SITES": {},
 }
 VALID_MODES = {"light", "dark", "auto"}
@@ -76,6 +77,10 @@ def get_options(site_name=None):
         raise ImproperlyConfigured("ADMINWP.PALETTE must be 'sapphire'.")
     _validate_resource_path(options["LOGO"], "LOGO")
     _validate_resource_path(options["CUSTOM_CSS"], "CUSTOM_CSS")
+    if options["DASHBOARD"] is not None and (
+        not isinstance(options["DASHBOARD"], str) or not options["DASHBOARD"].strip()
+    ):
+        raise ImproperlyConfigured("ADMINWP.DASHBOARD must be an importable class path or None.")
     if not isinstance(options["MENU"], Mapping):
         raise ImproperlyConfigured("ADMINWP.MENU must be a mapping.")
     menu_keys = {"ORDER", "ICONS", "LINKS"}

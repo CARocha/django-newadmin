@@ -1,0 +1,7 @@
+{% extends "adminwp/dashboard/layout.html" %}
+{% block dashboard_primary %}
+  {% include "adminwp/dashboard/chart.html" with chart=dashboard_data.chart %}
+{% endblock %}
+{% block dashboard_metrics %}
+  {% include "adminwp/dashboard/chart.html" with chart=dashboard_data.chart chart_id="secondary-chart" %}
+{% endblock %}

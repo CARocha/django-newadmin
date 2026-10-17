@@ -28,3 +28,8 @@ def test_admin_login_includes_the_theme_stylesheet():
 
     assert response.status_code == 200
     assert b"adminwp/css/adminwp.css" in response.content
+
+
+def test_echarts_distribution_includes_runtime_license_and_notice():
+    for filename in ("echarts.min.js", "LICENSE", "NOTICE"):
+        assert finders.find(f"adminwp/vendor/echarts/{filename}") is not None
