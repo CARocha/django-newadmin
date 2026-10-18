@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from demo.catalog.models import Article
 
@@ -38,9 +38,9 @@ def test_add_form_keeps_native_fieldsets_help_and_validation(static_live_server)
 
         page.locator("#id_slug").fill("valid-slug")
         page.locator('input[name="_save"]').click()
-        assert page.locator("#id_title").count() == 1
-        assert page.locator("#article_form .errorlist").count() >= 1
-        assert page.locator("#article_form .errornote").count() == 1
+        expect(page.locator("#id_title")).to_have_count(1)
+        expect(page.locator("#article_form .errorlist").first).to_be_visible()
+        expect(page.locator("#article_form .errornote")).to_have_count(1)
         page.locator("html").evaluate("element => element.setAttribute('data-theme', 'light')")
         error_border = page.locator("#id_title").evaluate(
             "element => getComputedStyle(element).borderColor"
@@ -64,8 +64,8 @@ def test_edit_form_shows_readonly_timestamps_and_adapts_to_dark_mode(static_live
 
         readonly = page.locator("#article_form .readonly")
         assert readonly.count() == 2
-        assert page.locator("#id_created_at").count() == 0
-        assert page.locator("#id_updated_at").count() == 0
+        expect(page.locator("#id_created_at")).to_have_count(0)
+        expect(page.locator("#id_updated_at")).to_have_count(0)
 
         page.set_viewport_size({"width": 320, "height": 900})
         assert page.evaluate("document.documentElement.scrollWidth") <= 320

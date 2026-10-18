@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from demo.catalog.models import Article, ArticleLink, ArticleSection
 
@@ -99,7 +99,7 @@ def test_inline_validation_can_be_fixed_and_saved(static_live_server):
         page.locator("#id_links-0-url").fill("https://example.com/fixed")
         page.locator('#article_form input[name="_save"]').click()
 
-        assert page.locator("#links-0 .errorlist").count() == 1
+        expect(page.locator("#links-0 .errorlist")).to_have_count(1)
         assert page.locator("#links-0 .errorlist").inner_text() == "This field is required."
         page.locator("#id_links-0-label").fill("Fixed link")
         page.locator('#article_form input[name="_save"]').click()

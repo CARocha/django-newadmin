@@ -12,6 +12,11 @@
 - Documentación Sphinx de instalación, configuración y extensiones.
 - Matriz de pruebas Django 6.0/6.1 y Python 3.13/3.14; recursos incluidos en el wheel.
 
+### Fixed
+
+- El encabezado del dashboard se adapta a pantallas estrechas y texto ampliado.
+- Los enlaces de navegación con iconos conservan un nombre accesible explícito.
+
 ### Limitations
 
 - Primera alfa: API y presentación sujetas a cambios; probar antes de producción.

@@ -3,7 +3,7 @@
 import pytest
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from demo.catalog.models import Article
 
@@ -44,6 +44,7 @@ def test_admin_pages_share_dashboard_shell_and_palette(static_live_server, mode,
                 '--newadmin-primary', '--button-bg', '--header-bg', '--body-bg']
                 .map(key => [key, style.getPropertyValue(key).trim()]));
         }"""
+        expect(page.locator("#nav-sidebar")).to_be_visible()
         dashboard_palette = page.evaluate(read_palette)
         header_background = page.locator("#header").evaluate(
             "el => getComputedStyle(el).backgroundColor"

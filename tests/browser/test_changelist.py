@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from demo.catalog.models import Article
 
@@ -40,7 +40,7 @@ def test_changelist_scrolls_searches_paginates_and_saves_inline_edits(static_liv
 
         page.locator("#searchbar").fill("Article 24")
         page.locator("#changelist-search input[type=submit]").click()
-        assert page.locator("#result_list tbody tr").count() == 1
+        expect(page.locator("#result_list tbody tr")).to_have_count(1)
         assert "Article 24" in page.locator("#result_list").inner_text()
         title_cell = page.locator("#result_list tbody tr").first.locator("td").nth(1)
         assert title_cell.evaluate(
@@ -48,11 +48,11 @@ def test_changelist_scrolls_searches_paginates_and_saves_inline_edits(static_liv
         )
 
         page.goto(f"{static_live_server.url}{reverse('admin:catalog_article_changelist')}?p=2")
-        assert page.locator("#result_list tbody tr").count() == 5
+        expect(page.locator("#result_list tbody tr")).to_have_count(5)
 
         page.goto(f"{static_live_server.url}{reverse('admin:catalog_article_changelist')}")
         page.get_by_role("button", name="Title", exact=True).click()
-        assert page.locator("#result_list tbody tr").count() == 20
+        expect(page.locator("#result_list tbody tr")).to_have_count(20)
 
         row = page.locator("#result_list tbody tr").first
         article_id = page.locator('input[name$="-id"]').first.input_value()

@@ -2,7 +2,7 @@ import pytest
 from django.contrib.admin.models import CHANGE, LogEntry
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import expect, sync_playwright
 
 from demo.catalog.models import Article
 
@@ -63,7 +63,7 @@ def test_history_delete_confirmation_and_success_message_are_styled(static_live_
 
         page.get_by_role("button", name="Yes, I’m sure").click()
         success_message = page.locator(".messagelist li.success")
-        assert success_message.count() == 1
+        expect(success_message).to_have_count(1)
         assert success_message.evaluate("element => getComputedStyle(element).borderRadius") == (
             "6px"
         )
@@ -88,7 +88,7 @@ def test_password_change_preserves_session_and_logout_submits_post(static_live_s
         page.locator("#id_new_password2").fill("A-new-safe-password-2026")
         page.locator('input[type="submit"]').click()
         assert "Your password was changed." in page.locator("#content").inner_text()
-        assert page.locator("#logout-form input[name=csrfmiddlewaretoken]").count() == 1
+        expect(page.locator("#logout-form input[name=csrfmiddlewaretoken]")).to_have_count(1)
 
         with page.expect_response(
             lambda response: response.url.endswith(reverse("admin:logout"))

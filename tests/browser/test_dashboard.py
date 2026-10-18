@@ -47,4 +47,6 @@ def test_dashboard_has_contrasting_navigation_and_responsive_cards(static_live_s
 
         page.set_viewport_size({"width": 320, "height": 900})
         assert page.evaluate("document.documentElement.scrollWidth") <= 320
+        page.add_style_tag(content="html { font-size: 20px; }")
+        assert page.evaluate("document.documentElement.scrollWidth") <= 320
         browser.close()

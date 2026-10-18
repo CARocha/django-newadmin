@@ -2455,6 +2455,7 @@ a.newadmin-dashboard__model-link:focus-visible {
   }
   .newadmin-dashboard__intro {
     align-items: flex-start;
+    flex-wrap: wrap;
   }
   .newadmin-dashboard__summary {
     flex-direction: column;
