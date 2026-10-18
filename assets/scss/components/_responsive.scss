@@ -4,6 +4,12 @@
 
 @media (max-width: 767px) {
   body.adminwp-theme:not(.login):not(.popup) {
+    // Django's viewport-based width exceeds a padded AdminWP fieldset.
+    .aligned .form-row > div {
+      width: auto;
+      max-width: 100%;
+    }
+
     #main {
       flex-wrap: wrap;
     }

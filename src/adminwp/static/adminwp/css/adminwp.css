@@ -1781,6 +1781,10 @@ body.adminwp-theme:not(.login):not(.popup) .adminwp-dashboard__activity {
 }
 
 @media (max-width: 767px) {
+  body.adminwp-theme:not(.login):not(.popup) .aligned .form-row > div {
+    width: auto;
+    max-width: 100%;
+  }
   body.adminwp-theme:not(.login):not(.popup) #main {
     flex-wrap: wrap;
   }

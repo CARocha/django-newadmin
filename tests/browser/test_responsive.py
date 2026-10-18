@@ -42,6 +42,16 @@ def test_navigation_reflows_and_is_keyboard_operable(
                     width,
                     route,
                 )
+                if route.endswith("/add/"):
+                    for selector in ("#id_title", "#id_slug", "#id_excerpt", "#id_body"):
+                        bounds = page.locator(selector).evaluate("""el => {
+                            const field = el.getBoundingClientRect();
+                            const panel = el.closest('fieldset.module').getBoundingClientRect();
+                            return {left:field.left, right:field.right,
+                                panelLeft:panel.left, panelRight:panel.right};
+                        }""")
+                        assert bounds["left"] >= bounds["panelLeft"] + 1, (selector, bounds)
+                        assert bounds["right"] <= bounds["panelRight"] - 1, (selector, bounds)
             if width == 320:
                 page.screenshot(path=str(tmp_path / f"mobile-{language}.png"), full_page=True)
         # 1280 CSS pixels at 400% browser zoom reflow to a 320 CSS pixel viewport.
