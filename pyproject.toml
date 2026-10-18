@@ -36,7 +36,7 @@ dev = [
 docs = ["Sphinx>=8.2,<10", "myst-parser>=4,<6", "furo>=2025.7.19,<2027"]
 
 [project.urls]
-Documentation = "https://github.com/CARocha/django-newadmin#readme"
+Documentation = "https://carocha.github.io/django-newadmin/"
 Repository = "https://github.com/CARocha/django-newadmin"
 Issues = "https://github.com/CARocha/django-newadmin/issues"
 

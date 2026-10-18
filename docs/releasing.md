@@ -13,6 +13,17 @@ No hace falta un servidor Django para consultar el HTML generado. La configuraci
 `.readthedocs.yaml` permite importarlo en Read the Docs; conectar/publicar ese
 proyecto es una acción del mantenedor que todavía no se ha realizado.
 
+## Publicar la documentación en GitHub Pages
+
+El workflow `.github/workflows/docs.yml` construye el HTML con Sphinx y lo
+despliega automáticamente al hacer push a `main` cuando cambian los archivos de
+`docs/` o `pyproject.toml`. Para habilitar el destino una vez, abre
+[Settings → Pages](https://github.com/CARocha/django-newadmin/settings/pages)
+del repositorio y selecciona **GitHub Actions** como *Build and deployment →
+Source*. Luego de guardar, el workflow publica el sitio en
+<https://carocha.github.io/django-newadmin/>. También se puede ejecutar desde
+Actions → **Documentation** → Run workflow.
+
 ## Verificación del candidato
 
 ```sh
@@ -48,14 +59,65 @@ python -m venv /tmp/newadmin-wheel-test
 
 El script rechaza una importación desde el checkout para evitar un falso positivo.
 
-## Subida a TestPyPI y después PyPI
+## Conectar TestPyPI y PyPI con GitHub Actions
 
-El candidato usa `0.1.0a1`. Antes de subirlo confirma disponibilidad del nombre,
-acceso a las cuentas y el resultado de CI remoto. Las dos plataformas tienen
-cuentas/tokens independientes. Configura 2FA y usa un token o Trusted Publishing;
-no pegues credenciales en issues, commits o el chat.
+Los workflows ya están preparados para Trusted Publishing: no guardan tokens
+de PyPI en GitHub. En TestPyPI y PyPI hay que registrar el repositorio y el
+workflow que cada servicio aceptará. En ambas cuentas, activa 2FA.
 
-Tras la autorización explícita del mantenedor:
+En [TestPyPI](https://test.pypi.org), inicia sesión, abre Account settings →
+Publishing y registra un **pending publisher** con estos valores:
+
+| Campo | Valor |
+| --- | --- |
+| PyPI project name | `django-newadmin` |
+| Owner | `CARocha` |
+| Repository name | `django-newadmin` |
+| Workflow name | `publish-testpypi.yml` |
+| Environment name | `testpypi` |
+
+Después, en GitHub abre Actions → **Publish to TestPyPI** → Run workflow y
+ejecútalo desde `main`. El workflow compila y verifica las distribuciones antes
+de subirlas. La primera publicación crea el proyecto en TestPyPI; un pending
+publisher no reserva el nombre hasta que se usa.
+
+Comprueba la instalación desde TestPyPI en un entorno temporal, con Django
+instalado desde PyPI:
+
+```sh
+python -m venv /tmp/probar-newadmin
+/tmp/probar-newadmin/bin/python -m pip install 'Django>=6.0,<6.2'
+/tmp/probar-newadmin/bin/python -m pip install \
+  --index-url https://test.pypi.org/simple/ --no-deps django-newadmin
+```
+
+En [PyPI](https://pypi.org), inicia sesión y registra otro pending publisher
+desde Account settings → Publishing:
+
+| Campo | Valor |
+| --- | --- |
+| PyPI project name | `django-newadmin` |
+| Owner | `CARocha` |
+| Repository name | `django-newadmin` |
+| Workflow name | `publish-pypi.yml` |
+| Environment name | `pypi` |
+
+Una vez que TestPyPI esté probado, crea en GitHub un Release asociado al tag de
+la versión, por ejemplo `v0.1.0a1`. Publicar ese Release dispara el workflow de
+PyPI. Confirma que el tag apunta al commit de la versión que aprobaste y que CI
+pasó antes de publicarlo. PyPI no permite volver a subir una versión existente.
+
+La primera alfa requiere registrar `0.1.0a1` en ambos índices. La subida a
+TestPyPI y la de PyPI son acciones separadas; publicar en uno no publica en el
+otro.
+
+## Preparación local de distribuciones
+
+También puedes construir manualmente con Twine si necesitas depurar una
+publicación. El flujo normal usa Trusted Publishing:
+
+El candidato usa `0.1.0a1`. Habilita 2FA en ambas cuentas y confirma que CI pasó.
+Si usas carga manual, las cuentas y tokens de cada índice son independientes.
 
 ```sh
 python -m twine upload --repository testpypi dist/django_newadmin-0.1.0a1-py3-none-any.whl dist/django_newadmin-0.1.0a1.tar.gz
@@ -69,7 +131,7 @@ python -m pip install 'Django>=6.0,<6.2'
 python -m pip install --index-url https://test.pypi.org/simple/ --no-deps 'django-newadmin==0.1.0a1'
 ```
 
-Después de verificarlo, sube **los mismos archivos** a PyPI:
+Después de verificarlo, la carga manual de **los mismos archivos** a PyPI sería:
 
 ```sh
 python -m twine upload dist/django_newadmin-0.1.0a1-py3-none-any.whl dist/django_newadmin-0.1.0a1.tar.gz
@@ -85,4 +147,6 @@ migraciones propias. La primera alfa todavía no tiene una versión previa.
 
 Referencias: [Sphinx](https://www.sphinx-doc.org/en/master/usage/quickstart.html),
 [empaquetado y TestPyPI](https://packaging.python.org/en/latest/tutorials/packaging-projects/),
-[Trusted Publishing](https://docs.pypi.org/trusted-publishers/).
+[Trusted Publishing](https://docs.pypi.org/trusted-publishers/),
+[crear proyecto con Trusted Publisher](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/),
+[GitHub Pages con workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
