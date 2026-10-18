@@ -33,7 +33,22 @@ jobs:
       - run: python -m playwright install --with-deps chromium
       - run: python -m ruff check .
       - run: npm run test:js
-      - run: python -m pytest -q
+      - run: python -m pytest -q --junitxml=test-results.xml
+      - name: Annotate test failures
+        if: ${{ !cancelled() }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree
+          report = Path('test-results.xml')
+          if report.exists():
+              for case in ElementTree.parse(report).iter('testcase'):
+                  for issue in case:
+                      if issue.tag in ('failure', 'error'):
+                          message = f"{case.get('classname')}.{case.get('name')}: {issue.text}"
+                          message = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+                          print(f'::error title=pytest::{message}')
+          PY
       - run: python demo/manage.py check
       - run: python demo/manage.py makemigrations --check --dry-run
   distribution:
