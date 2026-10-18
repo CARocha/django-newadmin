@@ -4,12 +4,14 @@
 
 ```sh
 python -m pip install -e '.[dev,docs]'
-python -m sphinx -n -W --keep-going -b html docs docs/_build/html
+python -m sphinx -n -W --keep-going -b html -A newadmin_docs_language=es docs docs/_build/html
+python -m sphinx -n -W --keep-going -b html -c docs -D language=en -A newadmin_docs_language=en docs/en docs/_build/html/en
 python -m http.server 8002 --directory docs/_build/html
 ```
 
 Sphinx usa MyST para las guías Markdown existentes y Furo para la presentación.
-No hace falta un servidor Django para consultar el HTML generado. La configuración
+El sitio principal está en español y la versión inglesa en `/en/`. No hace falta
+un servidor Django para consultar el HTML generado. La configuración
 `.readthedocs.yaml` permite importarlo en Read the Docs; conectar/publicar ese
 proyecto es una acción del mantenedor que todavía no se ha realizado.
 

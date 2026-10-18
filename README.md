@@ -7,8 +7,9 @@ are tested locally; GitHub Actions repeats this matrix after the code is pushed.
 TestPyPI publication is manual; PyPI publication runs only when a GitHub Release
 uses the matching version tag. License: BSD-3-Clause.
 
-**Documentation:** [CARocha.github.io/django-newadmin](https://carocha.github.io/django-newadmin/)
-will be published by GitHub Actions after Pages is enabled for this repository.
+**Documentation:** [Spanish user guides](https://carocha.github.io/django-newadmin/)
+and [English user guides](https://carocha.github.io/django-newadmin/en/), published
+by GitHub Actions.
 
 ## Development setup
 
@@ -93,10 +94,12 @@ See the [configuration and extension guide](docs/configuration.md).
 The Spanish user guides cover [installation](docs/installation.md),
 [configuration](docs/configuration.md), [dashboards](docs/dashboard.md),
 [accessibility](docs/accessibility.md) and [release steps](docs/releasing.md).
-Build the searchable HTML documentation locally:
+English translations are available under [`docs/en/`](docs/en/). Build both
+searchable sites locally:
 
 ```sh
-.venv/bin/python -m sphinx -n -W --keep-going -b html docs docs/_build/html
+.venv/bin/python -m sphinx -n -W --keep-going -b html -A newadmin_docs_language=es docs docs/_build/html
+.venv/bin/python -m sphinx -n -W --keep-going -b html -c docs -D language=en -A newadmin_docs_language=en docs/en docs/_build/html/en
 .venv/bin/python -m http.server 8002 --directory docs/_build/html
 ```
 
