@@ -1,7 +1,7 @@
 # Tareas de django-adminwp
 
-Estado: T01–T14 implementadas, incluido el marco compartido y el acabado de vidrio.
-T15 (accesibilidad) y T16 (preparación de publicación) quedan pendientes.
+Estado: T01–T16 implementadas. Candidato local 0.1.0a1 preparado;
+CI remoto, alojamiento de documentación y publicación en TestPyPI/PyPI pendientes de ejecución.
 Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
@@ -111,7 +111,7 @@ Plan: [plan.md](plan.md).
   `src/adminwp/templates/admin/change_form.html`, `tests/browser/test_forms.py`.
 
 ## Checkpoint C
-- [ ] Recorridos de listado y formulario sin regresiones en la matriz Django/Python.
+- [x] Recorridos de listado y formulario sin regresiones en la matriz Django/Python.
 
 ## T10 — Inlines
 - [x] Adaptar inlines tabulares y apilados sin sustituir su lógica.
@@ -256,7 +256,10 @@ Plan: [plan.md](plan.md).
   `tests/test_sites.py`, `tests/test_extensions.py`, `docs/configuration.md`.
 
 ## T15 — Accesibilidad y adaptación
-- [ ] Revisar teclado, foco, contraste, RTL, zoom y vistas móviles.
+- [x] Revisar teclado, foco, contraste, RTL, zoom/reflow y vistas móviles.
+- Evidencia: axe-core sin infracciones WCAG A/AA en cinco pantallas, claro/oscuro;
+  navegación móvil con Enter/Escape y foco; reflow LTR/RTL en 320/768/1024/1440 px.
+  Límites de zoom real/lectores de pantalla y almacenamiento nativo documentados.
 - Aceptación: navegación operable sin ratón, foco visible, tablas desplazables y
   controles accesibles en claro/oscuro; objetivo WCAG 2.2 AA para componentes propios.
 - Verificación: pruebas automáticas de accesibilidad y revisión manual de los recorridos principales.
@@ -265,22 +268,32 @@ Plan: [plan.md](plan.md).
   `tests/browser/test_responsive.py`, `docs/accessibility.md`.
 
 ## Checkpoint E
-- [ ] Revisar integración y accesibilidad; registrar limitaciones reales antes de publicar.
+- [x] Revisar integración y accesibilidad; registrar limitaciones reales antes de publicar.
 
 ## T16 — Publicación verificable
-- [ ] Preparar CI, documentación de instalación y validación del paquete candidato.
-- [ ] Construir la documentación pública con Sphinx e integrar las guías existentes.
-- [ ] Documentar instalación desde cero, orden de `INSTALLED_APPS`, recursos estáticos
+- [x] Preparar CI, documentación de instalación y validación del paquete candidato.
+- [x] Construir la documentación pública con Sphinx e integrar las guías existentes.
+- [x] Documentar instalación desde cero, orden de `INSTALLED_APPS`, recursos estáticos
   y `collectstatic`, configuración `ADMINWP`, varios AdminSite, menús, apariencia,
   extensiones, dashboards/ECharts y resolución de problemas, con ejemplos reproducibles.
-- [ ] Validar en CI la compilación de Sphinx con advertencias tratadas como errores.
+- [x] Configurar en CI la compilación estricta de Sphinx; comando verificado localmente.
+- Evidencia local: 100 pruebas por combinación Django 6.0.9/6.1.2 × Python 3.13/3.14;
+  cuatro pruebas JS, Ruff, checks/migraciones, recursos reproducibles y Sphinx estricto pasan.
+  Actionlint valida ambos workflows; Twine 7 valida wheel/sdist. Wheel instalado con pip
+  fuera del checkout y reconstruido desde sdist; smoke en Django 6.0/6.1 con manifiesto.
+  npm audit y pip-audit de dependencias runtime sin vulnerabilidades conocidas.
+- Revisión independiente: dos P2 corregidos con regresiones RED→GREEN: nombres de
+  controles tabulares (iniciales/dinámicos) y límites visibles de campos en móvil.
+- Licencia BSD de 3 cláusulas elegida por el usuario; avisos de terceros conservados.
+  CI remoto no ejecutado ni documentación alojada: se prepararon sus configuraciones.
 - Aceptación: cuatro combinaciones Django/Python verificadas; wheel instalado fuera
   del checkout; `collectstatic` con manifiesto funciona sin recursos faltantes.
 - Verificación: matriz de CI, instalación limpia, pruebas de navegador y revisión de
   contenido de wheel/sdist; publicación en PyPI como acción posterior explícita.
 - Dependencias: T15. Archivos: `.github/workflows/ci.yml`, `docs/installation.md`,
-  `docs/extensions.md`, `tests/test_distribution.py`, `CHANGELOG.md`.
+  `docs/extensions.md`, `docs/conf.py`, `scripts/smoke_wheel.py`, `CHANGELOG.md`,
+  `LICENSE`, `.readthedocs.yaml`.
 
 ## Checkpoint final
-- [ ] Todos los criterios anteriores verificados; documentación y limitaciones coherentes.
+- [x] Criterios locales del candidato verificados; documentación y limitaciones coherentes.
 - [ ] Revisión del candidato y decisión de publicación con el usuario.

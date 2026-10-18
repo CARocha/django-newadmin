@@ -1,0 +1,86 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+        django: ['~=6.0.0', '~=6.1.0']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: python -m pip install -e '.[dev]' 'Django${{ matrix.django }}'
+      - run: npm ci
+      - run: python -m playwright install --with-deps chromium
+      - run: python -m ruff check .
+      - run: npm run test:js
+      - run: python -m pytest -q
+      - run: python demo/manage.py check
+      - run: python demo/manage.py makemigrations --check --dry-run
+  distribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: python -m pip install -e '.[dev,docs]'
+      - run: npm ci
+      - run: npm audit --audit-level=high
+      - name: Rebuild committed assets
+        run: |
+          npm run build:css
+          npm run build:icons
+          npm run build:charts
+          git diff --exit-code -- src/adminwp/static/
+      - run: python -m sphinx -n -W --keep-going -b html docs docs/_build/html
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+      - name: Install and smoke test the wheel outside the checkout
+        run: |
+          python -m venv "$RUNNER_TEMP/adminwp-wheel"
+          "$RUNNER_TEMP/adminwp-wheel/bin/python" -m pip install dist/*.whl
+          "$RUNNER_TEMP/adminwp-wheel/bin/python" scripts/smoke_wheel.py
+      - name: Rebuild wheel from sdist
+        run: |
+          mkdir "$RUNNER_TEMP/adminwp-source"
+          tar -xzf dist/*.tar.gz -C "$RUNNER_TEMP/adminwp-source"
+          python -m build --wheel "$RUNNER_TEMP/adminwp-source/"* --outdir "$RUNNER_TEMP/adminwp-rebuilt"
+          "$RUNNER_TEMP/adminwp-wheel/bin/python" -m pip install --force-reinstall --no-deps "$RUNNER_TEMP/adminwp-rebuilt/"*.whl
+          "$RUNNER_TEMP/adminwp-wheel/bin/python" scripts/smoke_wheel.py
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: alpha-distributions
+          path: dist/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: sphinx-html
+          path: docs/_build/html/
+          if-no-files-found: error

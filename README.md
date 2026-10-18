@@ -2,18 +2,19 @@
 
 A WordPress-inspired, light-and-dark theme for Django's built-in admin.
 
-**Status:** early development. The first target matrix (Django 6.0 and 6.1 on
-Python 3.13 and 3.14) passes locally; automated CI has not been configured yet.
+**Status:** 0.1.0a1 alpha candidate. Django 6.0 and 6.1 on Python 3.13 and 3.14
+are tested locally; GitHub Actions repeats this matrix after the code is pushed.
+Public upload is a separate release step. License: BSD-3-Clause.
 
 ## Development setup
 
 ```sh
 python3.14 -m venv .venv
-.venv/bin/python -m pip install -e '.[dev]'
+.venv/bin/python -m pip install -e '.[dev,docs]'
+npm ci
 .venv/bin/python -m pytest tests --ignore=tests/browser -q
 .venv/bin/python -m playwright install chromium
 .venv/bin/python -m pytest tests/browser -q
-npm ci
 npm run build:css
 npm run build:charts
 npm run build:icons
@@ -82,3 +83,19 @@ Configure model/app icons, named links with permission checks, per-AdminSite
 settings and custom CSS. Public template blocks let a consuming project extend
 the branding, sidebar and footer while retaining Django's native controls.
 See the [configuration and extension guide](docs/configuration.md).
+
+## Documentation (Sphinx)
+
+The Spanish user guides cover [installation](docs/installation.md),
+[configuration](docs/configuration.md), [dashboards](docs/dashboard.md),
+[accessibility](docs/accessibility.md) and [release steps](docs/releasing.md).
+Build the searchable HTML documentation locally:
+
+```sh
+.venv/bin/python -m sphinx -n -W --keep-going -b html docs docs/_build/html
+.venv/bin/python -m http.server 8002 --directory docs/_build/html
+```
+
+Open <http://127.0.0.1:8002/>. Read the [changelog](CHANGELOG.md) and alpha
+limitations before using this release. `.readthedocs.yaml` is ready for connecting
+a Read the Docs project; hosted documentation has not been published yet.

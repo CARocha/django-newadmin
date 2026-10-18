@@ -23,3 +23,16 @@ solo podrá acreditarse tras subir el repositorio.
 - Pre-flight: T15 produce navegación/documentación de limitaciones que consume T16.
   Documentar únicamente comportamiento implementado; no anunciar certificación WCAG.
 - Trabajo en la rama codex/alpha-readiness del checkout habitual, preservando demo y stash.
+
+- T15: completo. Auditoría observada RED→GREEN: controles sin nombre accesible y menú móvil oculto.
+  Suite principal: 98/98; reflow LTR/RTL y axe claro/oscuro pasan.
+
+- T16: completo localmente. Sphinx/MyST/Furo con guías y búsqueda verificadas;
+  workflows con Actions fijadas por SHA y validados por actionlint v1.7.12; licencia
+  BSD3, metadatos alfa y avisos de terceros incluidos. Twine 7 requerido para metadata 2.5.
+- Final: corregidos los dos P2 de la revisión mediante regresiones RED→GREEN.
+  Suite 100/100 en las cuatro combinaciones; ninguna observación aplazada.
+- Wheel original y reconstruido desde sdist instalados fuera del checkout;
+  pip y smoke con Django 6.0.9/6.1.2 pasan. Sphinx estricto, Ruff y recursos pasan.
+- No hay publicación remota ni credenciales configuradas por esta ejecución.
+  El checkpoint final de publicación requiere la decisión del usuario y CI remoto.

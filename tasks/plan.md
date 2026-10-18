@@ -1,7 +1,7 @@
 # Plan inicial de django-adminwp
 
 Fecha: 2026-10-16.
-Estado: plan aprobado por el usuario; T01–T14 implementadas. T15 es la siguiente tarea.
+Estado: T01–T16 implementadas; candidato local 0.1.0a1 listo para el proceso de publicación.
 Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
@@ -127,8 +127,9 @@ archivos de implementación, se dividirá antes de empezar.
 - CI para las cuatro combinaciones Django/Python acordadas. Seguimiento de
   Django `main` informativo y separado del soporte publicado.
 
-Los comandos previstos están definidos en SPEC.md y se habilitarán al preparar
-el arnés de pruebas. Todavía no existen herramientas ni pruebas ejecutables del paquete.
+Los comandos están definidos en SPEC.md, README.md y docs/releasing.md. La matriz
+local y la instalación limpia están verificadas; CI remoto se ejecutará tras subir
+el código a GitHub.
 
 ## Hitos de entrega
 

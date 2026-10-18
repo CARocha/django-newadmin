@@ -9,8 +9,10 @@ description = "A polished, extensible theme for Django's built-in admin."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = ["Django>=6.0,<6.2"]
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
     "Framework :: Django",
     "Framework :: Django :: 6.0",
     "Framework :: Django :: 6.1",
@@ -29,7 +31,9 @@ dev = [
     "pytest>=8.3",
     "pytest-django>=4.11",
     "ruff>=0.11",
+    "twine>=7,<8",
 ]
+docs = ["Sphinx>=8.2,<10", "myst-parser>=4,<6", "furo>=2025.7.19,<2027"]
 
 [project.urls]
 Documentation = "https://github.com/CARocha/django-adminwp#readme"

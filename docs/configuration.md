@@ -3,6 +3,24 @@
 El tema funciona al colocar `adminwp` antes de `django.contrib.admin` en
 `INSTALLED_APPS`. No exige un `ModelAdmin` ni un `AdminSite` especial.
 
+## Opciones y valores predeterminados
+
+| Opción | Valor predeterminado | Uso |
+|---|---|---|
+| `SITE_TITLE` | `None` | Título del navegador; hereda `AdminSite.site_title` |
+| `SITE_HEADER` | `None` | Marca; hereda `AdminSite.site_header` |
+| `LOGO` | `None` | Ruta relativa de una imagen de staticfiles |
+| `DEFAULT_MODE` | `"auto"` | `light`, `dark` o `auto`; la preferencia guardada prevalece |
+| `PALETTE` | `"sapphire"` | Única paleta admitida en esta alfa; personaliza tokens con CSS |
+| `MENU.ORDER` | `[]` | Orden nativo de aplicaciones por defecto |
+| `MENU.ICONS` | `{}` | Iconos predeterminados para aplicaciones/modelos |
+| `MENU.LINKS` | `[]` | Enlaces adicionales con permisos |
+| `CUSTOM_CSS` | `[]` | Rutas relativas de hojas de estilo adicionales |
+| `DASHBOARD` | `None` | Portada genérica o ruta importable del proveedor |
+| `SITES` | `{}` | Overrides por nombre de instancia de AdminSite |
+
+Las opciones son opcionales. Ejemplo de una personalización completa:
+
 ```python
 ADMINWP = {
     "SITE_TITLE": "Mi estudio",
