@@ -43,4 +43,11 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}}
+# Browser tests run the Django server on a separate thread. A file-backed test
+# database gives the server and pytest separate SQLite connections.
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": Path(__file__).parent / "test.sqlite3",
+    }
+}
