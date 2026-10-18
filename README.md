@@ -4,8 +4,7 @@ A modern, extensible light-and-dark theme for Django's built-in admin.
 
 **Status:** 0.1.0a1 alpha candidate. Django 6.0 and 6.1 on Python 3.13 and 3.14
 are tested locally; GitHub Actions repeats this matrix after the code is pushed.
-TestPyPI publication is manual; PyPI publication runs only when a GitHub Release
-uses the matching version tag. License: BSD-3-Clause.
+License: BSD-3-Clause.
 
 **Documentation:** [Spanish user guides](https://carocha.github.io/django-newadmin/)
 and [English user guides](https://carocha.github.io/django-newadmin/en/), published
@@ -93,7 +92,7 @@ See the [configuration and extension guide](docs/configuration.md).
 
 The Spanish user guides cover [installation](docs/installation.md),
 [configuration](docs/configuration.md), [dashboards](docs/dashboard.md),
-[accessibility](docs/accessibility.md) and [release steps](docs/releasing.md).
+[accessibility](docs/accessibility.md) and [troubleshooting](docs/troubleshooting.md).
 English translations are available under [`docs/en/`](docs/en/). Build both
 searchable sites locally:
 
