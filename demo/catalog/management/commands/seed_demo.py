@@ -4,7 +4,7 @@ from demo.catalog.models import Article, Category
 
 
 class Command(BaseCommand):
-    help = "Create a small, repeatable editorial dataset for the AdminWP demo."
+    help = "Create a small, repeatable editorial dataset for the NewAdmin demo."
 
     def handle(self, *args, **options):
         news, _ = Category.objects.update_or_create(slug="news", defaults={"name": "News"})

@@ -5,7 +5,7 @@
 **Objetivo:** ofrecer un dashboard de Bootstrap con datos propios, gráficos ECharts
 locales, dos modos y la composición editorial solicitada.
 
-**Arquitectura:** proveedor por solicitud seleccionado por `ADMINWP.DASHBOARD`,
+**Arquitectura:** proveedor por solicitud seleccionado por `NEWADMIN.DASHBOARD`,
 con permisos previos a las consultas, plantilla propia y `Media` de Django.
 `EChartsDashboard` añade los recursos locales del adaptador. La demo usa el ORM
 de sus propios modelos; el paquete no conoce los modelos del consumidor.
@@ -25,10 +25,10 @@ de sus propios modelos; el paquete no conoce los modelos del consumidor.
 ## 1. Proveedor de dashboard
 
 - [x] Crear pruebas de integración en `tests/test_dashboard_provider.py` que fallen
-  sin `ADMINWP.DASHBOARD`: plantilla configurada, permisos antes de consultar,
+  sin `NEWADMIN.DASHBOARD`: plantilla configurada, permisos antes de consultar,
   contexto aislado, recursos una sola vez y selección independiente por sitio.
 - [x] Implementar `Dashboard`, `EChartsDashboard` y
-  `resolve_dashboard(request)` en `src/adminwp/dashboard.py`.
+  `resolve_dashboard(request)` en `src/newadmin/dashboard.py`.
   `get_context_data(request)` devuelve un mapping; `permissions` es una secuencia
   de permisos; `template_name` identifica una plantilla de contenido.
 - [x] Cachear únicamente en la solicitud; sin caché de datos entre usuarios.
@@ -43,7 +43,7 @@ de sus propios modelos; el paquete no conoce los modelos del consumidor.
   distribución compilada, LICENSE y NOTICE al paquete.
 - [x] Implementar `dashboard-charts.js`: JSON no ejecutable, SVG, tooltip de texto,
   colores por modo resuelto, resize y movimiento reducido.
-- [x] Crear `templates/adminwp/dashboard/chart.html`: título, contenedor y tabla
+- [x] Crear `templates/newadmin/dashboard/chart.html`: título, contenedor y tabla
   alternativa con datos escapados; conservar la tabla cuando no hay JavaScript.
 - [x] Probar SVG real, cambios de tema, ancho móvil, ausencia de red externa,
   etiquetas con HTML y dos gráficos simultáneos en `tests/browser/test_charts.py`.
@@ -51,7 +51,7 @@ de sus propios modelos; el paquete no conoce los modelos del consumidor.
 
 ## 3. Composición y demo editorial
 
-- [x] Crear `templates/adminwp/dashboard/layout.html` y `_dashboard.scss`:
+- [x] Crear `templates/newadmin/dashboard/layout.html` y `_dashboard.scss`:
   Bootstrap 8/4 + tabla, padding/gutters 32 px, radio pequeño, métricas legibles,
   estados vacíos y modos completos.
 - [x] Adaptar el marco compartido con tokens y selectores acotados: sidebar 256 px,

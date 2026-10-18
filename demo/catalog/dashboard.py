@@ -8,13 +8,13 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
-from adminwp.dashboard import EChartsDashboard
+from newadmin.dashboard import EChartsDashboard
 
 from .models import Article
 
 
 class EditorialDashboard(EChartsDashboard):
-    template_name = "adminwp/dashboard/editorial.html"
+    template_name = "newadmin/dashboard/editorial.html"
     permissions = ("catalog.view_article",)
 
     def get_queryset(self, request):

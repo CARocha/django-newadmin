@@ -1,1 +1,0 @@
-"""AdminWP template tags."""

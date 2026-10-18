@@ -2,15 +2,15 @@ import pytest
 from django.core.exceptions import ImproperlyConfigured
 from django.test import override_settings
 
-from adminwp.checks import check_adminwp
-from adminwp.conf import DEFAULTS, get_options
+from newadmin.checks import check_newadmin
+from newadmin.conf import DEFAULTS, get_options
 
 
 def test_configuration_has_documented_defaults():
     assert get_options() == DEFAULTS
 
 
-@override_settings(ADMINWP={"SITE_HEADER": "Studio", "MENU": {"ORDER": ["catalog"]}})
+@override_settings(NEWADMIN={"SITE_HEADER": "Studio", "MENU": {"ORDER": ["catalog"]}})
 def test_configuration_merges_partial_overrides():
     options = get_options()
 
@@ -19,39 +19,39 @@ def test_configuration_merges_partial_overrides():
     assert options["MENU"]["ICONS"] == {}
 
 
-@override_settings(ADMINWP={"SITES": {"operations": {"SITE_HEADER": "Operations"}}})
+@override_settings(NEWADMIN={"SITES": {"operations": {"SITE_HEADER": "Operations"}}})
 def test_configuration_resolves_per_site_branding_without_sharing_mutable_values():
     assert get_options("operations")["SITE_HEADER"] == "Operations"
     assert get_options()["SITE_HEADER"] is None
 
 
-@override_settings(ADMINWP={"SITES": {"operations": {"TYPO": "invalid"}}})
+@override_settings(NEWADMIN={"SITES": {"operations": {"TYPO": "invalid"}}})
 def test_system_check_reports_invalid_per_site_options():
-    errors = check_adminwp(None)
+    errors = check_newadmin(None)
 
     assert len(errors) == 1
-    assert errors[0].id == "adminwp.E002"
+    assert errors[0].id == "newadmin.E002"
 
 
-@override_settings(ADMINWP={"DEFAULT_MODE": "sepia"})
+@override_settings(NEWADMIN={"DEFAULT_MODE": "sepia"})
 def test_invalid_mode_has_a_clear_error():
     with pytest.raises(ImproperlyConfigured, match="DEFAULT_MODE"):
         get_options()
 
 
-@override_settings(ADMINWP={"DEFAULT_MODE": []})
+@override_settings(NEWADMIN={"DEFAULT_MODE": []})
 def test_invalid_mode_type_has_a_clear_error():
     with pytest.raises(ImproperlyConfigured, match="DEFAULT_MODE"):
         get_options()
 
 
-@override_settings(ADMINWP={"CUSTOM_CSS": ["../outside.css"]})
+@override_settings(NEWADMIN={"CUSTOM_CSS": ["../outside.css"]})
 def test_unsafe_static_paths_are_rejected():
     with pytest.raises(ImproperlyConfigured, match="CUSTOM_CSS"):
         get_options()
 
 
-@override_settings(ADMINWP={"SITE_HEADER": "Studio"})
+@override_settings(NEWADMIN={"SITE_HEADER": "Studio"})
 def test_configured_branding_is_rendered_on_the_admin_login(client):
     response = client.get("/admin/login/")
 
@@ -59,7 +59,7 @@ def test_configured_branding_is_rendered_on_the_admin_login(client):
     assert b"Studio" in response.content
 
 
-@override_settings(ADMINWP={"SITE_TITLE": "Editorial studio"})
+@override_settings(NEWADMIN={"SITE_TITLE": "Editorial studio"})
 def test_configured_site_title_is_used_in_the_document_title(client):
     response = client.get("/admin/login/")
 
@@ -79,7 +79,7 @@ def test_configured_site_title_is_used_in_the_document_title(client):
     ],
 )
 def test_invalid_menu_extensions_fail_clearly(menu):
-    with override_settings(ADMINWP={"MENU": menu}):
+    with override_settings(NEWADMIN={"MENU": menu}):
         with pytest.raises(ImproperlyConfigured, match="MENU"):
             get_options()
 
@@ -87,12 +87,12 @@ def test_invalid_menu_extensions_fail_clearly(menu):
 @pytest.mark.parametrize(
     "options, code",
     [
-        ([], "adminwp.E001"),
-        ({"SITES": []}, "adminwp.E001"),
-        ({"MENU": {"ICONS": {"catalog": "unknown"}}}, "adminwp.E004"),
-        ({"CUSTOM_CSS": ["../outside.css"]}, "adminwp.E003"),
+        ([], "newadmin.E001"),
+        ({"SITES": []}, "newadmin.E001"),
+        ({"MENU": {"ICONS": {"catalog": "unknown"}}}, "newadmin.E004"),
+        ({"CUSTOM_CSS": ["../outside.css"]}, "newadmin.E003"),
     ],
 )
 def test_checks_identify_the_configuration_area(options, code):
-    with override_settings(ADMINWP=options):
-        assert check_adminwp(None)[0].id == code
+    with override_settings(NEWADMIN=options):
+        assert check_newadmin(None)[0].id == code

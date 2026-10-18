@@ -1,19 +1,19 @@
 /* Decoration stays on chrome; editing surfaces and chart plots remain opaque. */
-body.adminwp-theme:not(.login):not(.popup) {
-  --adminwp-glass-blur: 12px;
-  --adminwp-glass-highlight: color-mix(in srgb, var(--adminwp-surface) 84%, #fff);
-  --adminwp-glass-border: color-mix(in srgb, var(--adminwp-border) 78%, var(--adminwp-surface));
-  --adminwp-glass-shadow: 0 8px 24px -16px rgb(0 0 0 / 18%);
+body.newadmin-theme:not(.login):not(.popup) {
+  --newadmin-glass-blur: 12px;
+  --newadmin-glass-highlight: color-mix(in srgb, var(--newadmin-surface) 84%, #fff);
+  --newadmin-glass-border: color-mix(in srgb, var(--newadmin-border) 78%, var(--newadmin-surface));
+  --newadmin-glass-shadow: 0 8px 24px -16px rgb(0 0 0 / 18%);
 
   background-image:
     radial-gradient(
       ellipse 64rem 38rem at 100% 0%,
-      color-mix(in srgb, var(--adminwp-chart-primary) 7%, transparent),
+      color-mix(in srgb, var(--newadmin-chart-primary) 7%, transparent),
       transparent 72%
     ),
     radial-gradient(
       ellipse 48rem 36rem at 0% 30rem,
-      color-mix(in srgb, var(--adminwp-chart-secondary) 4%, transparent),
+      color-mix(in srgb, var(--newadmin-chart-secondary) 4%, transparent),
       transparent 75%
     );
   background-repeat: no-repeat;
@@ -21,58 +21,58 @@ body.adminwp-theme:not(.login):not(.popup) {
   #header,
   .submit-row {
     /* Opaque fallback also covers browsers without backdrop-filter. */
-    background: var(--adminwp-surface);
-    border-color: var(--adminwp-glass-border);
-    box-shadow: inset 0 1px 0 var(--adminwp-glass-highlight), var(--adminwp-glass-shadow);
+    background: var(--newadmin-surface);
+    border-color: var(--newadmin-glass-border);
+    box-shadow: inset 0 1px 0 var(--newadmin-glass-highlight), var(--newadmin-glass-shadow);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
-  .adminwp-metric .adminwp-chart {
+  .newadmin-metric .newadmin-chart {
     box-shadow: none;
   }
 
-  .adminwp-panel,
-  .adminwp-metric,
-  .adminwp-dashboard__card,
-  .adminwp-dashboard__activity {
-    box-shadow: inset 0 1px 0 var(--adminwp-glass-highlight), var(--adminwp-glass-shadow);
+  .newadmin-panel,
+  .newadmin-metric,
+  .newadmin-dashboard__card,
+  .newadmin-dashboard__activity {
+    box-shadow: inset 0 1px 0 var(--newadmin-glass-highlight), var(--newadmin-glass-shadow);
   }
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  body.adminwp-theme:not(.login):not(.popup) {
+  body.newadmin-theme:not(.login):not(.popup) {
     #header,
     .submit-row {
-      background: color-mix(in srgb, var(--adminwp-surface) 90%, transparent);
-      -webkit-backdrop-filter: blur(var(--adminwp-glass-blur)) saturate(115%);
-      backdrop-filter: blur(var(--adminwp-glass-blur)) saturate(115%);
+      background: color-mix(in srgb, var(--newadmin-surface) 90%, transparent);
+      -webkit-backdrop-filter: blur(var(--newadmin-glass-blur)) saturate(115%);
+      backdrop-filter: blur(var(--newadmin-glass-blur)) saturate(115%);
     }
   }
 }
 
 @media (max-width: 767px) {
-  body.adminwp-theme:not(.login):not(.popup) {
-    --adminwp-glass-blur: 8px;
+  body.newadmin-theme:not(.login):not(.popup) {
+    --newadmin-glass-blur: 8px;
   }
 }
 
 @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
-  body.adminwp-theme:not(.login):not(.popup) {
+  body.newadmin-theme:not(.login):not(.popup) {
     background-image: none;
 
     #header,
     .submit-row {
-      background: var(--adminwp-surface);
+      background: var(--newadmin-surface);
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
       box-shadow: none;
     }
 
-    .adminwp-panel,
-    .adminwp-metric,
-    .adminwp-dashboard__card,
-    .adminwp-dashboard__activity {
+    .newadmin-panel,
+    .newadmin-metric,
+    .newadmin-dashboard__card,
+    .newadmin-dashboard__activity {
       box-shadow: none;
     }
   }

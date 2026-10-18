@@ -1,7 +1,7 @@
 import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 
 const source = new URL("../node_modules/bootstrap-icons/", import.meta.url);
-const target = new URL("../src/adminwp/static/adminwp/", import.meta.url);
+const target = new URL("../src/newadmin/static/newadmin/", import.meta.url);
 const names = {
   grid: "grid", "file-text": "file-earmark-text", users: "people", settings: "gear",
   folder: "folder", image: "image", calendar: "calendar3", chart: "bar-chart",

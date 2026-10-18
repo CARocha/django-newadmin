@@ -22,8 +22,8 @@ def test_dashboard_groups_accessible_models_into_cards_and_shows_recent_actions(
     content = response.content.decode()
 
     assert response.status_code == 200
-    assert 'class="adminwp-dashboard"' in content
-    assert 'class="adminwp-dashboard__card"' in content
+    assert 'class="newadmin-dashboard"' in content
+    assert 'class="newadmin-dashboard__card"' in content
     assert 'href="/admin/catalog/article/"' in content
     assert 'href="/admin/catalog/article/add/"' in content
     assert article.title in content

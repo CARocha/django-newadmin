@@ -6,8 +6,8 @@ pytestmark = [pytest.mark.browser, pytest.mark.django_db(transaction=True)]
 
 
 def test_menu_icons_filter_and_links_use_the_active_site(static_live_server, settings, tmp_path):
-    settings.ADMINWP = {
-        "SITE_HEADER": "AdminWP",
+    settings.NEWADMIN = {
+        "SITE_HEADER": "NewAdmin",
         "MENU": {
             "ICONS": {"catalog.article": "file-text"},
             "LINKS": [
@@ -30,7 +30,7 @@ def test_menu_icons_filter_and_links_use_the_active_site(static_live_server, set
         page.locator("#id_password").fill("secret")
         page.locator("input[type=submit]").click()
         sidebar = page.locator("#nav-sidebar")
-        icon = sidebar.locator("#catalog-article .adminwp-icon")
+        icon = sidebar.locator("#catalog-article .newadmin-icon")
         assert icon.get_attribute("aria-hidden") == "true"
         assert icon.locator("use").get_attribute("href").endswith("icons.svg#file-text")
         assert icon.evaluate("el => getComputedStyle(el).width") == "16px"

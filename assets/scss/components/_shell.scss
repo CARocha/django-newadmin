@@ -1,5 +1,5 @@
 /* Shared admin chrome; login and relation popups keep their compact layout. */
-body.adminwp-theme:not(.login):not(.popup) #header {
+body.newadmin-theme:not(.login):not(.popup) #header {
   box-sizing: border-box;
   position: sticky;
   z-index: 25;
@@ -9,34 +9,34 @@ body.adminwp-theme:not(.login):not(.popup) #header {
   flex-shrink: 0;
   min-height: 64px;
   padding: 0;
-  border-bottom: 1px solid var(--adminwp-border);
-  background: var(--adminwp-surface);
-  color: var(--adminwp-text);
+  border-bottom: 1px solid var(--newadmin-border);
+  background: var(--newadmin-surface);
+  color: var(--newadmin-text);
 }
 
-body.adminwp-theme:not(.login):not(.popup) #branding {
+body.newadmin-theme:not(.login):not(.popup) #branding {
   box-sizing: border-box;
   display: flex;
   flex: 0 0 256px;
   align-items: center;
   order: 0;
   padding: 0 1.5rem;
-  background: var(--adminwp-sidebar);
+  background: var(--newadmin-sidebar);
 }
 
-body.adminwp-theme:not(.login):not(.popup) #site-name {
+body.newadmin-theme:not(.login):not(.popup) #site-name {
   margin: 0;
-  color: var(--adminwp-text);
+  color: var(--newadmin-text);
   font-size: 1.25rem;
   font-weight: 750;
   letter-spacing: -0.035em;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #site-name a {
+body.newadmin-theme:not(.login):not(.popup) #site-name a {
   color: inherit;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #user-tools {
+body.newadmin-theme:not(.login):not(.popup) #user-tools {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -45,23 +45,23 @@ body.adminwp-theme:not(.login):not(.popup) #user-tools {
   gap: 0.375rem;
   padding: 1rem 2rem;
   margin-inline-start: auto;
-  color: var(--adminwp-text-muted);
+  color: var(--newadmin-text-muted);
   font-size: 0.6875rem;
   letter-spacing: 0;
   text-transform: none;
 }
 
-body.adminwp-theme:not(.login):not(.popup) .theme-toggle {
+body.newadmin-theme:not(.login):not(.popup) .theme-toggle {
   border: 0;
   background: transparent;
-  color: var(--adminwp-text);
+  color: var(--newadmin-text);
 }
 
-.adminwp-header-context {
+.newadmin-header-context {
   display: none;
 }
 
-body.adminwp-theme:not(.login):not(.popup) .adminwp-header-context {
+body.newadmin-theme:not(.login):not(.popup) .newadmin-header-context {
   display: block;
   align-content: center;
   flex: 1 1 0;
@@ -71,12 +71,12 @@ body.adminwp-theme:not(.login):not(.popup) .adminwp-header-context {
   text-overflow: ellipsis;
   order: 1;
   padding-inline-start: 2rem;
-  color: var(--adminwp-text);
+  color: var(--newadmin-text);
   font-size: 0.9375rem;
   font-weight: 650;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar {
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar {
   box-sizing: border-box;
   flex: 0 0 233px;
   top: 64px;
@@ -89,50 +89,50 @@ body.adminwp-theme:not(.login):not(.popup) #nav-sidebar {
   padding-inline: 0 0.5rem;
 }
 
-body.adminwp-theme:not(.login):not(.popup) .main.shifted #nav-sidebar {
+body.newadmin-theme:not(.login):not(.popup) .main.shifted #nav-sidebar {
   margin-inline-start: 0;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #toggle-nav-sidebar {
+body.newadmin-theme:not(.login):not(.popup) #toggle-nav-sidebar {
   top: 64px;
   border: 0;
-  background: var(--adminwp-sidebar);
-  color: var(--adminwp-sidebar-muted);
+  background: var(--newadmin-sidebar);
+  color: var(--newadmin-sidebar-muted);
 }
 
-body.adminwp-theme:not(.login):not(.popup) .main > #nav-sidebar + .content {
+body.newadmin-theme:not(.login):not(.popup) .main > #nav-sidebar + .content {
   min-width: 0;
   max-width: calc(100% - 23px);
 }
 
-body.adminwp-theme:not(.login):not(.popup) .main.shifted > #nav-sidebar + .content {
+body.newadmin-theme:not(.login):not(.popup) .main.shifted > #nav-sidebar + .content {
   max-width: calc(100% - 256px);
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .adminwp-nav-home {
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar .newadmin-nav-home {
   margin: 0.75rem 0.5rem 1.5rem 0;
   padding: 0.875rem 1rem;
   border-radius: 2px;
   font-size: 0.875rem;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .adminwp-nav-home[aria-current="page"] {
-  background: var(--adminwp-primary);
-  color: var(--adminwp-on-primary);
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar .newadmin-nav-home[aria-current="page"] {
+  background: var(--newadmin-primary);
+  color: var(--newadmin-on-primary);
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-filter {
+body.newadmin-theme:not(.login):not(.popup) #nav-filter {
   min-height: 36px;
   width: calc(100% - 0.5rem);
   padding: 0.5rem 0.75rem;
   margin: 0 0.5rem 0.5rem 0;
-  border-color: var(--adminwp-border);
+  border-color: var(--newadmin-border);
   border-radius: 2px;
-  background: var(--adminwp-surface);
+  background: var(--newadmin-surface);
   font-size: 0.75rem;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .module caption {
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar .module caption {
   padding: 1rem 1rem 0.5rem;
   border: 0;
   font-size: 0.75rem;
@@ -140,81 +140,81 @@ body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .module caption {
   letter-spacing: 0.04em;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .module .section {
-  color: var(--adminwp-sidebar-muted);
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar .module .section {
+  color: var(--newadmin-sidebar-muted);
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .module th {
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar .module th {
   padding: 0.75rem 0.5rem 0.75rem 1rem;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #nav-sidebar .module td {
+body.newadmin-theme:not(.login):not(.popup) #nav-sidebar .module td {
   padding-inline-end: 0.75rem;
   font-size: 0.75rem;
 }
 
-body.adminwp-theme:not(.login):not(.popup) #content {
+body.newadmin-theme:not(.login):not(.popup) #content {
   padding: 2rem;
 }
 
-body.adminwp-theme:not(.login):not(.popup) .adminwp-dashboard__card,
-body.adminwp-theme:not(.login):not(.popup) .adminwp-dashboard__activity {
+body.newadmin-theme:not(.login):not(.popup) .newadmin-dashboard__card,
+body.newadmin-theme:not(.login):not(.popup) .newadmin-dashboard__activity {
   border-radius: 4px;
 }
 
 @media (max-width: 1100px) {
-  body.adminwp-theme:not(.login):not(.popup) .adminwp-header-context {
+  body.newadmin-theme:not(.login):not(.popup) .newadmin-header-context {
     display: none;
   }
 }
 
 @media (max-width: 767px) {
-  body.adminwp-theme:not(.login):not(.popup) #header {
+  body.newadmin-theme:not(.login):not(.popup) #header {
     position: relative;
     flex-direction: column;
     min-height: 64px;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) #branding {
+  body.newadmin-theme:not(.login):not(.popup) #branding {
     flex-basis: auto;
     padding: 1rem;
     background: transparent;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) #site-name {
+  body.newadmin-theme:not(.login):not(.popup) #site-name {
     font-size: 1.125rem;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) #user-tools {
+  body.newadmin-theme:not(.login):not(.popup) #user-tools {
     padding: 0.5rem 1rem;
     margin: 0;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) .main > #nav-sidebar + .content,
-  body.adminwp-theme:not(.login):not(.popup) .main.shifted > #nav-sidebar + .content {
+  body.newadmin-theme:not(.login):not(.popup) .main > #nav-sidebar + .content,
+  body.newadmin-theme:not(.login):not(.popup) .main.shifted > #nav-sidebar + .content {
     max-width: 100%;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) #content {
+  body.newadmin-theme:not(.login):not(.popup) #content {
     padding: 1rem;
   }
 }
 
-body.adminwp-theme:not(.login):not(.popup) {
+body.newadmin-theme:not(.login):not(.popup) {
   #content > h1,
   #content .titles h1 {
     overflow-wrap: anywhere;
-    color: var(--adminwp-text);
+    color: var(--newadmin-text);
     font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: -0.035em;
   }
 
   #container > nav[aria-label] {
-    background: var(--adminwp-surface);
-    border-bottom: 1px solid var(--adminwp-border);
+    background: var(--newadmin-surface);
+    border-bottom: 1px solid var(--newadmin-border);
   }
 
   .breadcrumbs {
@@ -224,20 +224,20 @@ body.adminwp-theme:not(.login):not(.popup) {
 }
 
 @media (min-width: 768px) {
-  body.adminwp-theme:not(.login):not(.popup) .breadcrumbs {
+  body.newadmin-theme:not(.login):not(.popup) .breadcrumbs {
     padding-inline-start: 2rem;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) #container:has(.main > #nav-sidebar) .breadcrumbs {
+  body.newadmin-theme:not(.login):not(.popup) #container:has(.main > #nav-sidebar) .breadcrumbs {
     padding-inline-start: 55px;
   }
 
-  body.adminwp-theme:not(.login):not(.popup) #container:has(.main.shifted > #nav-sidebar) .breadcrumbs {
+  body.newadmin-theme:not(.login):not(.popup) #container:has(.main.shifted > #nav-sidebar) .breadcrumbs {
     padding-inline-start: 288px;
   }
 }
 
-body.adminwp-theme .object-tools a {
+body.newadmin-theme .object-tools a {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
@@ -248,11 +248,11 @@ body.adminwp-theme .object-tools a {
   text-transform: none;
 }
 
-body.adminwp-theme .object-tools a.addlink {
+body.newadmin-theme .object-tools a.addlink {
   background-image: none;
 }
 
-body.adminwp-theme .object-tools a.addlink::after {
+body.newadmin-theme .object-tools a.addlink::after {
   content: "+";
   font-size: 1rem;
   line-height: 1;

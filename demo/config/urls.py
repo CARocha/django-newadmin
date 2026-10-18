@@ -1,4 +1,4 @@
-"""URLs for the local AdminWP demonstration."""
+"""URLs for the local NewAdmin demonstration."""
 
 from django.contrib import admin
 from django.urls import path

@@ -1,4 +1,4 @@
-# Tareas de django-adminwp
+# Tareas de django-newadmin
 
 Estado: T01–T16 implementadas. Candidato local 0.1.0a1 preparado;
 CI remoto, alojamiento de documentación y publicación en TestPyPI/PyPI pendientes de ejecución.
@@ -6,7 +6,7 @@ Plan: [plan.md](plan.md).
 
 ## T01 — Diseño y especificación
 - [x] Definir `SPEC.md` y `DESIGN.md`, incluyendo estados claro/oscuro,
-  configuración `ADMINWP`, extensión por sitio y política de compatibilidad.
+  configuración `NEWADMIN`, extensión por sitio y política de compatibilidad.
 - [x] Revisar coherencia del contrato y calcular contrastes de la paleta: 48 combinaciones verificadas.
 - [x] Revisión de SPEC.md y DESIGN.md por el usuario antes de implementar.
 - Aceptación: alcance y contratos sin ambigüedades; revisables antes de implementar.
@@ -21,8 +21,8 @@ Plan: [plan.md](plan.md).
 - Evidencia: pytest, Ruff, build sdist/wheel e instalación aislada del wheel con
   app, plantillas, Bootstrap compilado y JS descubiertos; matriz local Django 6.0/6.1
   × Python 3.13/3.14 con 20 pruebas aprobadas en cada combinación.
-- Dependencias: T01. Archivos: `pyproject.toml`, `src/adminwp/__init__.py`,
-  `src/adminwp/apps.py`, `tests/test_packaging.py`, `README.md`.
+- Dependencias: T01. Archivos: `pyproject.toml`, `src/newadmin/__init__.py`,
+  `src/newadmin/apps.py`, `tests/test_packaging.py`, `README.md`.
 
 ## T03 — Proyecto de demostración
 - [x] Crear un proyecto reproducible con datos, modelos y permisos de muestra.
@@ -39,12 +39,12 @@ Plan: [plan.md](plan.md).
 
 ## T04 — Configuración y marca
 - [x] Incorporar valores predeterminados, validación de ajustes y marca del sitio.
-- Aceptación: funciona sin `ADMINWP`; las opciones incorrectas producen errores claros.
+- Aceptación: funciona sin `NEWADMIN`; las opciones incorrectas producen errores claros.
 - Verificación: pruebas de valores predeterminados, opciones inválidas y renderizado de marca.
 - Evidencia: pruebas de valores predeterminados, merge de MENU, tipo/modo y rutas
   inválidas; título y cabecera personalizados aparecen en el login.
-- Dependencias: T03. Archivos: `src/adminwp/conf.py`, `src/adminwp/checks.py`,
-  `src/adminwp/templatetags/adminwp.py`, `src/adminwp/templates/admin/base_site.html`,
+- Dependencias: T03. Archivos: `src/newadmin/conf.py`, `src/newadmin/checks.py`,
+  `src/newadmin/templatetags/newadmin.py`, `src/newadmin/templates/admin/base_site.html`,
   `tests/test_configuration.py`.
 
 ## T05 — Navegación con permisos
@@ -54,8 +54,8 @@ Plan: [plan.md](plan.md).
   y modelos con claves no numéricas; navegador para plegado y teclado.
 - Evidencia: pruebas de orden, usuario con solo permiso de vista y elemento activo;
   Chrome verificó el toggle, su estado aria-expanded y el plegado nativos de Django.
-- Dependencias: T04. Archivos: `src/adminwp/templatetags/adminwp.py`,
-  `src/adminwp/templates/admin/nav_sidebar.html`, `src/adminwp/templates/admin/index.html`,
+- Dependencias: T04. Archivos: `src/newadmin/templatetags/newadmin.py`,
+  `src/newadmin/templates/admin/nav_sidebar.html`, `src/newadmin/templates/admin/index.html`,
   `tests/test_navigation.py`.
 
 ## T06 — Apariencia y modos
@@ -68,8 +68,8 @@ Plan: [plan.md](plan.md).
   storage bloqueado y sincronización entre pestañas. Chrome confirmó ambos modos,
   el dashboard de escritorio y que el login no desborda a 320 px; `collectstatic`
   generó un manifiesto con todos los recursos del tema.
-- Dependencias: T05. Archivos: `package.json`, `assets/scss/adminwp.scss`,
-  `src/adminwp/static/adminwp/js/appearance.js`, `src/adminwp/templates/admin/base.html`,
+- Dependencias: T05. Archivos: `package.json`, `assets/scss/newadmin.scss`,
+  `src/newadmin/static/newadmin/js/appearance.js`, `src/newadmin/templates/admin/base.html`,
   `tests/js/appearance.test.mjs`. Recursos generados se verifican en el artefacto.
 
 ## Checkpoint B
@@ -85,7 +85,7 @@ Plan: [plan.md](plan.md).
   segunda página y error de `list_editable`; Playwright verificó scroll horizontal,
   búsqueda, segunda página, orden, guardado en línea y reflow a 320 px.
 - Dependencias: T06. Archivos: `assets/scss/components/_changelist.scss`,
-  `assets/scss/theme.scss`, `src/adminwp/templates/admin/change_list.html`,
+  `assets/scss/theme.scss`, `src/newadmin/templates/admin/change_list.html`,
   `tests/test_changelist.py`, `tests/browser/test_changelist.py`.
 
 ## T08 — Filtros y acciones
@@ -96,7 +96,7 @@ Plan: [plan.md](plan.md).
   `delete_selected` sobre los 25 resultados de varias páginas; otra prueba confirma que
   un usuario de solo lectura no recibe esa acción. La vista móvil permanece dentro de 320 px.
 - Dependencias: T07. Archivos: `assets/scss/components/_filters.scss`,
-  `assets/scss/components/_actions.scss`, `src/adminwp/templates/admin/filter.html`,
+  `assets/scss/components/_actions.scss`, `src/newadmin/templates/admin/filter.html`,
   `tests/test_changelist.py`, `tests/browser/test_actions.py`.
 
 ## T09 — Formularios
@@ -108,7 +108,7 @@ Plan: [plan.md](plan.md).
   27 pruebas de integración y 4 de navegador pasan con Django 6.0.9 y 6.1.2
   sobre Python 3.14.
 - Dependencias: T08. Archivos: `assets/scss/components/_forms.scss`,
-  `src/adminwp/templates/admin/change_form.html`, `tests/browser/test_forms.py`.
+  `src/newadmin/templates/admin/change_form.html`, `tests/browser/test_forms.py`.
 
 ## Checkpoint C
 - [x] Recorridos de listado y formulario sin regresiones en la matriz Django/Python.
@@ -160,7 +160,7 @@ Plan: [plan.md](plan.md).
   Django 6.0.9/6.1.2 × Python 3.13/3.14; captura de escritorio revisada. La portada
   usa aplicaciones/modelos y el registro nativo de Django, sin
   métricas ni llamadas externas; los fondos claros heredados del menú quedan transparentes.
-- Dependencias: T12. Archivos: `src/adminwp/templates/admin/index.html`,
+- Dependencias: T12. Archivos: `src/newadmin/templates/admin/index.html`,
   `assets/scss/theme.scss`, `tests/test_dashboard.py`, `tests/browser/test_dashboard.py`.
 
 ## Checkpoint D
@@ -176,9 +176,9 @@ Plan: [plan.md](plan.md).
   check pasan. El historial, la confirmación de borrado, los mensajes y el cambio
   de contraseña reciben el tema sin sustituir los flujos nativos de Django.
 - Dependencias: T12.5. Archivos: `assets/scss/components/_auxiliary.scss`,
-  `src/adminwp/templates/admin/object_history.html`,
-  `src/adminwp/templates/registration/password_change_form.html`,
-  `src/adminwp/templates/registration/password_change_done.html`,
+  `src/newadmin/templates/admin/object_history.html`,
+  `src/newadmin/templates/registration/password_change_form.html`,
+  `src/newadmin/templates/registration/password_change_done.html`,
   `tests/browser/test_auxiliary.py`, `tests/test_auxiliary.py`,
   `tests/test_authentication.py`.
 
@@ -252,7 +252,7 @@ Plan: [plan.md](plan.md).
 - Aceptación: sitios con namespaces distintos no mezclan enlaces ni configuración;
   plantillas del consumidor y `Media` siguen funcionando.
 - Verificación: pruebas con dos sitios, permisos diferentes y overrides del consumidor.
-- Dependencias: T13. Archivos: `src/adminwp/conf.py`, `src/adminwp/navigation.py`,
+- Dependencias: T13. Archivos: `src/newadmin/conf.py`, `src/newadmin/navigation.py`,
   `tests/test_sites.py`, `tests/test_extensions.py`, `docs/configuration.md`.
 
 ## T15 — Accesibilidad y adaptación
@@ -274,7 +274,7 @@ Plan: [plan.md](plan.md).
 - [x] Preparar CI, documentación de instalación y validación del paquete candidato.
 - [x] Construir la documentación pública con Sphinx e integrar las guías existentes.
 - [x] Documentar instalación desde cero, orden de `INSTALLED_APPS`, recursos estáticos
-  y `collectstatic`, configuración `ADMINWP`, varios AdminSite, menús, apariencia,
+  y `collectstatic`, configuración `NEWADMIN`, varios AdminSite, menús, apariencia,
   extensiones, dashboards/ECharts y resolución de problemas, con ejemplos reproducibles.
 - [x] Configurar en CI la compilación estricta de Sphinx; comando verificado localmente.
 - Evidencia local: 100 pruebas por combinación Django 6.0.9/6.1.2 × Python 3.13/3.14;

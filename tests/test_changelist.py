@@ -16,13 +16,13 @@ def test_changelist_wraps_native_results_in_accessible_scroll_region(client):
     response = client.get(reverse("admin:catalog_article_changelist"))
 
     assert response.status_code == 200
-    assert b'class="adminwp-table-scroll"' in response.content
+    assert b'class="newadmin-table-scroll"' in response.content
     assert b'role="region"' in response.content
     assert b'tabindex="0"' in response.content
     assert b'id="result_list"' in response.content
 
 
-def test_filters_keep_native_details_state_and_gain_adminwp_class(client):
+def test_filters_keep_native_details_state_and_gain_newadmin_class(client):
     user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     client.force_login(user)
     category = Category.objects.create(name="News", slug="news")
@@ -31,7 +31,7 @@ def test_filters_keep_native_details_state_and_gain_adminwp_class(client):
     response = client.get(reverse("admin:catalog_article_changelist"))
 
     assert response.status_code == 200
-    assert b'class="adminwp-filter"' in response.content
+    assert b'class="newadmin-filter"' in response.content
     assert b'data-filter-title="status"' in response.content
     assert b"<details" in response.content
     assert b'href="?category__id__exact=' in response.content
@@ -95,7 +95,7 @@ def test_empty_changelist_renders_without_a_results_table(client):
     response = client.get(reverse("admin:catalog_article_changelist"))
 
     assert response.status_code == 200
-    assert b'class="adminwp-table-scroll"' in response.content
+    assert b'class="newadmin-table-scroll"' in response.content
     assert b'id="result_list"' not in response.content
     assert response.context["cl"].result_count == 0
 
@@ -122,6 +122,6 @@ def test_invalid_list_editable_value_keeps_native_error_feedback(client):
 
     assert response.status_code == 200
     assert b"Select a valid choice" in response.content
-    assert b"adminwp-table-scroll" in response.content
+    assert b"newadmin-table-scroll" in response.content
     article.refresh_from_db()
     assert article.status == Article.Status.DRAFT

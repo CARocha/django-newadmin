@@ -6,7 +6,7 @@ from django.urls import reverse
 pytestmark = pytest.mark.django_db
 
 
-@override_settings(ADMINWP={"MENU": {"ORDER": ["catalog", "auth"]}})
+@override_settings(NEWADMIN={"MENU": {"ORDER": ["catalog", "auth"]}})
 def test_navigation_orders_authorized_apps_first(client):
     user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     client.force_login(user)

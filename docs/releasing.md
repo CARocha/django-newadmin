@@ -28,7 +28,7 @@ python demo/manage.py check
 python demo/manage.py makemigrations --check --dry-run
 python -m sphinx -n -W --keep-going -b html docs docs/_build/html
 python -m build
-python -m twine check --strict dist/django_adminwp-0.1.0a1*
+python -m twine check --strict dist/django_newadmin-0.1.0a1*
 ```
 
 CI repite las cuatro combinaciones Python/Django, reconstruye los recursos para
@@ -41,9 +41,9 @@ Para repetir la instalación limpia local, crea un entorno separado, instala el
 wheel (sin `-e`) y ejecuta el script con su intérprete:
 
 ```sh
-python -m venv /tmp/adminwp-wheel-test
-/tmp/adminwp-wheel-test/bin/python -m pip install dist/django_adminwp-0.1.0a1-py3-none-any.whl
-/tmp/adminwp-wheel-test/bin/python scripts/smoke_wheel.py
+python -m venv /tmp/newadmin-wheel-test
+/tmp/newadmin-wheel-test/bin/python -m pip install dist/django_newadmin-0.1.0a1-py3-none-any.whl
+/tmp/newadmin-wheel-test/bin/python scripts/smoke_wheel.py
 ```
 
 El script rechaza una importación desde el checkout para evitar un falso positivo.
@@ -58,7 +58,7 @@ no pegues credenciales en issues, commits o el chat.
 Tras la autorización explícita del mantenedor:
 
 ```sh
-python -m twine upload --repository testpypi dist/django_adminwp-0.1.0a1-py3-none-any.whl dist/django_adminwp-0.1.0a1.tar.gz
+python -m twine upload --repository testpypi dist/django_newadmin-0.1.0a1-py3-none-any.whl dist/django_newadmin-0.1.0a1.tar.gz
 ```
 
 Prueba ese artefacto con Django previamente instalado desde PyPI, evitando resolver
@@ -66,13 +66,13 @@ sus dependencias desde TestPyPI:
 
 ```sh
 python -m pip install 'Django>=6.0,<6.2'
-python -m pip install --index-url https://test.pypi.org/simple/ --no-deps 'django-adminwp==0.1.0a1'
+python -m pip install --index-url https://test.pypi.org/simple/ --no-deps 'django-newadmin==0.1.0a1'
 ```
 
 Después de verificarlo, sube **los mismos archivos** a PyPI:
 
 ```sh
-python -m twine upload dist/django_adminwp-0.1.0a1-py3-none-any.whl dist/django_adminwp-0.1.0a1.tar.gz
+python -m twine upload dist/django_newadmin-0.1.0a1-py3-none-any.whl dist/django_newadmin-0.1.0a1.tar.gz
 ```
 
 Registra la publicación en el changelog y crea el tag `v0.1.0a1` en el commit
@@ -80,7 +80,7 @@ verificado. No reutilices una versión subida: una corrección posterior debe
 incrementar la versión alfa. Conserva los hashes SHA-256 de los artefactos.
 
 Si hay un fallo, documenta su alcance y publica una nueva alfa corregida. Un
-usuario puede fijar una versión anterior o desactivar `adminwp`; el tema no tiene
+usuario puede fijar una versión anterior o desactivar `newadmin`; el tema no tiene
 migraciones propias. La primera alfa todavía no tiene una versión previa.
 
 Referencias: [Sphinx](https://www.sphinx-doc.org/en/master/usage/quickstart.html),

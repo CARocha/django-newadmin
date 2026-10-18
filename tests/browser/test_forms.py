@@ -24,7 +24,7 @@ def test_add_form_keeps_native_fieldsets_help_and_validation(static_live_server)
         _sign_in(page, static_live_server.url)
         page.goto(f"{static_live_server.url}{reverse('admin:catalog_article_add')}")
 
-        assert "adminwp-change-form" in page.locator("body").get_attribute("class")
+        assert "newadmin-change-form" in page.locator("body").get_attribute("class")
         assert page.locator("form#article_form .form-row").count() >= 7
         assert page.locator("form#article_form .help").count() >= 1
         headings = page.locator("form#article_form > div > fieldset.module h2").all_text_contents()

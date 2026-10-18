@@ -1,1 +1,1 @@
-"""Runnable AdminWP demonstration project."""
+"""Runnable NewAdmin demonstration project."""

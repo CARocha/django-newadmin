@@ -8,20 +8,20 @@ from tempfile import TemporaryDirectory
 import django
 from django.conf import settings
 
-import adminwp
+import newadmin
 
-assert Path(adminwp.__file__).resolve().is_relative_to(Path(sys.prefix).resolve()), (
+assert Path(newadmin.__file__).resolve().is_relative_to(Path(sys.prefix).resolve()), (
     "Install the wheel into a clean virtual environment before running this smoke test."
 )
 
-with TemporaryDirectory(prefix="adminwp-wheel-") as temporary:
+with TemporaryDirectory(prefix="newadmin-wheel-") as temporary:
     settings.configure(
         SECRET_KEY="isolated-wheel-smoke-only",
         DEBUG=False,
         ALLOWED_HOSTS=["testserver"],
         ROOT_URLCONF=__name__,
         INSTALLED_APPS=[
-            "adminwp",
+            "newadmin",
             "django.contrib.admin",
             "django.contrib.auth",
             "django.contrib.contenttypes",
@@ -74,7 +74,7 @@ with TemporaryDirectory(prefix="adminwp-wheel-") as temporary:
         response = client.get(route)
         assert response.status_code == 200, route
         html = response.content.decode()
-        assert "adminwp-theme" in html, route
+        assert "newadmin-theme" in html, route
         for url in re.findall(r'(?:src|href)="(/static/[^"#?]+)', html):
             assert staticfiles_storage.exists(url.removeprefix("/static/")), url
     for resource in [
@@ -86,8 +86,8 @@ with TemporaryDirectory(prefix="adminwp-wheel-") as temporary:
         "vendor/django/LICENSE",
         "vendor/bootstrap/LICENSE",
     ]:
-        assert staticfiles_storage.exists(staticfiles_storage.stored_name("adminwp/" + resource))
+        assert staticfiles_storage.exists(staticfiles_storage.stored_name("newadmin/" + resource))
     print(
-        f"Installed wheel {adminwp.__version__}: Django {django.get_version()}, "
+        f"Installed wheel {newadmin.__version__}: Django {django.get_version()}, "
         "login/CRUD templates and manifest resources OK"
     )

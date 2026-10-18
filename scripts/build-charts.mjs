@@ -1,7 +1,7 @@
 import { copyFile, mkdir } from "node:fs/promises";
 
 const source = new URL("../node_modules/echarts/", import.meta.url);
-const target = new URL("../src/adminwp/static/adminwp/vendor/echarts/", import.meta.url);
+const target = new URL("../src/newadmin/static/newadmin/vendor/echarts/", import.meta.url);
 await mkdir(target, { recursive: true });
 await mkdir(new URL("licenses/", target), { recursive: true });
 for (const [input, output] of [

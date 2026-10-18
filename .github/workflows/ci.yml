@@ -58,22 +58,22 @@ jobs:
           npm run build:css
           npm run build:icons
           npm run build:charts
-          git diff --exit-code -- src/adminwp/static/
+          git diff --exit-code -- src/newadmin/static/
       - run: python -m sphinx -n -W --keep-going -b html docs docs/_build/html
       - run: python -m build
       - run: python -m twine check --strict dist/*
       - name: Install and smoke test the wheel outside the checkout
         run: |
-          python -m venv "$RUNNER_TEMP/adminwp-wheel"
-          "$RUNNER_TEMP/adminwp-wheel/bin/python" -m pip install dist/*.whl
-          "$RUNNER_TEMP/adminwp-wheel/bin/python" scripts/smoke_wheel.py
+          python -m venv "$RUNNER_TEMP/newadmin-wheel"
+          "$RUNNER_TEMP/newadmin-wheel/bin/python" -m pip install dist/*.whl
+          "$RUNNER_TEMP/newadmin-wheel/bin/python" scripts/smoke_wheel.py
       - name: Rebuild wheel from sdist
         run: |
-          mkdir "$RUNNER_TEMP/adminwp-source"
-          tar -xzf dist/*.tar.gz -C "$RUNNER_TEMP/adminwp-source"
-          python -m build --wheel "$RUNNER_TEMP/adminwp-source/"* --outdir "$RUNNER_TEMP/adminwp-rebuilt"
-          "$RUNNER_TEMP/adminwp-wheel/bin/python" -m pip install --force-reinstall --no-deps "$RUNNER_TEMP/adminwp-rebuilt/"*.whl
-          "$RUNNER_TEMP/adminwp-wheel/bin/python" scripts/smoke_wheel.py
+          mkdir "$RUNNER_TEMP/newadmin-source"
+          tar -xzf dist/*.tar.gz -C "$RUNNER_TEMP/newadmin-source"
+          python -m build --wheel "$RUNNER_TEMP/newadmin-source/"* --outdir "$RUNNER_TEMP/newadmin-rebuilt"
+          "$RUNNER_TEMP/newadmin-wheel/bin/python" -m pip install --force-reinstall --no-deps "$RUNNER_TEMP/newadmin-rebuilt/"*.whl
+          "$RUNNER_TEMP/newadmin-wheel/bin/python" scripts/smoke_wheel.py
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: alpha-distributions

@@ -1,6 +1,6 @@
 # Accesibilidad y adaptación
 
-AdminWP conserva los controles y formularios de Django y añade foco visible,
+NewAdmin conserva los controles y formularios de Django y añade foco visible,
 navegación móvil, superficies con contraste y tablas desplazables. El objetivo es
 WCAG 2.2 AA para sus componentes; esta alfa no es una certificación de conformidad.
 

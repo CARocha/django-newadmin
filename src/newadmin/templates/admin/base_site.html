@@ -1,0 +1,43 @@
+{% extends "admin/base_site.html" %}
+{% load newadmin i18n static %}
+
+{% block nav-global %}
+  {{ block.super }}
+  {% if not is_popup and not user.is_anonymous %}
+    <span class="newadmin-header-context">{% if request.resolver_match.url_name == 'index' %}{% translate 'Dashboard' %}{% else %}{{ title }}{% endif %}</span>
+  {% endif %}
+{% endblock %}
+
+{% block title %}
+  {% newadmin_options as newadmin %}
+  {% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ newadmin.SITE_TITLE|default:site_title }}
+{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'newadmin/css/bootstrap.min.css' %}" {% newadmin_nonce_attr %}>
+  <link rel="stylesheet" href="{% static 'newadmin/css/newadmin.css' %}" {% newadmin_nonce_attr %}>
+{% endblock %}
+
+{% block responsive %}
+  {{ block.super }}
+  {% newadmin_options as newadmin %}
+  {% for stylesheet in newadmin.CUSTOM_CSS %}
+    <link rel="stylesheet" href="{% static stylesheet %}" {% newadmin_nonce_attr %}>
+  {% endfor %}
+{% endblock %}
+
+{% block branding %}
+  {% block newadmin_branding %}
+  {% newadmin_options as newadmin %}
+  <div id="site-name">
+    <a href="{% url 'admin:index' %}">
+      {% if newadmin.LOGO %}<img class="newadmin-logo" src="{% static newadmin.LOGO %}" alt="">{% endif %}
+      {{ newadmin.SITE_HEADER|default:site_header }}
+    </a>
+  </div>
+  {% if user.is_anonymous %}{% include "admin/color_theme_toggle.html" %}{% endif %}
+  {% endblock %}
+{% endblock %}
+
+{% block footer %}{{ block.super }}{% block newadmin_footer %}{% endblock %}{% endblock %}

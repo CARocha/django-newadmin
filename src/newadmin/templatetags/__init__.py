@@ -1,0 +1,1 @@
+"""NewAdmin template tags."""

@@ -34,14 +34,14 @@ def test_admin_pages_share_dashboard_shell_and_palette(static_live_server, mode,
         page.add_init_script(f"localStorage.setItem('theme', '{mode}')")
         page.goto(f"{static_live_server.url}{reverse('admin:login')}")
         assert page.locator("#container").bounding_box()["width"] < 600
-        assert page.locator(".adminwp-header-context").count() == 0
+        assert page.locator(".newadmin-header-context").count() == 0
         page.locator("#id_username").fill("editor")
         page.locator("#id_password").fill("secret")
         page.locator("input[type=submit]").click()
         read_palette = """() => {
             const style = getComputedStyle(document.body);
-            return Object.fromEntries(['--adminwp-canvas', '--adminwp-surface',
-                '--adminwp-primary', '--button-bg', '--header-bg', '--body-bg']
+            return Object.fromEntries(['--newadmin-canvas', '--newadmin-surface',
+                '--newadmin-primary', '--button-bg', '--header-bg', '--body-bg']
                 .map(key => [key, style.getPropertyValue(key).trim()]));
         }"""
         dashboard_palette = page.evaluate(read_palette)
@@ -84,7 +84,7 @@ def test_admin_pages_share_dashboard_shell_and_palette(static_live_server, mode,
                     )
                     == sidebar_background
                 ), route
-                assert page.locator('.adminwp-nav-home[aria-current="page"]').count() == 0
+                assert page.locator('.newadmin-nav-home[aria-current="page"]').count() == 0
             if index < 2:
                 page.screenshot(
                     path=str(tmp_path / f"{mode}-{index}-viewport.png"), full_page=False
@@ -140,7 +140,7 @@ def test_long_page_title_leaves_account_controls_inside_tablet_header(static_liv
             f"{static_live_server.url}"
             f"{reverse('admin:auth_user_password_change', args=[target.pk])}"
         )
-        assert target.username in page.locator(".adminwp-header-context").inner_text()
+        assert target.username in page.locator(".newadmin-header-context").inner_text()
         assert page.locator("#header").bounding_box()["height"] == 64
         toggle = page.locator("#user-tools .theme-toggle").bounding_box()
         assert toggle["x"] + toggle["width"] <= 1101

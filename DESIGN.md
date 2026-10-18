@@ -1,4 +1,4 @@
-# Diseño de django-adminwp
+# Diseño de django-newadmin
 
 Fecha: 2026-10-16. Estado: contrato visual propuesto para T01.
 Especificación funcional: [SPEC.md](SPEC.md).
@@ -10,7 +10,7 @@ la portada y en los flujos CRUD. Login y popups conservan su disposición compac
 
 ## Dirección
 
-Navegación de WordPress, claridad del admin nativo y superficies sobrias inspiradas
+Navegación clara, controles del admin nativo y superficies sobrias inspiradas
 en la referencia Apple. La calidad debe apreciarse en listados, errores e inlines,
 no solo en el dashboard. Dar espacio a la tarea y mantener información útil visible.
 
@@ -20,7 +20,7 @@ serán adiciones posteriores y deberán cumplir los mismos estados y contrastes.
 
 ## Tokens de color
 
-Todos se publican con prefijo `--adminwp-`. Los valores son colores sólidos;
+Todos se publican con prefijo `--newadmin-`. Los valores son colores sólidos;
 los contrastes de texto se miden sobre los fondos indicados.
 
 | Token | Light | Dark |
@@ -114,7 +114,7 @@ presentación compacta. No se añaden dependencias, animaciones ni imágenes rem
 
 ### Marco compartido y portada
 
-La plantilla base añade `adminwp-theme` a todas las páginas. El marco compartido
+La plantilla base añade `newadmin-theme` a todas las páginas. El marco compartido
 usa los tokens globales de la tabla anterior; ningún modo depende de una clase
 exclusiva del dashboard. Las variables de Django y Bootstrap se resuelven en el
 mismo ámbito para evitar que botones y widgets hereden la paleta anterior.
@@ -125,7 +125,7 @@ popups reciben los colores globales pero conservan su disposición compacta.
 Las tipografías siguen siendo de sistema y no se solicitan fuentes remotas.
 
 Sin proveedor, la portada muestra modelos autorizados y actividad reciente.
-`ADMINWP.DASHBOARD` permite seleccionar un proveedor Python, su plantilla y Media,
+`NEWADMIN.DASHBOARD` permite seleccionar un proveedor Python, su plantilla y Media,
 con permisos verificados antes de preparar datos. La composición de referencia
 expone un grid Bootstrap 8/4 desde 1200 px, con tabla posterior de ancho completo,
 gutters de 32 px y gráfico principal de altura objetivo de 480 px.
@@ -220,7 +220,6 @@ compartido verifica paleta y geometría entre pantallas, tres modos y reflow a 3
 
 ## Referencias de intención
 
-- [django-wpadmin](https://github.com/barszczmm/django-wpadmin): navegación y familiaridad.
 - [Referencia Apple](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/apple/DESIGN.md):
   sobriedad del color, tipografía y superficies, adaptadas a trabajo administrativo.
 - [Modos de Bootstrap](https://getbootstrap.com/docs/5.3/customize/color-modes/).

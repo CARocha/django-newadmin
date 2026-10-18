@@ -1,4 +1,4 @@
-"""Minimal Django settings for AdminWP's integration tests."""
+"""Minimal Django settings for NewAdmin's integration tests."""
 
 from pathlib import Path
 
@@ -10,7 +10,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_URL = "/static/"
 
 INSTALLED_APPS = [
-    "adminwp",
+    "newadmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

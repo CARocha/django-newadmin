@@ -1,9 +1,9 @@
-"""Settings for the local AdminWP demonstration."""
+"""Settings for the local NewAdmin demonstration."""
 
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-SECRET_KEY = "adminwp-demo-only-change-before-deployment"
+SECRET_KEY = "newadmin-demo-only-change-before-deployment"
 DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 ROOT_URLCONF = "demo.config.urls"
@@ -13,7 +13,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_ROOT = BASE_DIR / "demo" / "media"
 
 INSTALLED_APPS = [
-    "adminwp",
+    "newadmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,9 +54,9 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-ADMINWP = {
-    "SITE_HEADER": "AdminWP",
-    "SITE_TITLE": "AdminWP",
+NEWADMIN = {
+    "SITE_HEADER": "NewAdmin",
+    "SITE_TITLE": "NewAdmin",
     "DASHBOARD": "demo.catalog.dashboard.EditorialDashboard",
     "MENU": {
         "ORDER": ["catalog", "auth"],

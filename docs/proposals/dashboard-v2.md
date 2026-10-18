@@ -1,11 +1,11 @@
-# Dashboard AdminWP: revisión visual y extensión con datos propios
+# Dashboard NewAdmin: revisión visual y extensión con datos propios
 
 Fecha: 2026-10-17. Estado: primera iteración implementada; biblioteca ECharts confirmada por el usuario.
 
 Esta propuesta responde a la referencia proporcionada en
 `stitch_fleet_admin_dashboard/`: `screen.png`, `code.html` y `DESIGN.md`.
 Los nombres y contenidos de logística son ilustrativos. El producto sigue siendo
-django-adminwp, construido sobre Bootstrap y el administrador nativo de Django.
+django-newadmin, construido sobre Bootstrap y el administrador nativo de Django.
 
 ## Resultado esperado
 
@@ -71,7 +71,7 @@ del grid; no se añadirá un segundo sistema de layout para los mismos paneles.
 - Manrope para títulos e Inter para datos son una opción fiel a la referencia:
   distribuirlas localmente exige comprobar y conservar sus licencias. Siempre
   habrá fallback a fuentes de sistema y ninguna petición a Google Fonts.
-- Los colores se expresarán mediante tokens de AdminWP, mapeados a Django y
+- Los colores se expresarán mediante tokens de NewAdmin, mapeados a Django y
   Bootstrap. Este cambio de dirección requiere revisar el contrato actual de
   `PALETTE` antes de convertir estos colores en valores de ejecución.
 
@@ -116,11 +116,11 @@ haga funcionar.
 ## Extensión del panel: propuesta de interfaz pública
 
 Se propone un proveedor Python por panel, seleccionado mediante una ruta importable
-en `ADMINWP`. Es una interfaz nueva que debe quedar documentada y probada antes de
+en `NEWADMIN`. Es una interfaz nueva que debe quedar documentada y probada antes de
 publicarla. El siguiente ejemplo ilustra la interfaz implementada:
 
 ```python
-ADMINWP = {
+NEWADMIN = {
     "DASHBOARD": "news.admin_dashboard.NewsDashboard",
     "SITES": {
         "operations": {
@@ -131,7 +131,7 @@ ADMINWP = {
 ```
 
 ```python
-from adminwp.dashboard import Dashboard
+from newadmin.dashboard import Dashboard
 
 
 class NewsDashboard(Dashboard):
@@ -194,7 +194,7 @@ LICENSE y NOTICE. No se requiere una licencia comercial de gráficos al consumid
 Bootstrap sigue resolviendo el marco, las tarjetas y las tablas. ECharts se carga
 únicamente en proveedores que extiendan `EChartsDashboard`. Los datos se entregan
 con `json_script`, se dibujan mediante SVG y conservan una tabla HTML alternativa.
-Se sincronizan los colores con el modo resuelto light/dark/auto de AdminWP.
+Se sincronizan los colores con el modo resuelto light/dark/auto de NewAdmin.
 
 La biblioteca se fija en package-lock.json y sus recursos compilados se incluyen
 en el wheel junto con su licencia y avisos; instalar el paquete no exige Node.

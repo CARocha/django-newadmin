@@ -67,7 +67,7 @@ def test_date_time_file_and_textarea_widgets_keep_native_media(
 
         upload = page.locator("#id_attachment")
         upload.set_input_files(
-            {"name": "cover.txt", "mimeType": "text/plain", "buffer": b"AdminWP upload"}
+            {"name": "cover.txt", "mimeType": "text/plain", "buffer": b"NewAdmin upload"}
         )
         textarea = page.locator("#id_body")
         textarea.fill("Widget body content")
@@ -89,4 +89,4 @@ def test_date_time_file_and_textarea_widgets_keep_native_media(
     )
     assert article.attachment.name.endswith("cover.txt")
     with article.attachment.open() as attachment:
-        assert attachment.read() == b"AdminWP upload"
+        assert attachment.read() == b"NewAdmin upload"

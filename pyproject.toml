@@ -3,7 +3,7 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
-name = "django-adminwp"
+name = "django-newadmin"
 dynamic = ["version"]
 description = "A polished, extensible theme for Django's built-in admin."
 readme = "README.md"
@@ -36,15 +36,15 @@ dev = [
 docs = ["Sphinx>=8.2,<10", "myst-parser>=4,<6", "furo>=2025.7.19,<2027"]
 
 [project.urls]
-Documentation = "https://github.com/CARocha/django-adminwp#readme"
-Repository = "https://github.com/CARocha/django-adminwp"
-Issues = "https://github.com/CARocha/django-adminwp/issues"
+Documentation = "https://github.com/CARocha/django-newadmin#readme"
+Repository = "https://github.com/CARocha/django-newadmin"
+Issues = "https://github.com/CARocha/django-newadmin/issues"
 
 [tool.hatch.version]
-path = "src/adminwp/__init__.py"
+path = "src/newadmin/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/adminwp"]
+packages = ["src/newadmin"]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tests.settings"

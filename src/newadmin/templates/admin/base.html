@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+{% load newadmin static %}
+
+{% block bodyclass %}{{ block.super }} newadmin-theme{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script src="{% static 'newadmin/js/accessibility.js' %}" defer {% newadmin_nonce_attr %}></script>
+  {% if not is_popup and is_nav_sidebar_enabled %}
+    <script src="{% static 'newadmin/js/navigation.js' %}" defer {% newadmin_nonce_attr %}></script>
+  {% endif %}
+{% endblock %}
+
+{% block dark-mode-vars %}
+  <link rel="stylesheet" href="{% static 'admin/css/dark_mode.css' %}" {% newadmin_nonce_attr %}>
+  {% newadmin_options as newadmin %}
+  <script src="{% static 'newadmin/js/appearance.js' %}"
+          data-default-mode="{{ newadmin.DEFAULT_MODE }}" {% newadmin_nonce_attr %}></script>
+{% endblock %}

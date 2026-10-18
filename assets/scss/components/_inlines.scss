@@ -1,160 +1,160 @@
-body.adminwp-change-form .inline-group {
+body.newadmin-change-form .inline-group {
   min-width: 0;
   margin-block: 0 1.25rem;
 }
 
-body.adminwp-change-form .inline-group > .tabular {
+body.newadmin-change-form .inline-group > .tabular {
   margin: 0;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] .wrapper {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] .wrapper {
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  background: var(--adminwp-surface);
-  border: 1px solid var(--adminwp-border);
+  background: var(--newadmin-surface);
+  border: 1px solid var(--newadmin-border);
   border-radius: 8px;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] table {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] table {
   width: 100%;
   min-width: 42rem;
   margin: 0;
-  color: var(--adminwp-text);
-  background: var(--adminwp-surface);
+  color: var(--newadmin-text);
+  background: var(--newadmin-surface);
   border-collapse: separate;
   border-spacing: 0;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] thead th {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] thead th {
   padding: 0.75rem;
-  color: var(--adminwp-text-muted);
-  background: var(--adminwp-surface-raised);
-  border-bottom: 1px solid var(--adminwp-border);
+  color: var(--newadmin-text-muted);
+  background: var(--newadmin-surface-raised);
+  border-bottom: 1px solid var(--newadmin-border);
   font-size: 0.75rem;
   font-weight: 650;
   text-align: start;
   white-space: nowrap;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] tbody td {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] tbody td {
   padding: 0.625rem 0.75rem;
-  color: var(--adminwp-text);
-  background: var(--adminwp-surface);
-  border-bottom: 1px solid var(--adminwp-border);
+  color: var(--newadmin-text);
+  background: var(--newadmin-surface);
+  border-bottom: 1px solid var(--newadmin-border);
   vertical-align: top;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] tbody tr:last-child td {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] tbody tr:last-child td {
   border-bottom: 0;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] tr.add-row td {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] tr.add-row td {
   padding: 0.625rem 0.75rem;
-  background: var(--adminwp-surface-raised);
-  border-top: 1px solid var(--adminwp-border);
+  background: var(--newadmin-surface-raised);
+  border-top: 1px solid var(--newadmin-border);
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] tbody tr:hover td {
-  background: var(--adminwp-surface-raised);
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] tbody tr:hover td {
+  background: var(--newadmin-surface-raised);
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] tr.form-row:not(.empty-form) {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] tr.form-row:not(.empty-form) {
   display: table-row;
   padding: 0;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] td input:not([type="checkbox"]),
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] td select,
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] td textarea {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] td input:not([type="checkbox"]),
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] td select,
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] td textarea {
   width: 100%;
   min-width: 8rem;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] td.delete,
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] th:last-child {
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] td.delete,
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] th:last-child {
   width: 1%;
   text-align: center;
   white-space: nowrap;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="tabular"] tr.row-form-errors td {
-  color: var(--adminwp-danger);
-  background: var(--adminwp-danger-bg);
+body.newadmin-change-form .inline-group[data-inline-type="tabular"] tr.row-form-errors td {
+  color: var(--newadmin-danger);
+  background: var(--newadmin-danger-bg);
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="stacked"] > fieldset.module {
+body.newadmin-change-form .inline-group[data-inline-type="stacked"] > fieldset.module {
   margin-block: 0;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="stacked"] .inline-related {
+body.newadmin-change-form .inline-group[data-inline-type="stacked"] .inline-related {
   padding: 1rem;
-  border-top: 1px solid var(--adminwp-border);
+  border-top: 1px solid var(--newadmin-border);
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="stacked"] .inline-related > h3 {
+body.newadmin-change-form .inline-group[data-inline-type="stacked"] .inline-related > h3 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   min-height: 2.5rem;
   margin: 0 0 0.75rem;
   padding: 0.5rem 0.75rem;
-  color: var(--adminwp-text);
-  background: var(--adminwp-surface-raised);
-  border: 1px solid var(--adminwp-border);
+  color: var(--newadmin-text);
+  background: var(--newadmin-surface-raised);
+  border: 1px solid var(--newadmin-border);
   border-radius: 7px;
   font-size: 0.875rem;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="stacked"] .inline-related h3 .delete {
+body.newadmin-change-form .inline-group[data-inline-type="stacked"] .inline-related h3 .delete {
   margin-inline-start: auto;
 }
 
-body.adminwp-change-form .inline-group[data-inline-type="stacked"] .inline-related fieldset.module {
+body.newadmin-change-form .inline-group[data-inline-type="stacked"] .inline-related fieldset.module {
   margin: 0;
   border: 0;
   border-radius: 0;
   box-shadow: none;
 }
 
-body.adminwp-change-form .inline-group .add-row {
+body.newadmin-change-form .inline-group .add-row {
   margin: 0;
   padding: 0.75rem 1rem;
-  background: var(--adminwp-surface-raised);
-  border-top: 1px solid var(--adminwp-border);
+  background: var(--newadmin-surface-raised);
+  border-top: 1px solid var(--newadmin-border);
 }
 
-body.adminwp-change-form .inline-group .add-row a {
+body.newadmin-change-form .inline-group .add-row a {
   display: inline-flex;
   align-items: center;
   min-height: 2.25rem;
   padding: 0.5rem 0.75rem;
-  color: var(--adminwp-primary);
-  background: var(--adminwp-surface);
-  border: 1px solid var(--adminwp-border);
+  color: var(--newadmin-primary);
+  background: var(--newadmin-surface);
+  border: 1px solid var(--newadmin-border);
   border-radius: 6px;
   font-weight: 600;
   text-decoration: none;
 }
 
-body.adminwp-change-form .inline-group .add-row a:hover,
-body.adminwp-change-form .inline-group .add-row a:focus-visible {
-  background: var(--adminwp-surface-raised);
-  border-color: var(--adminwp-primary);
+body.newadmin-change-form .inline-group .add-row a:hover,
+body.newadmin-change-form .inline-group .add-row a:focus-visible {
+  background: var(--newadmin-surface-raised);
+  border-color: var(--newadmin-primary);
 }
 
-body.adminwp-change-form .inline-group .add-row a:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--adminwp-primary) 28%, transparent);
+body.newadmin-change-form .inline-group .add-row a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--newadmin-primary) 28%, transparent);
   outline-offset: 2px;
 }
 
-body.adminwp-change-form .inline-group .delete input[type="checkbox"],
-body.adminwp-change-form .inline-group td.delete input[type="checkbox"] {
-  accent-color: var(--adminwp-danger);
+body.newadmin-change-form .inline-group .delete input[type="checkbox"],
+body.newadmin-change-form .inline-group td.delete input[type="checkbox"] {
+  accent-color: var(--newadmin-danger);
 }
 
 @media (max-width: 767.98px) {
-  body.adminwp-change-form .inline-group[data-inline-type="stacked"] .inline-related {
+  body.newadmin-change-form .inline-group[data-inline-type="stacked"] .inline-related {
     padding: 0.75rem;
   }
 }

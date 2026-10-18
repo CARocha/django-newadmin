@@ -13,8 +13,8 @@ pytestmark = [pytest.mark.browser, pytest.mark.django_db(transaction=True)]
 def test_glass_preserves_solid_content_and_respects_reduced_transparency(
     static_live_server, settings, tmp_path, mode
 ):
-    settings.ADMINWP = {
-        "SITE_HEADER": "AdminWP",
+    settings.NEWADMIN = {
+        "SITE_HEADER": "NewAdmin",
         "DASHBOARD": "demo.catalog.dashboard.EditorialDashboard",
     }
     get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
@@ -41,7 +41,7 @@ def test_glass_preserves_solid_content_and_respects_reduced_transparency(
         page.locator("#editorial-categories svg").wait_for()
         blur = "el => getComputedStyle(el).backdropFilter"
         assert page.locator("#header").evaluate(blur) != "none"
-        assert page.locator(".adminwp-panel").first.evaluate(blur) == "none"
+        assert page.locator(".newadmin-panel").first.evaluate(blur) == "none"
         page.screenshot(path=str(tmp_path / f"glass-dashboard-{mode}.png"), full_page=True)
         page.goto(f"{static_live_server.url}/admin/catalog/article/add/")
         assert page.locator(".submit-row").evaluate(blur) != "none"

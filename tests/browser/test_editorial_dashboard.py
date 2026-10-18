@@ -13,8 +13,8 @@ pytestmark = [pytest.mark.browser, pytest.mark.django_db(transaction=True)]
 def test_editorial_dashboard_matches_reference_proportions_and_both_modes(
     static_live_server, settings, tmp_path
 ):
-    settings.ADMINWP = {
-        "SITE_HEADER": "AdminWP",
+    settings.NEWADMIN = {
+        "SITE_HEADER": "NewAdmin",
         "DASHBOARD": "demo.catalog.dashboard.EditorialDashboard",
     }
     get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
@@ -38,7 +38,7 @@ def test_editorial_dashboard_matches_reference_proportions_and_both_modes(
         page.locator("input[type=submit]").click()
         page.locator("#editorial-categories svg").wait_for()
         assert (
-            page.locator(".adminwp-workspace__actions .btn-primary").evaluate(
+            page.locator(".newadmin-workspace__actions .btn-primary").evaluate(
                 "el => getComputedStyle(el).color"
             )
             == "rgb(255, 255, 255)"
@@ -50,11 +50,11 @@ def test_editorial_dashboard_matches_reference_proportions_and_both_modes(
             for selector in ("#nav-sidebar", "#toggle-nav-sidebar")
         )
         assert sidebar_width == 256
-        primary = page.locator(".adminwp-workspace__primary").bounding_box()
-        metrics = page.locator(".adminwp-workspace__metrics").bounding_box()
+        primary = page.locator(".newadmin-workspace__primary").bounding_box()
+        metrics = page.locator(".newadmin-workspace__metrics").bounding_box()
         assert abs(primary["width"] / metrics["width"] - 2) < 0.01
-        assert page.locator(".adminwp-metric").count() == 2
-        assert page.locator(".adminwp-editorial-table tbody tr").count() == 8
+        assert page.locator(".newadmin-metric").count() == 2
+        assert page.locator(".newadmin-editorial-table tbody tr").count() == 8
         page.screenshot(
             path=str(tmp_path / "editorial-light.png"), full_page=True, animations="disabled"
         )
@@ -68,7 +68,7 @@ def test_editorial_dashboard_matches_reference_proportions_and_both_modes(
         page.wait_for_function(
             "document.querySelector('#editorial-categories svg').clientWidth < 320"
         )
-        assert page.locator(".adminwp-workspace__heading").bounding_box()["y"] >= (
+        assert page.locator(".newadmin-workspace__heading").bounding_box()["y"] >= (
             page.locator("#header").bounding_box()["y"]
             + page.locator("#header").bounding_box()["height"]
         )

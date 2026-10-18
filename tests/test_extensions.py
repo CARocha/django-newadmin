@@ -10,7 +10,7 @@ pytestmark = pytest.mark.django_db
 
 
 @override_settings(
-    ADMINWP={
+    NEWADMIN={
         "MENU": {
             "LINKS": [
                 {
@@ -39,7 +39,7 @@ def test_custom_menu_links_resolve_in_the_current_admin_namespace_and_check_perm
 
 
 @override_settings(
-    ADMINWP={
+    NEWADMIN={
         "MENU": {
             "LINKS": [
                 {
@@ -61,12 +61,12 @@ def test_custom_menu_link_is_hidden_when_permission_is_missing(client):
     assert b"Reports" not in response.content
 
 
-@override_settings(ADMINWP={"CUSTOM_CSS": ["branding/adminwp-extra.css"]})
-def test_custom_static_assets_are_rendered_after_adminwp_styles(client):
+@override_settings(NEWADMIN={"CUSTOM_CSS": ["branding/newadmin-extra.css"]})
+def test_custom_static_assets_are_rendered_after_newadmin_styles(client):
     response = client.get("/admin/login/")
     content = response.content.decode()
 
-    assert content.index("adminwp/css/adminwp.css") < content.index("branding/adminwp-extra.css")
+    assert content.index("newadmin/css/newadmin.css") < content.index("branding/newadmin-extra.css")
 
 
 def test_consumer_templates_media_and_last_stylesheet_are_preserved(client, settings, monkeypatch):
@@ -74,7 +74,7 @@ def test_consumer_templates_media_and_last_stylesheet_are_preserved(client, sett
 
     from demo.catalog.models import Article
 
-    settings.ADMINWP = {"CUSTOM_CSS": ["branding/adminwp-extra.css"]}
+    settings.NEWADMIN = {"CUSTOM_CSS": ["branding/newadmin-extra.css"]}
     templates = deepcopy(settings.TEMPLATES)
     templates[0]["APP_DIRS"] = False
     templates[0]["OPTIONS"]["loaders"] = [
@@ -82,11 +82,11 @@ def test_consumer_templates_media_and_last_stylesheet_are_preserved(client, sett
             "django.template.loaders.locmem.Loader",
             {
                 "admin/base_site.html": '{% extends "admin/base_site.html" %}'
-                "{% block adminwp_branding %}{{ block.super }}"
+                "{% block newadmin_branding %}{{ block.super }}"
                 '<span id="consumer-branding">Studio</span>{% endblock %}'
-                '{% block adminwp_footer %}<span id="consumer-footer">Help</span>{% endblock %}',
+                '{% block newadmin_footer %}<span id="consumer-footer">Help</span>{% endblock %}',
                 "admin/nav_sidebar.html": '{% extends "admin/nav_sidebar.html" %}'
-                "{% block adminwp_sidebar_extra %}{{ block.super }}"
+                "{% block newadmin_sidebar_extra %}{{ block.super }}"
                 '<a id="consumer-sidebar" href="/reports/">Custom report</a>{% endblock %}',
             },
         ),
@@ -110,14 +110,14 @@ def test_consumer_templates_media_and_last_stylesheet_are_preserved(client, sett
     assert content.count('src="/static/branding/editor.js"') == 1
     assert content.count('href="/static/branding/editor.css"') == 1
     for resource in ("admin/css/forms.css", "admin/css/autocomplete.css", "branding/editor.css"):
-        assert content.index(resource) < content.index("branding/adminwp-extra.css")
+        assert content.index(resource) < content.index("branding/newadmin-extra.css")
 
 
 @pytest.mark.parametrize("viewname", ["no_such_view", "admin:auth_user_changelist"])
 def test_unresolvable_links_do_not_fall_back_to_another_site(client, settings, viewname):
     from django.core.exceptions import ImproperlyConfigured
 
-    settings.ADMINWP = {"MENU": {"LINKS": [{"LABEL": "Reports", "URL_NAME": viewname}]}}
+    settings.NEWADMIN = {"MENU": {"LINKS": [{"LABEL": "Reports", "URL_NAME": viewname}]}}
     user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     client.force_login(user)
     with pytest.raises(ImproperlyConfigured, match="MENU.LINKS"):
@@ -127,7 +127,7 @@ def test_unresolvable_links_do_not_fall_back_to_another_site(client, settings, v
 def test_link_labels_are_lazy_translatable_and_escaped(client, settings):
     from django.utils.translation import gettext_lazy
 
-    settings.ADMINWP = {
+    settings.NEWADMIN = {
         "MENU": {
             "LINKS": [
                 {
@@ -145,7 +145,7 @@ def test_link_labels_are_lazy_translatable_and_escaped(client, settings):
 
 
 def test_link_requires_every_declared_permission(client, settings):
-    settings.ADMINWP = {
+    settings.NEWADMIN = {
         "MENU": {
             "LINKS": [
                 {
@@ -168,9 +168,9 @@ def test_current_link_handles_non_ascii_paths(settings):
     from django.test import RequestFactory
     from django.urls import resolve
 
-    from adminwp.navigation import custom_links
+    from newadmin.navigation import custom_links
 
-    settings.ADMINWP = {"MENU": {"LINKS": [{"LABEL": "Niñez", "URL_NAME": "unicode-report"}]}}
+    settings.NEWADMIN = {"MENU": {"LINKS": [{"LABEL": "Niñez", "URL_NAME": "unicode-report"}]}}
     url = reverse("unicode-report")
     request = RequestFactory().get(url)
     request.resolver_match = resolve(request.path)

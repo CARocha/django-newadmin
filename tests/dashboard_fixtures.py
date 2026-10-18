@@ -1,4 +1,4 @@
-from adminwp.dashboard import Dashboard, EChartsDashboard
+from newadmin.dashboard import Dashboard, EChartsDashboard
 
 
 class ExampleDashboard(Dashboard):

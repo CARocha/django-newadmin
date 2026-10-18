@@ -1,0 +1,23 @@
+{% load newadmin i18n %}
+{% newadmin_options as newadmin %}
+<div class="newadmin-workspace">
+  <header class="newadmin-workspace__heading">
+    <div>
+      <p class="newadmin-workspace__eyebrow">{{ newadmin.SITE_HEADER|default:site_header }}</p>
+      <h1>{% block dashboard_title %}{% translate 'Dashboard' %}{% endblock %}</h1>
+    </div>
+    <div class="newadmin-workspace__actions">{% block dashboard_actions %}{% endblock %}</div>
+  </header>
+  <div class="row newadmin-workspace__grid">
+    <section class="col-12 col-xl-8 newadmin-workspace__primary">
+      {% block dashboard_primary %}{% endblock %}
+    </section>
+    <aside class="col-12 col-xl-4 newadmin-workspace__metrics" aria-label="{% translate 'Key metrics' %}">
+      {% block dashboard_metrics %}{% endblock %}
+    </aside>
+    <section class="col-12 newadmin-workspace__tables">
+      {% block dashboard_tables %}{% endblock %}
+    </section>
+  </div>
+  {% block dashboard_secondary %}{% endblock %}
+</div>

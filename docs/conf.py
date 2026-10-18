@@ -1,8 +1,8 @@
 """Sphinx configuration; build with sphinx-build -n -W --keep-going."""
 
-from adminwp import __version__
+from newadmin import __version__
 
-project = "django-adminwp"
+project = "django-newadmin"
 author = "CARocha and contributors"
 copyright = "2026, CARocha and contributors"
 release = __version__

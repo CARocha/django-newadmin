@@ -4,7 +4,7 @@ import { runInNewContext } from "node:vm";
 import test from "node:test";
 
 const source = await readFile(
-  new URL("../../src/adminwp/static/adminwp/js/appearance.js", import.meta.url),
+  new URL("../../src/newadmin/static/newadmin/js/appearance.js", import.meta.url),
   "utf8",
 );
 

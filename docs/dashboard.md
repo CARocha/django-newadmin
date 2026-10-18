@@ -1,6 +1,6 @@
 # Dashboards con Apache ECharts
 
-AdminWP permite sustituir el contenido de la portada con una clase Python y una
+NewAdmin permite sustituir el contenido de la portada con una clase Python y una
 plantilla. El admin sigue gestionando acceso, sesión y permisos nativos. No es
 necesario cambiar los registros de ModelAdmin ni crear otro AdminSite.
 
@@ -12,8 +12,8 @@ actividad reciente. Este escritorio no carga la biblioteca de gráficos.
 Para activar el ejemplo editorial incluido en el proyecto de demostración:
 
 ```python
-ADMINWP = {
-    "SITE_HEADER": "AdminWP",
+NEWADMIN = {
+    "SITE_HEADER": "NewAdmin",
     "DASHBOARD": "demo.catalog.dashboard.EditorialDashboard",
 }
 ```
@@ -27,7 +27,7 @@ crear su propio proveedor, en lugar de depender de los modelos de la demo.
 # news/admin_dashboard.py: ejemplo para un proyecto con news.Article.
 from django.db.models import Count
 
-from adminwp.dashboard import EChartsDashboard
+from newadmin.dashboard import EChartsDashboard
 from .models import Article
 
 
@@ -65,17 +65,17 @@ class NewsDashboard(EChartsDashboard):
 
 ```python
 # settings.py
-ADMINWP = {"DASHBOARD": "news.admin_dashboard.NewsDashboard"}
+NEWADMIN = {"DASHBOARD": "news.admin_dashboard.NewsDashboard"}
 ```
 
 ```django
 {# templates/news/admin/dashboard.html #}
-{% extends "adminwp/dashboard/layout.html" %}
+{% extends "newadmin/dashboard/layout.html" %}
 
 {% block dashboard_title %}Resumen editorial{% endblock %}
 
 {% block dashboard_primary %}
-  {% include "adminwp/dashboard/chart.html" with chart=dashboard_data.categories %}
+  {% include "newadmin/dashboard/chart.html" with chart=dashboard_data.categories %}
 {% endblock %}
 ```
 
@@ -98,7 +98,7 @@ resto del administrador. Login y popups usan la misma paleta con un marco compac
 
 ## Plantilla y componentes
 
-`adminwp/dashboard/layout.html` expone estos bloques:
+`newadmin/dashboard/layout.html` expone estos bloques:
 
 | Bloque | Uso |
 |---|---|
@@ -115,7 +115,7 @@ Para una plantilla completamente distinta, `template_name` puede apuntar a otra
 plantilla de contenido. No debe incluir un documento HTML completo ni duplicar el
 marco del admin.
 
-El componente `adminwp/dashboard/chart.html` recibe `chart`:
+El componente `newadmin/dashboard/chart.html` recibe `chart`:
 
 - `id`: identificador HTML válido, único en la página. `chart_id` permite cambiarlo
   al reutilizar un gráfico en otro bloque.
@@ -128,7 +128,7 @@ Las filas son necesarias para la alternativa accesible. Si están vacías, se mu
 un estado vacío. El componente escapa el HTML de las celdas y utiliza `json_script`
 para los datos. El adaptador fuerza tooltips de texto, no tooltips HTML.
 
-El componente `adminwp/dashboard/metric.html` recibe `metric` con `label`, `value`,
+El componente `newadmin/dashboard/metric.html` recibe `metric` con `label`, `value`,
 `share` (porcentaje real), `tone` (`success`, `warning` o valor neutro) y un `chart`
 opcional. La demo calcula los porcentajes a partir de cantidades reales. Sus
 minigráficos representan entradas creadas en los últimos siete días agrupadas por
@@ -137,7 +137,7 @@ su estado actual; no representan el historial de cambios de estado.
 ## Sitios independientes y recursos
 
 ```python
-ADMINWP = {
+NEWADMIN = {
     "DASHBOARD": "news.admin_dashboard.NewsDashboard",
     "SITES": {"operations": {"DASHBOARD": None}},
 }

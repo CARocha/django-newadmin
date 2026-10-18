@@ -45,7 +45,7 @@ def test_combined_filters_and_search_preserve_params_and_select_all_for_action(s
         page.goto(f"{static_live_server.url}{reverse('admin:catalog_article_changelist')}")
 
         filters = page.locator("#changelist-filter")
-        assert page.locator("#changelist-filter details.adminwp-filter").count() == 2
+        assert page.locator("#changelist-filter details.newadmin-filter").count() == 2
         filters.get_by_role("link", name="Show counts").click()
         assert "_facets" in parse_qs(urlparse(page.url).query)
         filters.get_by_role("link", name="Published (25)", exact=True).click()

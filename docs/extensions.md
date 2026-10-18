@@ -8,10 +8,10 @@ categoría, la plantilla, la alternativa tabular y el aislamiento de datos.
 ## API Python de dashboards
 
 ```{eval-rst}
-.. autoclass:: adminwp.dashboard.Dashboard
+.. autoclass:: newadmin.dashboard.Dashboard
    :members: has_permission, get_context_data
 
-.. autoclass:: adminwp.dashboard.EChartsDashboard
+.. autoclass:: newadmin.dashboard.EChartsDashboard
 ```
 
 `template_name` selecciona una plantilla de contenido. `permissions` contiene
@@ -30,5 +30,5 @@ requieren una comprobación independiente. No se anuncian como integraciones
 soportadas de esta alfa.
 
 No dependas de funciones Python privadas, detalles internos del DOM o el prefijo
-`_`. Los puntos públicos son `ADMINWP`, los bloques documentados, los proveedores
+`_`. Los puntos públicos son `NEWADMIN`, los bloques documentados, los proveedores
 y los tokens visuales. Durante la alfa pueden cambiar con notas de migración.

@@ -1,0 +1,48 @@
+{% extends "newadmin/dashboard/layout.html" %}
+{% load i18n %}
+
+{% block dashboard_title %}{% translate 'Editorial overview' %}{% endblock %}
+{% block dashboard_actions %}
+  {% if dashboard_data.add_url %}<a class="btn btn-primary" href="{{ dashboard_data.add_url }}">+ {% translate 'Add entry' %}</a>{% endif %}
+{% endblock %}
+{% block dashboard_primary %}
+  {% include "newadmin/dashboard/chart.html" with chart=dashboard_data.category_chart %}
+{% endblock %}
+{% block dashboard_metrics %}
+  {% for metric in dashboard_data.metrics %}
+    {% include "newadmin/dashboard/metric.html" %}
+  {% endfor %}
+{% endblock %}
+{% block dashboard_tables %}
+  <section class="newadmin-panel newadmin-editorial-table" aria-labelledby="editorial-latest-title">
+    <header class="newadmin-panel__header">
+      <div><h2 id="editorial-latest-title">{% translate 'Latest entries' %}</h2><p>{{ dashboard_data.total }} {% translate 'entries in your workspace' %}</p></div>
+      <a class="newadmin-text-action" href="{{ dashboard_data.list_url }}">{% translate 'View all' %} <span aria-hidden="true">↗</span></a>
+    </header>
+    {% if dashboard_data.latest %}
+      <div class="newadmin-panel__scroll" tabindex="0" role="region" aria-labelledby="editorial-latest-title">
+        <table>
+          <thead><tr><th scope="col">{% translate 'Entry' %}</th><th scope="col">{% translate 'Category' %}</th><th scope="col">{% translate 'Status' %}</th><th scope="col">{% translate 'Last updated' %}</th></tr></thead>
+          <tbody>{% for entry in dashboard_data.latest %}
+            <tr>
+              <th scope="row"><a href="{{ entry.url }}">{{ entry.title }}</a></th>
+              <td>{{ entry.category }}</td>
+              <td><span class="newadmin-status newadmin-status--{{ entry.status }}">{{ entry.status_label }}</span></td>
+              <td><time datetime="{{ entry.updated_at|date:'c' }}">{{ entry.updated_at|date:'DATE_FORMAT' }}</time></td>
+            </tr>
+          {% endfor %}</tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="newadmin-panel__empty">{% translate 'No entries yet. Your latest entries will appear here.' %}</p>
+    {% endif %}
+  </section>
+{% endblock %}
+{% block dashboard_secondary %}
+  <nav class="newadmin-workspace__directory" aria-label="{% translate 'Applications' %}">
+    <h2>{% translate 'Applications' %}</h2>
+    {% for app in available_apps %}
+      <a href="{{ app.app_url }}">{{ app.name }} <span aria-hidden="true">↗</span></a>
+    {% endfor %}
+  </nav>
+{% endblock %}

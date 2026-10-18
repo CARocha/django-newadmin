@@ -1,4 +1,4 @@
-# Especificación de django-adminwp
+# Especificación de django-newadmin
 
 Fecha: 2026-10-16. Estado: propuesta concreta derivada del plan aprobado.
 Alcance de esta entrega: T01; documento de contrato, todavía sin implementación.
@@ -7,7 +7,7 @@ Plan aprobado: [tasks/plan.md](tasks/plan.md). Diseño: [DESIGN.md](DESIGN.md).
 ## 1. Objetivo y usuarios
 
 Tema para equipos que usan el admin de Django y quieren una navegación familiar
-al estilo WordPress, formularios cómodos y una apariencia consistente en claro y
+clara y adaptable, formularios cómodos y una apariencia consistente en claro y
 oscuro. Instalarlo no debe exigir cambiar modelos, registros de ModelAdmin ni
 el AdminSite existente. El éxito se mide por recorridos administrativos completos,
 no solamente por capturas del inicio.
@@ -19,7 +19,7 @@ independientes y quedan fuera de esta especificación.
 
 ## 2. Plataforma y distribución
 
-- Distribución: `django-adminwp`; módulo y etiqueta de aplicación: `adminwp`.
+- Distribución: `django-newadmin`; módulo y etiqueta de aplicación: `newadmin`.
 - Python: 3.13 y 3.14; Django: últimas revisiones de las series 6.0 y 6.1.
 - Primer rango de dependencia previsto: `Django>=6.0,<6.2` y Python `>=3.13`.
   Ese rango expresa las series de Django a verificar; no promete soporte para
@@ -34,7 +34,7 @@ independientes y quedan fuera de esta especificación.
   Python desde sdist tampoco exige Node: los recursos ya deben estar incluidos.
 - El consumidor usa staticfiles y collectstatic habituales. Sin CDN, fuentes
   remotas, middleware, tablas ni migraciones adicionales del tema.
-- Retirar `adminwp` de INSTALLED_APPS devuelve el admin nativo, salvo los overrides
+- Retirar `newadmin` de INSTALLED_APPS devuelve el admin nativo, salvo los overrides
   que el propio consumidor haya añadido a su proyecto.
 
 ## 3. Instalación y configuración pública
@@ -44,16 +44,16 @@ configuración estándar de plantillas, context processors y staticfiles.
 
 ```python
 INSTALLED_APPS = [
-    "adminwp",
+    "newadmin",
     "django.contrib.admin",
     # Resto de aplicaciones del proyecto.
 ]
 ```
 
-La configuración es opcional. Ausencia de `ADMINWP` equivale a este contrato:
+La configuración es opcional. Ausencia de `NEWADMIN` equivale a este contrato:
 
 ```python
-ADMINWP = {
+NEWADMIN = {
     "SITE_TITLE": None,
     "SITE_HEADER": None,
     "LOGO": None,
@@ -94,7 +94,7 @@ no las rutas URL. Un sitio sin override usa los valores globales.
 Ejemplo de personalización:
 
 ```python
-ADMINWP = {
+NEWADMIN = {
     "SITE_HEADER": "Administración editorial",
     "LOGO": "branding/logo.svg",
     "MENU": {
@@ -129,11 +129,11 @@ Los iconos decorativos no duplican el nombre accesible de los enlaces.
 
 Django system checks valida la configuración al ejecutar check:
 
-- adminwp.E001: ADMINWP o SITES no es un mapping válido.
-- adminwp.E002: opción desconocida, tipo inválido, modo o paleta no admitidos.
-- adminwp.E003: ruta de recurso no admitida.
-- adminwp.E004: menú inválido, identificador de icono desconocido o app duplicada en ORDER.
-- adminwp.E005: adminwp está después de django.contrib.admin en INSTALLED_APPS.
+- newadmin.E001: NEWADMIN o SITES no es un mapping válido.
+- newadmin.E002: opción desconocida, tipo inválido, modo o paleta no admitidos.
+- newadmin.E003: ruta de recurso no admitida.
+- newadmin.E004: menú inválido, identificador de icono desconocido o app duplicada en ORDER.
+- newadmin.E005: newadmin está después de django.contrib.admin en INSTALLED_APPS.
 
 El mensaje incluye la ruta de la opción y la corrección esperada, sin volcar
 el objeto de configuración completo. Si se omiten los checks, una configuración
@@ -186,12 +186,12 @@ consumidor y sus widgets siguen siendo responsabilidad de ese proyecto.
 ## 7. Plantillas y extensión
 
 - Extender plantillas por bloques y preservar block.super donde corresponda.
-- Emplear templates/adminwp para componentes propios y prefijo adminwp- en clases
+- Emplear templates/newadmin para componentes propios y prefijo newadmin- en clases
   nuevas; conservar clases nativas en elementos utilizados por Django.
-- Bloques públicos propios: adminwp_branding, adminwp_sidebar_extra y
-  adminwp_footer. Documentar contexto y ubicación al implementarlos.
+- Bloques públicos propios: newadmin_branding, newadmin_sidebar_extra y
+  newadmin_footer. Documentar contexto y ubicación al implementarlos.
 - Conservar bloques nativos de estilos, cabecera y contenido, y el renderizado de Media.
-- CUSTOM_CSS y variables --adminwp-* son la API visual. Clases internas y funciones
+- CUSTOM_CSS y variables --newadmin-* son la API visual. Clases internas y funciones
   Python no documentadas no constituyen una API pública del paquete.
 - No exigir un ModelAdmin especial, un AdminSite propio, monkey patches ni
   sustituciones globales de widgets para activar el tema.
@@ -214,7 +214,7 @@ Contrato y ejemplos: [docs/dashboard.md](docs/dashboard.md).
 ## 8. Estructura, estilo y comandos previstos
 
 ```text
-src/adminwp/         Aplicación distribuible y sus plantillas/staticfiles
+src/newadmin/         Aplicación distribuible y sus plantillas/staticfiles
 assets/             Sass y JavaScript fuente; build reproducible
 tests/              Pruebas Python y de navegador
 demo/               Proyecto de demostración y datos locales reproducibles
@@ -253,7 +253,7 @@ STATIC_ROOT temporal y ManifestStaticFilesStorage, sin depender de fuentes del c
 ## 9. Verificación y aceptación de la versión estable
 
 - AC01: instalar solo wheel + Django en un proyecto limpio activa el tema al
-  añadir adminwp antes del admin, sin cambiar registros ni crear tablas del tema.
+  añadir newadmin antes del admin, sin cambiar registros ni crear tablas del tema.
 - AC02: matriz completa 6.0/6.1 × 3.13/3.14 en verde; soporte futuro separado de main.
 - AC03: login, logout POST/CSRF, inicio, aplicaciones e historial funcionan.
 - AC04: búsqueda, filtros, facetas, paginación, acciones y list_editable conservan datos y permisos.

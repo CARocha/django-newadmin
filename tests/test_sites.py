@@ -7,7 +7,7 @@ pytestmark = pytest.mark.django_db
 
 
 @override_settings(
-    ADMINWP={
+    NEWADMIN={
         "SITE_HEADER": "Global studio",
         "CUSTOM_CSS": ["branding/global.css"],
         "SITES": {

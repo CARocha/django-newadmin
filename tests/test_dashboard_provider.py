@@ -4,7 +4,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.test import override_settings
 from django.urls import reverse
 
-from adminwp.dashboard import EChartsDashboard
+from newadmin.dashboard import EChartsDashboard
 from tests.dashboard_fixtures import ExampleDashboard
 
 pytestmark = pytest.mark.django_db
@@ -13,7 +13,7 @@ pytestmark = pytest.mark.django_db
 @pytest.fixture
 def dashboard_templates(settings, tmp_path):
     (tmp_path / "dashboard_probe.html").write_text(
-        '{% extends "adminwp/dashboard/layout.html" %}'
+        '{% extends "newadmin/dashboard/layout.html" %}'
         "{% block dashboard_primary %}<p>{{ dashboard_data.message }}</p>{% endblock %}"
     )
     settings.TEMPLATES = [
@@ -21,7 +21,7 @@ def dashboard_templates(settings, tmp_path):
     ]
 
 
-@override_settings(ADMINWP={"DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard"})
+@override_settings(NEWADMIN={"DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard"})
 def test_provider_renders_its_template_and_media_without_overwriting_native_context(
     client, dashboard_templates
 ):
@@ -36,7 +36,7 @@ def test_provider_renders_its_template_and_media_without_overwriting_native_cont
     assert response.content.count(b"dashboard-probe.js") == 1
 
 
-@override_settings(ADMINWP={"DASHBOARD": "tests.dashboard_fixtures.PrivateDashboard"})
+@override_settings(NEWADMIN={"DASHBOARD": "tests.dashboard_fixtures.PrivateDashboard"})
 def test_provider_checks_permissions_before_queries_or_media_are_evaluated(client):
     user = get_user_model().objects.create_user("reader", password="secret", is_staff=True)
     client.force_login(user)
@@ -48,7 +48,7 @@ def test_provider_checks_permissions_before_queries_or_media_are_evaluated(clien
     assert b"dashboard-probe.js" not in response.content
 
 
-@override_settings(ADMINWP={"DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard"})
+@override_settings(NEWADMIN={"DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard"})
 def test_provider_evaluates_once_per_request_and_never_shares_user_data(
     client, dashboard_templates, monkeypatch
 ):
@@ -74,23 +74,23 @@ def test_provider_evaluates_once_per_request_and_never_shares_user_data(
     ["missing.Dashboard", "django.forms.Form", "tests.dashboard_fixtures.BrokenDashboard"],
 )
 def test_invalid_provider_configuration_has_an_identifiable_error(client, settings, provider):
-    settings.ADMINWP = {"DASHBOARD": provider}
+    settings.NEWADMIN = {"DASHBOARD": provider}
     user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     client.force_login(user)
 
-    with pytest.raises(ImproperlyConfigured, match="ADMINWP.DASHBOARD"):
+    with pytest.raises(ImproperlyConfigured, match="NEWADMIN.DASHBOARD"):
         client.get(reverse("admin:index"))
 
 
 def test_echarts_provider_adds_only_local_chart_resources():
     media = str(EChartsDashboard().media)
 
-    assert "adminwp/vendor/echarts/echarts.min.js" in media
-    assert "adminwp/js/dashboard-charts.js" in media
+    assert "newadmin/vendor/echarts/echarts.min.js" in media
+    assert "newadmin/js/dashboard-charts.js" in media
     assert "https://" not in media
 
 
-@override_settings(ADMINWP={"DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard"})
+@override_settings(NEWADMIN={"DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard"})
 def test_business_dashboard_does_not_replace_app_index_or_model_pages(client):
     user = get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     client.force_login(user)
@@ -113,7 +113,7 @@ def test_default_dashboard_does_not_load_chart_javascript(client):
 
 @override_settings(
     ROOT_URLCONF="tests.dashboard_urls",
-    ADMINWP={
+    NEWADMIN={
         "DASHBOARD": "tests.dashboard_fixtures.ExampleDashboard",
         "SITES": {"reports": {"DASHBOARD": None}},
     },

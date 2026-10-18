@@ -1,7 +1,7 @@
-# django-adminwp
+# django-newadmin
 
 Un tema para el administrador de Django, con Bootstrap, apariencia clara/oscura,
-navegación inspirada en WordPress y dashboards extensibles con Apache ECharts.
+navegación centrada en el trabajo diario y dashboards extensibles con Apache ECharts.
 
 La versión **0.1.0a1** es una alfa: úsala primero en un entorno de pruebas. Su API
 puede cambiar entre versiones alfa. El tema conserva el admin y sus permisos;

@@ -1,4 +1,4 @@
-.adminwp-icon {
+.newadmin-icon {
   display: inline-block;
   flex: 0 0 auto;
   width: 1rem;
@@ -8,19 +8,19 @@
   fill: currentColor;
 }
 
-#nav-sidebar .adminwp-custom-links {
+#nav-sidebar .newadmin-custom-links {
   padding: 0.75rem 0;
   margin: 1rem 0.5rem 0 0;
-  border-top: 1px solid var(--adminwp-border);
+  border-top: 1px solid var(--newadmin-border);
   list-style: none;
 }
 
-#nav-sidebar .adminwp-custom-links li {
+#nav-sidebar .newadmin-custom-links li {
   padding: 0;
   list-style: none;
 }
 
-#nav-sidebar .adminwp-custom-links a {
+#nav-sidebar .newadmin-custom-links a {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
@@ -28,8 +28,8 @@
   font-size: 0.875rem;
 }
 
-#nav-sidebar .adminwp-custom-links a[aria-current="page"] {
-  background: var(--adminwp-surface);
-  color: var(--adminwp-text);
+#nav-sidebar .newadmin-custom-links a[aria-current="page"] {
+  background: var(--newadmin-surface);
+  color: var(--newadmin-text);
   font-weight: 600;
 }

@@ -1,0 +1,9 @@
+{% load i18n %}
+<article class="newadmin-metric newadmin-metric--{{ metric.tone }}">
+  <h2>{{ metric.label }}</h2>
+  <p class="newadmin-metric__value">{{ metric.value }}</p>
+  <p class="newadmin-metric__share">{{ metric.share|floatformat:0 }}% {% translate 'of all entries' %}</p>
+  {% if metric.chart %}
+    {% include "newadmin/dashboard/chart.html" with chart=metric.chart compact=True %}
+  {% endif %}
+</article>

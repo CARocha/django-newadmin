@@ -1,6 +1,6 @@
 # Configuración, navegación y extensión
 
-El tema funciona al colocar `adminwp` antes de `django.contrib.admin` en
+El tema funciona al colocar `newadmin` antes de `django.contrib.admin` en
 `INSTALLED_APPS`. No exige un `ModelAdmin` ni un `AdminSite` especial.
 
 ## Opciones y valores predeterminados
@@ -22,7 +22,7 @@ El tema funciona al colocar `adminwp` antes de `django.contrib.admin` en
 Las opciones son opcionales. Ejemplo de una personalización completa:
 
 ```python
-ADMINWP = {
+NEWADMIN = {
     "SITE_TITLE": "Mi estudio",
     "SITE_HEADER": "Administración editorial",
     "LOGO": "branding/logo.svg",  # Opcional, ruta de staticfiles.
@@ -68,7 +68,7 @@ Los SVG son decorativos y locales: las etiquetas siguen dando nombre a cada
 entrada. El paquete incluye un subconjunto de Bootstrap Icons 1.13.1 y su
 [licencia MIT](https://github.com/twbs/icons/blob/v1.13.1/LICENSE), sin fuentes ni CDN.
 La plantilla de lista de aplicaciones conserva la licencia BSD de Django en
-`adminwp/vendor/django/LICENSE`. El desarrollador del tema puede reconstruir el sprite con `npm run build:icons`.
+`newadmin/vendor/django/LICENSE`. El desarrollador del tema puede reconstruir el sprite con `npm run build:icons`.
 Instalar el wheel no requiere npm ni Node.
 
 Cada enlace exige `LABEL` y `URL_NAME`; `ICON` vale `link` y `PERMISSIONS` vale `[]`
@@ -106,7 +106,7 @@ operations.register(Article)
 urlpatterns = [path("operations/", operations.urls)]
 
 # settings.py: hereda opciones globales y sustituye solo lo indicado.
-ADMINWP = {
+NEWADMIN = {
     "SITE_HEADER": "Administración",
     "SITES": {
         "operations": {
@@ -137,13 +137,13 @@ con `collectstatic` y almacenamiento de manifiesto.
 
 En las plantillas estándar, `CUSTOM_CSS` se carga después de los estilos del tema,
 los estilos nativos de la página y el CSS de `ModelAdmin.Media`. Las variables
-`--adminwp-*` permiten ajustar la apariencia. Para sustituir colores que se traducen
+`--newadmin-*` permiten ajustar la apariencia. Para sustituir colores que se traducen
 a variables nativas de Django, define los valores en `:root`/`html`, por ejemplo:
 
 ```css
 html[data-theme="light"] {
-  --adminwp-primary: #184c40;
-  --adminwp-primary-hover: #123b31;
+  --newadmin-primary: #184c40;
+  --newadmin-primary-hover: #123b31;
 }
 ```
 
@@ -153,27 +153,27 @@ necesitan variantes. Conserva el contraste de texto, controles y foco.
 ## Bloques de plantillas
 
 Coloca tus overrides en un directorio de `TEMPLATES['DIRS']` o en una aplicación
-antes de `adminwp`. Extiende el mismo nombre y usa `block.super` para conservar el
+antes de `newadmin`. Extiende el mismo nombre y usa `block.super` para conservar el
 contenido y los recursos del tema:
 
 ```django
 {# templates/admin/base_site.html #}
 {% extends "admin/base_site.html" %}
-{% block adminwp_branding %}{{ block.super }}{% endblock %}
-{% block adminwp_footer %}<p>Ayuda del equipo editorial</p>{% endblock %}
+{% block newadmin_branding %}{{ block.super }}{% endblock %}
+{% block newadmin_footer %}<p>Ayuda del equipo editorial</p>{% endblock %}
 ```
 
 ```django
 {# templates/admin/nav_sidebar.html #}
 {% extends "admin/nav_sidebar.html" %}
-{% block adminwp_sidebar_extra %}
+{% block newadmin_sidebar_extra %}
   {{ block.super }}
   {# Contenido adicional del proyecto, con sus comprobaciones de permiso. #}
 {% endblock %}
 ```
 
-`adminwp_branding` está dentro de la marca de cabecera, `adminwp_sidebar_extra`
-sigue a las aplicaciones e incluye por defecto `MENU.LINKS`, y `adminwp_footer`
+`newadmin_branding` está dentro de la marca de cabecera, `newadmin_sidebar_extra`
+sigue a las aplicaciones e incluye por defecto `MENU.LINKS`, y `newadmin_footer`
 está en el pie del documento. Los bloques reciben el contexto habitual del admin.
 El pie tiene contenido vacío por defecto.
 

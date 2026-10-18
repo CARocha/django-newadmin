@@ -57,7 +57,7 @@ def test_navigation_reflows_and_is_keyboard_operable(
         # 1280 CSS pixels at 400% browser zoom reflow to a 320 CSS pixel viewport.
         page.set_viewport_size({"width": 320, "height": 700})
         page.goto(static_live_server.url + "/admin/catalog/article/")
-        region = page.locator(".adminwp-table-scroll")
+        region = page.locator(".newadmin-table-scroll")
         if region.count():
             expect(region).to_have_attribute("tabindex", "0")
         browser.close()

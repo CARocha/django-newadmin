@@ -1,10 +1,10 @@
-#toggle-nav-sidebar .adminwp-nav-label {
+#toggle-nav-sidebar .newadmin-nav-label {
   display: none;
 }
 
 @media (max-width: 767px) {
-  body.adminwp-theme:not(.login):not(.popup) {
-    // Django's viewport-based width exceeds a padded AdminWP fieldset.
+  body.newadmin-theme:not(.login):not(.popup) {
+    // Django's viewport-based width exceeds a padded NewAdmin fieldset.
     .aligned .form-row > div {
       width: auto;
       max-width: 100%;
@@ -22,12 +22,12 @@
       flex: 0 0 100%;
       min-height: 44px;
       gap: 0.5rem;
-      border-bottom: 1px solid var(--adminwp-border);
-      color: var(--adminwp-sidebar-text);
+      border-bottom: 1px solid var(--newadmin-border);
+      color: var(--newadmin-sidebar-text);
       font-size: 0.875rem;
     }
 
-    #toggle-nav-sidebar .adminwp-nav-label {
+    #toggle-nav-sidebar .newadmin-nav-label {
       display: inline;
     }
 
@@ -42,7 +42,7 @@
       visibility: visible;
     }
 
-    .main[data-adminwp-nav-ready]:not(.adminwp-nav-open) > #nav-sidebar {
+    .main[data-newadmin-nav-ready]:not(.newadmin-nav-open) > #nav-sidebar {
       display: none;
     }
 

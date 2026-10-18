@@ -3,13 +3,13 @@
 ## Se sigue viendo el admin de Django
 
 Comprueba que instalaste el paquete en el mismo entorno que ejecuta Django y que
-`adminwp` precede a `django.contrib.admin`. Revisa los overrides en `TEMPLATES['DIRS']`
-y las aplicaciones anteriores a `adminwp`: pueden ocultar las plantillas del tema.
+`newadmin` precede a `django.contrib.admin`. Revisa los overrides en `TEMPLATES['DIRS']`
+y las aplicaciones anteriores a `newadmin`: pueden ocultar las plantillas del tema.
 
 ```sh
-python -m pip show django-adminwp
+python -m pip show django-newadmin
 python manage.py check
-python manage.py findstatic adminwp/css/adminwp.css --verbosity 2
+python manage.py findstatic newadmin/css/newadmin.css --verbosity 2
 ```
 
 ## Estáticos ausentes, sin estilos o iconos
@@ -20,7 +20,7 @@ la caché del navegador. No mezcles plantillas de una versión con CSS de otra.
 
 ## Errores de configuración
 
-Los checks del tema distinguen ajustes inválidos (`adminwp.E001`/`E002`), rutas de
+Los checks del tema distinguen ajustes inválidos (`newadmin.E001`/`E002`), rutas de
 recursos (`E003`), menú (`E004`) y orden de aplicaciones (`E005`). El mensaje indica
 qué corregir. `LOGO`/`CUSTOM_CSS` usan rutas de staticfiles, sin URL externa ni `..`.
 
@@ -41,5 +41,5 @@ Comprueba los tres modos y la navegación con teclado después de añadir CSS o
 widgets. Conserva `block.super` en los bloques de recursos. Prueba por separado
 las pantallas del admin que sustituyas completamente.
 
-Al reportar un problema incluye versiones de Python/Django/AdminWP, navegador,
+Al reportar un problema incluye versiones de Python/Django/NewAdmin, navegador,
 pantalla afectada, pasos y un ejemplo mínimo sin credenciales ni datos personales.

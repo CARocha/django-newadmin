@@ -15,7 +15,7 @@ def _sign_in(page, url):
 def test_local_echarts_renders_two_charts_and_preserves_legend_selection_across_modes(
     static_live_server, settings
 ):
-    settings.ADMINWP = {"DASHBOARD": "tests.dashboard_fixtures.ChartDashboard"}
+    settings.NEWADMIN = {"DASHBOARD": "tests.dashboard_fixtures.ChartDashboard"}
     get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
@@ -88,15 +88,15 @@ def test_local_echarts_renders_two_charts_and_preserves_legend_selection_across_
 
 
 def test_chart_data_remains_available_without_javascript(static_live_server, settings):
-    settings.ADMINWP = {"DASHBOARD": "tests.dashboard_fixtures.ChartDashboard"}
+    settings.NEWADMIN = {"DASHBOARD": "tests.dashboard_fixtures.ChartDashboard"}
     get_user_model().objects.create_superuser("editor", "editor@example.com", "secret")
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch()
         page = browser.new_page(java_script_enabled=False)
         page.set_default_timeout(5000)
         _sign_in(page, static_live_server.url)
-        page.locator(".adminwp-chart__data summary").first.click()
-        table = page.locator(".adminwp-chart__data table").first
+        page.locator(".newadmin-chart__data summary").first.click()
+        table = page.locator(".newadmin-chart__data table").first
         assert table.is_visible()
         assert "News" in table.inner_text()
         assert table.locator("tbody tr").count() == 2

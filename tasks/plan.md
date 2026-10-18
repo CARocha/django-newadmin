@@ -1,4 +1,4 @@
-# Plan inicial de django-adminwp
+# Plan inicial de django-newadmin
 
 Fecha: 2026-10-16.
 Estado: T01–T16 implementadas; candidato local 0.1.0a1 listo para el proceso de publicación.
@@ -6,14 +6,14 @@ Tareas y criterios de aceptación: [todo.md](todo.md).
 
 ## Objetivo
 
-Crear un tema instalable para el administrador de Django, inspirado en la
-navegación de WordPress y en django-wpadmin. Debe ofrecer una presentación
+Crear un tema propio e instalable para el administrador de Django, con una
+navegación centrada en el trabajo diario. Debe ofrecer una presentación
 cuidada, modos claro/oscuro/automático y configuración opcional, preservando
 los ModelAdmin y los comportamientos nativos de Django.
 
 ## Decisiones de partida
 
-- Distribución Python: `django-adminwp`. Módulo y aplicación Django: `adminwp`.
+- Distribución Python: `django-newadmin`. Módulo y aplicación Django: `newadmin`.
 - Matriz inicial prevista: Django 6.0 y 6.1 con Python 3.13 y 3.14.
   La compatibilidad solo se anunciará después de verificar esas combinaciones.
 - Bootstrap 5.3 con compilación selectiva de Sass y JavaScript del tema pequeño.
@@ -23,7 +23,7 @@ los ModelAdmin y los comportamientos nativos de Django.
 - Mantener scripts y widgets del admin, incluyendo `django.jQuery` cuando Django
   lo requiera. El tema no añadirá otra copia de jQuery.
 - Un único estado de apariencia, compatible con el selector nativo de Django.
-- Configuración básica mediante `ADMINWP`; menú automático si no se configura.
+- Configuración básica mediante `NEWADMIN`; menú automático si no se configura.
 - Documentación pública con Sphinx: instalación, configuración, personalización
   y resolución de problemas, con ejemplos reproducibles. Integrar las guías
   existentes en el sitio de documentación y comprobar su compilación en CI.
@@ -57,7 +57,7 @@ inicio para facilitar esas integraciones.
 La primera tarea produjo [DESIGN.md](../DESIGN.md) y [SPEC.md](../SPEC.md): tokens semánticos de color,
 tipografía, espaciado, radios, estados de interacción, configuración pública y
 contratos de extensión. La referencia Apple se adaptará a tablas y formularios;
-la navegación conservará la familiaridad de WordPress.
+la navegación facilitará las tareas del administrador.
 
 Las paletas iniciales tendrán variantes completas para claro y oscuro. Los
 colores finales se validarán por contraste, no solamente por apariencia.
@@ -72,10 +72,10 @@ de implementar, incluyendo su aislamiento entre sitios.
 ## Estructura prevista
 
 ```text
-src/adminwp/                Paquete distribuible
+src/newadmin/                Paquete distribuible
   templates/admin/         Extensiones de las plantillas nativas
-  templates/adminwp/       Componentes propios
-  static/adminwp/          CSS, JavaScript e iconos distribuidos
+  templates/newadmin/       Componentes propios
+  static/newadmin/          CSS, JavaScript e iconos distribuidos
   templatetags/            Integración con plantillas
 assets/                    Fuentes Sass y JavaScript
 tests/                     Pruebas de configuración e integración con Django
@@ -155,22 +155,19 @@ el código a GitHub.
 
 ## Repositorio GitHub
 
-El proyecto local está en
-`/Users/crocha/projects/python/django/personal/django-adminwp`, tras mover la
-carpeta original y verificar que se conservaron todos sus archivos.
+El proyecto activo está en
+`/Users/crocha/projects/python/django/personal/django-newadmin`.
+La identidad pública es django-newadmin / newadmin / NEWADMIN / NewAdmin.
+El usuario autorizó trasladar el código y subirlo al repositorio nuevo;
+el historial Git completo se conserva, sin reescribir sus commits.
 
-El remoto `origin` está configurado como
-`https://github.com/CARocha/django-adminwp.git`. Se verificó el acceso de lectura
-al repositorio, que todavía no tiene referencias publicadas. La rama local es
-`main`. El historial se mantendrá mediante commits locales; la publicación remota
-se registrará cuando se realice.
-
-La licencia y la disponibilidad del nombre para distribución se resolverán
-antes de la publicación. No se publicará ningún artefacto por preparar el plan.
+El remoto `origin` es `git@github.com:CARocha/django-newadmin.git`.
+La rama de entrega es `main`. La versión inicial sigue siendo 0.1.0a1,
+con licencia BSD de 3 cláusulas. La distribución no está publicada todavía
+en TestPyPI/PyPI; subir el repositorio no publica automáticamente el paquete.
 
 ## Referencias
 
-- https://github.com/barszczmm/django-wpadmin
 - https://www.djangoproject.com/weblog/2025/apr/18/admin-theme-roundup/
 - https://docs.djangoproject.com/en/6.0/ref/contrib/admin/
 - https://docs.djangoproject.com/en/6.1/releases/6.1/

@@ -1,0 +1,29 @@
+{% load i18n %}
+{% with id=chart_id|default:chart.id %}
+{% with config_id=id|add:"-config" title_id=id|add:"-title" %}
+<figure class="newadmin-panel newadmin-chart" aria-labelledby="{{ title_id }}">
+  <figcaption class="newadmin-panel__header{% if compact %} visually-hidden{% endif %}">
+    <div>
+      <h2 id="{{ title_id }}">{{ chart.title }}</h2>
+      {% if chart.description %}<p>{{ chart.description }}</p>{% endif %}
+    </div>
+  </figcaption>
+  {% if chart.rows %}
+    <div id="{{ id }}" class="newadmin-chart__plot" data-newadmin-chart data-chart-config="{{ config_id }}"></div>
+    {{ chart.option|json_script:config_id }}
+    <details class="newadmin-chart__data">
+      <summary>{% translate 'View chart data' %}</summary>
+      <div class="newadmin-panel__scroll" tabindex="0" role="region" aria-label="{{ chart.title }}">
+        <table>
+          <caption class="visually-hidden">{{ chart.title }}</caption>
+          <thead><tr>{% for column in chart.columns %}<th scope="col">{{ column }}</th>{% endfor %}</tr></thead>
+          <tbody>{% for row in chart.rows %}<tr>{% for cell in row %}{% if forloop.first %}<th scope="row">{{ cell }}</th>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>{% endfor %}</tbody>
+        </table>
+      </div>
+    </details>
+  {% else %}
+    <p class="newadmin-panel__empty">{% translate 'No data to display yet.' %}</p>
+  {% endif %}
+</figure>
+{% endwith %}
+{% endwith %}

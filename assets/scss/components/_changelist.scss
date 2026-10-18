@@ -1,46 +1,46 @@
-.adminwp-table-scroll {
+.newadmin-table-scroll {
   max-width: 100%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  background: var(--adminwp-surface);
-  border: 1px solid var(--adminwp-border);
+  background: var(--newadmin-surface);
+  border: 1px solid var(--newadmin-border);
   border-radius: 4px;
 }
 
-.adminwp-table-scroll:focus-visible {
-  outline: 3px solid var(--adminwp-focus, var(--adminwp-primary));
+.newadmin-table-scroll:focus-visible {
+  outline: 3px solid var(--newadmin-focus, var(--newadmin-primary));
   outline-offset: 2px;
 }
 
-#changelist .adminwp-table-scroll .results {
+#changelist .newadmin-table-scroll .results {
   overflow: visible;
 }
 
-.adminwp-table-scroll #result_list {
+.newadmin-table-scroll #result_list {
   margin-bottom: 0;
   border: 0;
 }
 
-.adminwp-table-scroll #result_list th {
+.newadmin-table-scroll #result_list th {
   white-space: nowrap;
 }
 
-.adminwp-table-scroll #result_list td {
+.newadmin-table-scroll #result_list td {
   max-width: 32rem;
   overflow-wrap: anywhere;
 }
 
-.adminwp-table-scroll #result_list tbody tr:hover {
-  background: var(--adminwp-surface-raised);
+.newadmin-table-scroll #result_list tbody tr:hover {
+  background: var(--newadmin-surface-raised);
 }
 
-.adminwp-table-scroll #result_list :focus-visible {
-  outline: 2px solid var(--adminwp-focus, var(--adminwp-primary));
+.newadmin-table-scroll #result_list :focus-visible {
+  outline: 2px solid var(--newadmin-focus, var(--newadmin-primary));
   outline-offset: 1px;
 }
 
 @media (max-width: 767.98px) {
-  .adminwp-table-scroll #result_list {
+  .newadmin-table-scroll #result_list {
     min-width: 48rem;
   }
 }

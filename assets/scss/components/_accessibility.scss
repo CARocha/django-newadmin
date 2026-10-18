@@ -1,15 +1,15 @@
-body.adminwp-theme :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--adminwp-text);
+body.newadmin-theme :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--newadmin-text);
   outline-offset: 3px;
   scroll-margin-block: 6rem;
 }
 
-body.adminwp-theme .skip-to-content-link:focus {
+body.newadmin-theme .skip-to-content-link:focus {
   z-index: 100;
 }
 
 @media (forced-colors: active) {
-  body.adminwp-theme :focus-visible {
+  body.newadmin-theme :focus-visible {
     outline-color: Highlight;
   }
 }

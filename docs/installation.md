@@ -12,13 +12,13 @@ Mientras el candidato no esté publicado, instala el wheel proporcionado por el
 mantenedor (ajusta la ruta):
 
 ```sh
-python -m pip install /ruta/django_adminwp-0.1.0a1-py3-none-any.whl
+python -m pip install /ruta/django_newadmin-0.1.0a1-py3-none-any.whl
 ```
 
 Después de su publicación en PyPI, el comando será:
 
 ```sh
-python -m pip install 'django-adminwp==0.1.0a1'
+python -m pip install 'django-newadmin==0.1.0a1'
 ```
 
 Fijar la versión selecciona explícitamente esta alfa. El paquete resuelve Django
@@ -27,11 +27,11 @@ plan de actualización de pip antes de modificar un entorno de producción.
 
 ## Activar en un proyecto existente
 
-En `settings.py`, coloca `adminwp` **antes** de `django.contrib.admin`:
+En `settings.py`, coloca `newadmin` **antes** de `django.contrib.admin`:
 
 ```python
 INSTALLED_APPS = [
-    'adminwp',
+    'newadmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,10 +67,10 @@ urlpatterns = [path('admin/', admin.site.urls)]
 ```
 
 Abre `/admin/`. El tema aplica su estilo a login, portada, listados, formularios,
-widgets y páginas auxiliares. La configuración `ADMINWP` es opcional:
+widgets y páginas auxiliares. La configuración `NEWADMIN` es opcional:
 
 ```python
-ADMINWP = {'SITE_HEADER': 'Mi sitio', 'DEFAULT_MODE': 'auto'}
+NEWADMIN = {'SITE_HEADER': 'Mi sitio', 'DEFAULT_MODE': 'auto'}
 ```
 
 Continúa con [configuración](configuration.md) y [dashboards](dashboard.md).
@@ -107,7 +107,7 @@ la política CORS de tu despliegue; la matriz inicial valida recursos del mismo 
 
 ## Desactivar o actualizar
 
-Para desactivar el tema, retira `adminwp` de `INSTALLED_APPS` y los overrides del
+Para desactivar el tema, retira `newadmin` de `INSTALLED_APPS` y los overrides del
 consumidor que dependan de sus plantillas. El admin vuelve al estilo de Django.
 Para actualizar, instala la versión deseada, revisa el changelog, repite
 `collectstatic` y prueba tus overrides, formularios y dashboards en staging.

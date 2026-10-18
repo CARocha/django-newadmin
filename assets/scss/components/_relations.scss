@@ -1,14 +1,14 @@
-body.adminwp-change-form {
+body.newadmin-change-form {
   .select2-container--admin-autocomplete {
-    color: var(--adminwp-text);
+    color: var(--newadmin-text);
     font-size: 0.875rem;
 
     .select2-selection {
       min-height: 2.375rem;
-      border: 1px solid var(--adminwp-control-border);
+      border: 1px solid var(--newadmin-control-border);
       border-radius: 0.5rem;
-      background: var(--adminwp-surface);
-      color: var(--adminwp-text);
+      background: var(--newadmin-surface);
+      color: var(--newadmin-text);
     }
 
     .select2-selection--single {
@@ -17,7 +17,7 @@ body.adminwp-change-form {
 
       .select2-selection__rendered {
         padding-left: 0.75rem;
-        color: var(--adminwp-text);
+        color: var(--newadmin-text);
         line-height: 1.4;
       }
 
@@ -33,27 +33,27 @@ body.adminwp-change-form {
       .select2-selection__choice {
         margin: 0.15rem 0.3rem 0.15rem 0;
         padding: 0.15rem 0.45rem;
-        border: 1px solid var(--adminwp-border);
+        border: 1px solid var(--newadmin-border);
         border-radius: 999px;
-        background: var(--adminwp-surface-raised);
-        color: var(--adminwp-text);
+        background: var(--newadmin-surface-raised);
+        color: var(--newadmin-text);
       }
 
       .select2-selection__choice__remove {
         margin-right: 0.35rem;
-        color: var(--adminwp-text-muted);
+        color: var(--newadmin-text-muted);
       }
 
       .select2-search__field {
         min-height: 1.5rem;
-        color: var(--adminwp-text);
+        color: var(--newadmin-text);
       }
     }
 
     &.select2-container--focus .select2-selection,
     &.select2-container--open .select2-selection {
-      border-color: var(--adminwp-primary);
-      outline: 3px solid color-mix(in srgb, var(--adminwp-primary) 22%, transparent);
+      border-color: var(--newadmin-primary);
+      outline: 3px solid color-mix(in srgb, var(--newadmin-primary) 22%, transparent);
       outline-offset: 1px;
     }
   }
@@ -61,32 +61,32 @@ body.adminwp-change-form {
 
 .select2-dropdown {
   overflow: hidden;
-  border: 1px solid var(--adminwp-border);
+  border: 1px solid var(--newadmin-border);
   border-radius: 0.5rem;
-  background: var(--adminwp-surface);
-  color: var(--adminwp-text);
+  background: var(--newadmin-surface);
+  color: var(--newadmin-text);
   box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 16%);
 
   .select2-search__field {
     min-height: 2.25rem;
-    border: 1px solid var(--adminwp-control-border);
+    border: 1px solid var(--newadmin-control-border);
     border-radius: 0.375rem;
-    background: var(--adminwp-surface);
-    color: var(--adminwp-text);
+    background: var(--newadmin-surface);
+    color: var(--newadmin-text);
   }
 
   .select2-results__option--highlighted[aria-selected] {
-    background: var(--adminwp-primary);
-    color: var(--adminwp-on-primary);
+    background: var(--newadmin-primary);
+    color: var(--newadmin-on-primary);
   }
 
   .select2-results__option[aria-selected="true"] {
-    background: var(--adminwp-surface-raised);
-    color: var(--adminwp-text);
+    background: var(--newadmin-surface-raised);
+    color: var(--newadmin-text);
   }
 }
 
-body.adminwp-change-form {
+body.newadmin-change-form {
   .related-widget-wrapper {
     display: inline-flex;
     max-width: 100%;
@@ -112,12 +112,12 @@ body.adminwp-change-form {
 
     &:hover,
     &:focus-visible {
-      background: var(--adminwp-surface-raised);
+      background: var(--newadmin-surface-raised);
       opacity: 1;
     }
 
     &:focus-visible {
-      outline: 2px solid var(--adminwp-primary);
+      outline: 2px solid var(--newadmin-primary);
       outline-offset: 2px;
     }
 
@@ -135,15 +135,15 @@ body.adminwp-change-form {
   }
 
   .selector-chosen .list-footer-display {
-    background: var(--adminwp-primary);
-    color: var(--adminwp-on-primary);
+    background: var(--newadmin-primary);
+    color: var(--newadmin-on-primary);
   }
 
   .selector-available-title,
   .selector-chosen-title {
-    background: var(--adminwp-surface-raised);
-    color: var(--adminwp-text);
-    border-color: var(--adminwp-border);
+    background: var(--newadmin-surface-raised);
+    color: var(--newadmin-text);
+    border-color: var(--newadmin-border);
 
     label {
       color: inherit;
@@ -161,16 +161,16 @@ body.adminwp-change-form {
     .selector-chosen {
       min-width: 0;
       padding: 0.75rem;
-      border: 1px solid var(--adminwp-border);
+      border: 1px solid var(--newadmin-border);
       border-radius: 4px;
-      background: var(--adminwp-surface);
+      background: var(--newadmin-surface);
 
       h2 {
         margin: 0 0 0.65rem;
-        color: var(--adminwp-text);
+        color: var(--newadmin-text);
         font-size: 0.875rem;
-        background: var(--adminwp-surface-raised);
-        border-color: var(--adminwp-border);
+        background: var(--newadmin-surface-raised);
+        border-color: var(--newadmin-border);
       }
 
       p.selector-filter {
@@ -181,10 +181,10 @@ body.adminwp-change-form {
           width: 100%;
           min-height: 2.25rem;
           padding: 0.4rem 0.6rem;
-          border: 1px solid var(--adminwp-control-border);
+          border: 1px solid var(--newadmin-control-border);
           border-radius: 0.375rem;
-          background: var(--adminwp-surface);
-          color: var(--adminwp-text);
+          background: var(--newadmin-surface);
+          color: var(--newadmin-text);
         }
       }
 
@@ -192,10 +192,10 @@ body.adminwp-change-form {
         box-sizing: border-box;
         width: 100%;
         min-height: 12rem;
-        border: 1px solid var(--adminwp-control-border);
+        border: 1px solid var(--newadmin-control-border);
         border-radius: 0.375rem;
-        background: var(--adminwp-surface);
-        color: var(--adminwp-text);
+        background: var(--newadmin-surface);
+        color: var(--newadmin-text);
       }
     }
 
@@ -218,16 +218,16 @@ body.adminwp-change-form {
         background-clip: content-box;
         width: 2rem;
         height: 2rem;
-        border: 1px solid var(--adminwp-border);
+        border: 1px solid var(--newadmin-border);
         border-radius: 0.375rem;
-        background-color: var(--adminwp-surface-raised);
-        color: var(--adminwp-primary);
+        background-color: var(--newadmin-surface-raised);
+        color: var(--newadmin-primary);
 
         &:hover,
         &:focus-visible {
-          border-color: var(--adminwp-primary);
-          background-color: var(--adminwp-primary);
-          color: var(--adminwp-on-primary);
+          border-color: var(--newadmin-primary);
+          background-color: var(--newadmin-primary);
+          color: var(--newadmin-on-primary);
         }
       }
     }
@@ -235,7 +235,7 @@ body.adminwp-change-form {
 }
 
 @media (max-width: 767px) {
-  body.adminwp-change-form .selector {
+  body.newadmin-change-form .selector {
     grid-template-columns: minmax(0, 1fr);
 
     .selector-chooser {

@@ -31,16 +31,16 @@ def test_dashboard_has_contrasting_navigation_and_responsive_cards(static_live_s
         assert row_background == "rgba(0, 0, 0, 0)"
         assert module_link_color == "rgb(83, 97, 114)"
         assert page.locator("#content-title").count() == 0
-        assert page.locator(".adminwp-dashboard__card").count() >= 1
-        assert page.locator(".adminwp-dashboard__activity").count() == 1
+        assert page.locator(".newadmin-dashboard__card").count() >= 1
+        assert page.locator(".newadmin-dashboard__activity").count() == 1
         page.screenshot(path=str(tmp_path / "dashboard-desktop.png"), full_page=True)
 
         page.locator("html").evaluate("element => element.setAttribute('data-theme', 'light')")
-        light_surface = page.locator(".adminwp-dashboard__card").first.evaluate(
+        light_surface = page.locator(".newadmin-dashboard__card").first.evaluate(
             "element => getComputedStyle(element).backgroundColor"
         )
         page.locator("html").evaluate("element => element.setAttribute('data-theme', 'dark')")
-        dark_surface = page.locator(".adminwp-dashboard__card").first.evaluate(
+        dark_surface = page.locator(".newadmin-dashboard__card").first.evaluate(
             "element => getComputedStyle(element).backgroundColor"
         )
         assert dark_surface != light_surface

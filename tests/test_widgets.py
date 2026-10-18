@@ -8,8 +8,8 @@ from demo.catalog.models import Article
 
 class MediaProbeDateWidget(AdminDateWidget):
     class Media:
-        css = {"all": ["adminwp-test/css/widget-probe.css"]}
-        js = ["adminwp-test/js/widget-probe.js"]
+        css = {"all": ["newadmin-test/css/widget-probe.css"]}
+        js = ["newadmin-test/js/widget-probe.js"]
 
 
 def test_admin_date_widget_keeps_native_and_custom_media():
@@ -18,9 +18,9 @@ def test_admin_date_widget_keeps_native_and_custom_media():
     assert set(widget.media._js) == {
         "admin/js/calendar.js",
         "admin/js/admin/DateTimeShortcuts.js",
-        "adminwp-test/js/widget-probe.js",
+        "newadmin-test/js/widget-probe.js",
     }
-    assert widget.media._css["all"] == ["adminwp-test/css/widget-probe.css"]
+    assert widget.media._css["all"] == ["newadmin-test/css/widget-probe.css"]
 
 
 @pytest.mark.parametrize(

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Manage the local AdminWP demo."""
+"""Manage the local NewAdmin demo."""
 
 import os
 import sys

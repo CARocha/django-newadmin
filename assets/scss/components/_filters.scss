@@ -4,103 +4,103 @@
   margin: 0;
   margin-inline-start: 16px;
   padding: 8px;
-  background: var(--adminwp-surface);
-  border: 1px solid var(--adminwp-border);
+  background: var(--newadmin-surface);
+  border: 1px solid var(--newadmin-border);
   border-radius: 4px;
 }
 
 #changelist #changelist-filter h2 {
   padding: 8px 10px;
   margin: 0 0 8px;
-  color: var(--adminwp-text);
-  border-bottom: 1px solid var(--adminwp-border);
+  color: var(--newadmin-text);
+  border-bottom: 1px solid var(--newadmin-border);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: normal;
   text-transform: none;
 }
 
-#changelist #changelist-filter .adminwp-filter {
+#changelist #changelist-filter .newadmin-filter {
   margin: 0 0 8px;
-  background: var(--adminwp-surface-raised);
-  border: 1px solid var(--adminwp-border);
+  background: var(--newadmin-surface-raised);
+  border: 1px solid var(--newadmin-border);
   border-radius: 6px;
 }
 
-#changelist #changelist-filter .adminwp-filter:last-of-type {
+#changelist #changelist-filter .newadmin-filter:last-of-type {
   margin-bottom: 0;
 }
 
-#changelist #changelist-filter .adminwp-filter > summary {
+#changelist #changelist-filter .newadmin-filter > summary {
   display: flex;
   align-items: center;
   min-height: 40px;
   padding: 8px 10px;
   margin: 0;
-  color: var(--adminwp-text);
+  color: var(--newadmin-text);
   font-weight: 600;
   cursor: pointer;
 }
 
-#changelist #changelist-filter .adminwp-filter > summary::before {
+#changelist #changelist-filter .newadmin-filter > summary::before {
   content: "+";
   display: inline-block;
   width: 1.25rem;
-  color: var(--adminwp-primary);
+  color: var(--newadmin-primary);
   font-weight: 700;
 }
 
-#changelist #changelist-filter .adminwp-filter[open] > summary::before {
+#changelist #changelist-filter .newadmin-filter[open] > summary::before {
   content: "−";
 }
 
-#changelist #changelist-filter .adminwp-filter > summary:focus-visible {
-  outline: 2px solid var(--adminwp-focus, var(--adminwp-primary));
+#changelist #changelist-filter .newadmin-filter > summary:focus-visible {
+  outline: 2px solid var(--newadmin-focus, var(--newadmin-primary));
   outline-offset: -2px;
 }
 
-#changelist #changelist-filter .adminwp-filter ul {
+#changelist #changelist-filter .newadmin-filter ul {
   padding: 4px 10px 10px;
   margin: 0;
   border: 0;
 }
 
-#changelist #changelist-filter .adminwp-filter li {
+#changelist #changelist-filter .newadmin-filter li {
   padding: 0;
   margin: 0;
 }
 
-#changelist #changelist-filter .adminwp-filter li.selected {
+#changelist #changelist-filter .newadmin-filter li.selected {
   padding-left: 0;
   padding-inline-start: 8px;
   margin-left: 0;
   margin-inline-start: 0;
-  background: color-mix(in srgb, var(--adminwp-primary) 10%, transparent);
+  background: color-mix(in srgb, var(--newadmin-primary) 10%, transparent);
   border-left: 0;
-  border-inline-start: 3px solid var(--adminwp-primary);
+  border-inline-start: 3px solid var(--newadmin-primary);
   border-start-end-radius: 4px;
   border-end-end-radius: 4px;
 }
 
-#changelist #changelist-filter .adminwp-filter a {
+#changelist #changelist-filter .newadmin-filter a {
   padding: 6px 8px;
-  color: var(--adminwp-text-muted);
+  color: var(--newadmin-text-muted);
   border-radius: 4px;
   text-decoration: none;
 }
 
-#changelist #changelist-filter .adminwp-filter li.selected a {
-  color: var(--adminwp-primary);
+#changelist #changelist-filter .newadmin-filter li.selected a {
+  color: var(--newadmin-primary);
   font-weight: 600;
 }
 
-#changelist #changelist-filter .adminwp-filter a:hover {
-  color: var(--adminwp-primary-hover);
-  background: var(--adminwp-surface);
+#changelist #changelist-filter .newadmin-filter a:hover {
+  color: var(--newadmin-primary-hover);
+  background: var(--newadmin-surface);
 }
 
-#changelist #changelist-filter .adminwp-filter a:focus-visible {
-  outline: 2px solid var(--adminwp-focus, var(--adminwp-primary));
+#changelist #changelist-filter .newadmin-filter a:focus-visible {
+  outline: 2px solid var(--newadmin-focus, var(--newadmin-primary));
   outline-offset: 1px;
 }
 
